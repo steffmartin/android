@@ -100,18 +100,18 @@ public class CriaBanco extends SQLiteOpenHelper{
             + KEY_DESCRICAO + " VARCHAR NULL);";
 
     //Criação de tabela TiposPublico
-    private static final String CREATE_TABLE_TIPOSPARTICULAR = "CREATE TABLE IF NOT EXISTS "
-            + TABELA_TIPOSPARTICULAR + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+    private static final String CREATE_TABLE_TIPOSPUBLICO = "CREATE TABLE IF NOT EXISTS "
+            + TABELA_TIPOSPUBLICO + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + KEY_DESCRICAO + " VARCHAR NULL);";
 
     //Criação de tabela MeioDeTransporte
-    private static final String CREATE_TABLE_TIPOSPARTICULAR = "CREATE TABLE IF NOT EXISTS "
-            + TABELA_TIPOSPARTICULAR + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+    private static final String CREATE_TABLE_MEIODETRANSPORTE = "CREATE TABLE IF NOT EXISTS "
+            + TABELA_MEIODETRANSPORTE + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + KEY_DESCRICAO + " VARCHAR NULL);";
 
     //Criação de tabela TiposCompartilhado
-    private static final String CREATE_TABLE_TIPOSPARTICULAR = "CREATE TABLE IF NOT EXISTS "
-            + TABELA_TIPOSPARTICULAR + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+    private static final String CREATE_TABLE_TIPOSCOMPARTILHADO = "CREATE TABLE IF NOT EXISTS "
+            + TABELA_TIPOSCOMPARTILHADO + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + KEY_DESCRICAO + " VARCHAR NULL);";
 
     //Criação de tabela TiposAlugado
