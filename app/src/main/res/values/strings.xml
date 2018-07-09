@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MOVE</string>
+    <string name="title_activity_meios_de_transporte">MeiosDeTransporteActivity</string>
 </resources>
