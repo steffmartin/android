@@ -124,6 +124,45 @@ public class CriaBanco extends SQLiteOpenHelper{
             + TABELA_TIPOGASTO + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + KEY_DESCRICAO + " VARCHAR NULL);";
 
+    //Criação de tabela Usuario
+    private static final String CREATE_TABLE_USUARIO = "CREATE TABLE IF NOT EXISTS "
+            + TABELA_USUARIO + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + KEY_NOME + " VARCHAR NOT NULL," + KEY_SOBRENOME + " VARCHAR NOT NULL,"
+            + KEY_EMAIL + " VARCHAR NOT NULL," + KEY_SENHA + " VARCHAR NOT NULL,"
+            + KEY_FACEBOOK + " VARCHAR NULL," + KEY_SINCRONIZAR + " BOOL NOT NULL);";
+
+    //Criação de tabela Anuncio
+    private static final String CREATE_TABLE_ANUNCIO = "CREATE TABLE IF NOT EXISTS "
+            + TABELA_ANUNCIO+ "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + KEY_ANUNCIANTE + " VARCHAR NULL," + KEY_IMAGEM + " VARCHAR NULL,"
+            + KEY_TELEFONE + " VARCHAR NULL," + KEY_WEBSITE + " VARCHAR NULL,"
+            + KEY_APPURL + " VARCHAR NULL);";
+
+    //Criação de tabela EstatisticasConta
+    private static final String CREATE_TABLE_ESTATISTICASCONTA = "CREATE TABLE IF NOT EXISTS "
+            + TABELA_ESTATISTICASCONTA + "(" + KEY_USUARIOID + " INTEGER NOT NULL PRIMARY KEY,"
+            + KEY_QTDMEIOSTRANSPORTES + " INTEGER NULL," + KEY_ULTIMOLOGIN + " DATETIME NULL,"
+            + "FOREIGN KEY(" + KEY_USUARIOID + ") REFERENCES " + TABELA_USUARIO + "("
+            + KEY_ID + ");";
+
+    //Criação de tabela Evento
+
+    //Criação de tabela EstatisticasMeioTransporte
+
+    //Criação de tabela Usuario_has_MeioDeTransporte
+
+    //Criação de tabela Compartilhado
+
+    //Criação de tabela Alugado
+
+    //Criação de tabela Gasto
+
+    //Criação de tabela Publico
+
+    //Criação de tabela Particular
+
+    //Criação de tabela Viagem
+
     private Context mContext;
 
     public CriaBanco(Context context){
