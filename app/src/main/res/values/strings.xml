@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MOVE</string>
+    <string name="title_activity_teste">TesteActivity</string>
 </resources>
