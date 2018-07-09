@@ -140,28 +140,75 @@ public class CriaBanco extends SQLiteOpenHelper{
 
     //Criação de tabela EstatisticasConta
     private static final String CREATE_TABLE_ESTATISTICASCONTA = "CREATE TABLE IF NOT EXISTS "
-            + TABELA_ESTATISTICASCONTA + "(" + KEY_USUARIOID + " INTEGER NOT NULL PRIMARY KEY,"
+            + TABELA_ESTATISTICASCONTA + "(" + KEY_USUARIOID + " INTEGER PRIMARY KEY,"
             + KEY_QTDMEIOSTRANSPORTES + " INTEGER NULL," + KEY_ULTIMOLOGIN + " DATETIME NULL,"
             + "FOREIGN KEY(" + KEY_USUARIOID + ") REFERENCES " + TABELA_USUARIO + "("
-            + KEY_ID + ");";
+            + KEY_ID + "));";
 
     //Criação de tabela Evento
+    private static final String CREATE_TABLE_EVENTO = "CREATE TABLE IF NOT EXISTS "
+            + TABELA_EVENTO + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + KEY_MEIODETRANSPORTEID + " INTEGER NULL, FOREIGN KEY(" + KEY_MEIODETRANSPORTEID
+            + ") REFERENCES " + TABELA_MEIODETRANSPORTE + "(" + KEY_ID + "));";
 
     //Criação de tabela EstatisticasMeioTransporte
+    private static final String CREATE_TABLE_ESTATISTICAMEIOTRANSPORTE = "CREATE TABLE IF NOT EXISTS "
+            + TABELA_ESTATISTICASMEIOTRANSPORTE + "(" + KEY_MEIODETRANSPORTEID + " INTEGER PRIMARY KEY,"
+            + KEY_MEDIA + " FLOAT NULL," + KEY_MAXIMO + " FLOAT NULL," + KEY_MINIMO + " FLOAT NULL,"
+            + KEY_QTD + " INTEGER NULL, FOREIGN KEY(" + KEY_MEIODETRANSPORTEID + ") REFERENCES "
+            + TABELA_MEIODETRANSPORTE + "(" + KEY_ID + "));";
 
     //Criação de tabela Usuario_has_MeioDeTransporte
+    private static final String CREATE_TABLE_USUARIOHASMEIODETRANSPORTE = "CREATE TABLE IF NOT EXISTS "
+            + TABELA_USUARIOHASMEIOTRANSPORTE + "(" + KEY_USUARIOID + " INTEGER NOT NULL,"
+            + KEY_MEIODETRANSPORTEID + " INTEGER NOT NULL, PRIMARY KEY(" + KEY_USUARIOID + ","
+            + KEY_MEIODETRANSPORTEID + ") FOREIGN KEY(" + KEY_USUARIOID + ") REFERENCES "
+            + TABELA_USUARIO + "(" + KEY_ID + "), FOREIGN KEY(" + KEY_MEIODETRANSPORTEID + ") REFERENCES "
+            + TABELA_MEIODETRANSPORTE + "(" + KEY_ID + "));";
 
     //Criação de tabela Compartilhado
+    private static final String CREATE_TABLE_COMPARTILHADO = "CREATE TABLE IF NOT EXISTS "
+            + TABELA_COMPARTILHADO + "(" + KEY_MEIODETRANSPORTEID + " INTEGER PRIMARY KEY,"
+            + KEY_TIPOSCOMPARTILHADOID + " INTEGER NOT NULL," + KEY_EMPRESA + " VARCHAR NULL, FOREIGN KEY("
+            + KEY_MEIODETRANSPORTEID + ") REFERENCES " + TABELA_MEIODETRANSPORTE + "(" + KEY_ID + "),"
+            + "FOREIGN KEY(" + KEY_TIPOSCOMPARTILHADOID + ") REFERENCES " + TABELA_TIPOSCOMPARTILHADO
+            + "(" + KEY_ID + "));";
 
     //Criação de tabela Alugado
+    private static final String CREATE_TABLE_ALUGADO = "CREATE TABLE IF NOT EXISTS " + TABELA_ALUGADO
+            + "(" + KEY_MEIODETRANSPORTEID + " INTEGER PRIMARY KEY," + KEY_TIPOSALUGADOID + " INTEGER NOT NULL,"
+            + KEY_LOCADORA + " VARCHAR NULL," + KEY_MARCA + " VARCHAR NULL," + KEY_MODELO + " VARCHAR NULL,"
+            + KEY_COR + " VARCHAR NULL, FOREIGN KEY(" + KEY_MEIODETRANSPORTEID + ") REFERENCES "
+            + TABELA_MEIODETRANSPORTE + "(" + KEY_ID + "), FOREIGN KEY(" + KEY_TIPOSALUGADOID
+            + ") REFERENCES " + TABELA_TIPOSALUGADO + "(" + KEY_ID + "));";
 
     //Criação de tabela Gasto
+    private static final String CREATE_TABLE_GASTO = "CREATE TABLE IF NOT EXISTS " + TABELA_GASTO
+            + "(" + KEY_EVENTOID + " INTEGER PRIMARY KEY," + KEY_TIPOGASTOID + " INTEGER NOT NULL,"
+            + KEY_VALOR + " NUMERIC NULL," + KEY_OBSERVACAO + " VARCHAR NULL, FOREIGN KEY("
+            + KEY_EVENTOID + ") REFERENCES " + TABELA_EVENTO + "(" + KEY_ID + "), FOREIGN KEY("
+            + KEY_TIPOGASTOID + ") REFERENCES " + TABELA_TIPOGASTO + "(" + KEY_ID + "));";
 
     //Criação de tabela Publico
+    private static final String CREATE_TABLE_PUBLICO = "CREATE TABLE IF NOT EXISTS " + TABELA_PUBLICO
+            + "(" + KEY_MEIODETRANSPORTEID + " INTEGER PRIMARY KEY," + KEY_TIPOSPUBLICOID + " INTEGER NOT NULL,"
+            + KEY_EMPRESA + " VARCHAR NULL, FOREIGN KEY(" + KEY_MEIODETRANSPORTEID + ") REFERENCES "
+            + TABELA_MEIODETRANSPORTE + "(" + KEY_ID + "), FOREIGN KEY(" + KEY_TIPOSPUBLICOID
+            + ") REFERENCES " + TABELA_TIPOSPUBLICO + "(" + KEY_ID + "));";
 
     //Criação de tabela Particular
+    private static final String CREATE_TABLE_PARTICULAR = "CREATE TABLE IF NOT EXISTS " + TABELA_PARTICULAR
+            + "(" + KEY_MEIODETRANSPORTEID + " INTEGER PRIMARY KEY," + KEY_TIPOSPARTICULARID + " INTEGER NOT NULL,"
+            + KEY_MARCA + " VARCHAR NULL," + KEY_MODELO + " VARCHAR NULL," + KEY_COR + " VARCHAR NULL,"
+            + "FOREIGN KEY(" + KEY_MEIODETRANSPORTEID + ") REFERENCES "
+            + TABELA_MEIODETRANSPORTE + "(" + KEY_ID + "), FOREIGN KEY(" + KEY_TIPOSPARTICULARID
+            + ") REFERENCES " + TABELA_TIPOSPARTICULAR + "(" + KEY_ID + "));";
 
     //Criação de tabela Viagem
+    private static final String CREATE_TABLE_VIAGEM = "CREATE TABLE IF NOT EXISTS " + TABELA_VIAGEM
+            + "(" + KEY_EVENTOID + " INTEGER PRIMARY KEY," + KEY_INICIO + " DATETIME NULL," + KEY_FIM
+            + " DATETIME NULL," + KEY_DISTANCIA + " FLOAT NULL, FOREIGN KEY(" + KEY_EVENTOID
+            + ") REFERENCES " + TABELA_EVENTO + "(" + KEY_ID + "));";
 
     private Context mContext;
 
@@ -171,12 +218,30 @@ public class CriaBanco extends SQLiteOpenHelper{
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+    public void onCreate(SQLiteDatabase db) {
+        //criação das tabelas
+        db.execSQL(CREATE_TABLE_TIPOSPARTICULAR);
+        db.execSQL(CREATE_TABLE_TIPOSPUBLICO);
+        db.execSQL(CREATE_TABLE_MEIODETRANSPORTE);
+        db.execSQL(CREATE_TABLE_TIPOSCOMPARTILHADO);
+        db.execSQL(CREATE_TABLE_TIPOSALUGADO);
+        db.execSQL(CREATE_TABLE_TIPOGASTO);
+        db.execSQL(CREATE_TABLE_USUARIO);
+        db.execSQL(CREATE_TABLE_ANUNCIO);
+        db.execSQL(CREATE_TABLE_ESTATISTICASCONTA);
+        db.execSQL(CREATE_TABLE_EVENTO);
+        db.execSQL(CREATE_TABLE_ESTATISTICAMEIOTRANSPORTE);
+        db.execSQL(CREATE_TABLE_USUARIOHASMEIODETRANSPORTE);
+        db.execSQL(CREATE_TABLE_COMPARTILHADO);
+        db.execSQL(CREATE_TABLE_ALUGADO);
+        db.execSQL(CREATE_TABLE_GASTO);
+        db.execSQL(CREATE_TABLE_PUBLICO);
+        db.execSQL(CREATE_TABLE_PARTICULAR);
+        db.execSQL(CREATE_TABLE_VIAGEM);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //db.execSQL("DROP TABLE IF EXISTS " + TABELA);
+        //nada a fazer para a apresentação
     }
 }
