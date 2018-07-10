@@ -5,11 +5,11 @@ package move.pdsi.facom.ufu.br.model;
  */
 public class Compartilhado extends MeioDeTransporte {
     private String tipo,
-                   empresa;
+            empresa;
 
-    public Compartilhado(String descricao, String tipo, String empresa){
+    public Compartilhado(String descricao, String tipo, String empresa) {
         super(descricao, 0f, 0f, 0f, 0);
-        this.tipo    = tipo;
+        this.tipo = tipo;
         this.empresa = empresa;
     }
 

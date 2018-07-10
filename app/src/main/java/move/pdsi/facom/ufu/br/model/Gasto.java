@@ -5,13 +5,13 @@ package move.pdsi.facom.ufu.br.model;
  */
 public class Gasto extends Evento {
     private String tipo,
-                   observacao;
-    private float  valor;
+            observacao;
+    private float valor;
 
-    public  Gasto(MeioDeTransporte veiculo, String tipo, float valor, String observacao){
+    public Gasto(MeioDeTransporte veiculo, String tipo, float valor, String observacao) {
         super(veiculo);
-        this.tipo       = tipo;
-        this.valor      = valor;
+        this.tipo = tipo;
+        this.valor = valor;
         this.observacao = observacao;
     }
 
