@@ -3,13 +3,14 @@ package move.pdsi.facom.ufu.br.model;
 /**
  * Created by mirandagab on 07/07/2018.
  */
-public class Viagem extends Evento {
-    private float inicio,
-            fim,
-            distancia;
+public class Viagem{
+    private int     id;
+    private float   inicio,
+                    fim,
+                    distancia;
 
-    public Viagem(MeioDeTransporte veiculo, float inicio, float fim) {
-        super(veiculo);
+    public Viagem(int id,float inicio, float fim) {
+        this.id = id;
         this.inicio = inicio;
         this.fim = fim;
         this.distancia = calcularDistancia(inicio, fim);
@@ -19,6 +20,10 @@ public class Viagem extends Evento {
         float distancia = (fim - inicio);
         return distancia;
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public float getInicio() {
         return inicio;

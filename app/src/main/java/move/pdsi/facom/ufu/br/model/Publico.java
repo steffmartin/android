@@ -1,17 +1,27 @@
 package move.pdsi.facom.ufu.br.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by mirandagab on 07/07/2018.
  */
-public class Publico extends MeioDeTransporte {
-    private String tipo,
-            empresa;
+public class Publico {
+    private int     id;
+    private String  descricao,
+                    tipo,
+                    empresa;
+    private ArrayList<Viagem> viagens;
 
-    public Publico(String descricao, String tipo, String empresa) {
-        super(descricao, 0f, 0f, 0f, 0);
+    public Publico(int id, String descricao, String tipo, String empresa) {
+        this.id = id;
+        this.descricao = descricao;
         this.tipo = tipo;
         this.empresa = empresa;
+        this.viagens = new ArrayList<Viagem>();
+
     }
+
+    private void incluirViagem(Viagem viagem){ this.viagens.add(viagem); }
 
     public String getTipo() {
         return tipo;
@@ -28,4 +38,16 @@ public class Publico extends MeioDeTransporte {
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
+
+    public String getDescricao() { return descricao; }
+
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+
+    public ArrayList<Viagem> getViagens() { return viagens; }
+
+    public void setViagens(ArrayList<Viagem> viagens) { this.viagens = viagens; }
 }
