@@ -15,9 +15,12 @@ public class MeiosDeTransporteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_meios_de_transporte);
     }
 
-    /** Chamada ao clicar no botão de Eventos */
+    /**
+     * Chamada ao clicar no botão de Eventos
+     */
     public void addMeioDeTranporte(View view) {
-        Intent intent = new Intent(this, addMeioDeTranporte.class);
+        Intent intent = new Intent(this, addMeioDeTranporteParticularActivity.class);
         startActivity(intent);
     }
+
 }

@@ -9,38 +9,38 @@ import java.util.Date;
 public class Usuario {
 
     private String nome,
-                   sobrenome,
-                   email,
-                   senha,
-                   foto;
+            sobrenome,
+            email,
+            senha,
+            foto;
     private Boolean facebook;
     private int qtdMeiosDeTransporte;
     private Date ultimoLogin;
     private ArrayList<MeioDeTransporte> transportes;
 
-    public Usuario(){
-        this.nome                   = "Flavio";
-        this.sobrenome              = "Silva";
-        this.email                  = "flavio@ufu.br";
-        this.senha                  = "pdsi20181";
-        this.qtdMeiosDeTransporte   = 0;
-        this.ultimoLogin            = new Date();
-        transportes                 = new ArrayList<MeioDeTransporte>();
-        this.facebook               = false;
+    public Usuario() {
+        this.nome = "Flavio";
+        this.sobrenome = "Silva";
+        this.email = "flavio@ufu.br";
+        this.senha = "pdsi20181";
+        this.qtdMeiosDeTransporte = 0;
+        this.ultimoLogin = new Date();
+        transportes = new ArrayList<MeioDeTransporte>();
+        this.facebook = false;
     }
 
-    private void atualizarUltimoLogin(){
+    private void atualizarUltimoLogin() {
         setUltimoLogin(new Date());
     }
 
-    private void incluirMeioDeTransporte(MeioDeTransporte transporte){
+    private void incluirMeioDeTransporte(MeioDeTransporte transporte) {
         this.transportes.add(transporte);
         int i = getQtdMeiosDeTransporte();
         i++;
         setQtdMeiosDeTransporte(i);
     }
 
-    private void excluirMeioDeTransporte(MeioDeTransporte transporte){
+    private void excluirMeioDeTransporte(MeioDeTransporte transporte) {
 
     }
 

@@ -1,4 +1,48 @@
 <resources>
     <string name="app_name">MOVE</string>
-    <string name="title_activity_meios_de_transporte">MeiosDeTransporteActivity</string>
+    <string-array name="categorias">
+        <item>Particular</item>
+        <item>Alugado</item>
+        <item>Público</item>
+        <item>Compartilhado</item>
+    </string-array>
+    <string-array name="tipoParticular">
+        <item>Carro</item>
+        <item>Caminhonete</item>
+        <item>Ônibus</item>
+        <item>Caminhão</item>
+        <item>Trator</item>
+        <item>Bicicleta</item>
+        <item>Motocicleta</item>
+        <item>Embarcação</item>
+        <item>Aeronave</item>
+    </string-array>
+    <string-array name="tipoAlugado">
+        <item>Carro</item>
+        <item>Caminhonete</item>
+        <item>Ônibus</item>
+        <item>Caminhão</item>
+        <item>Trator</item>
+        <item>Bicicleta</item>
+        <item>Motocicleta</item>
+        <item>Embarcação</item>
+        <item>Aeronave</item>
+    </string-array>
+    <string-array name="tipoPublico">
+        <item>Ônibus/BRT</item>
+        <item>Metrô</item>
+        <item>VLT</item>
+        <item>Trem</item>
+        <item>Táxi</item>
+        <item>Aplicativos</item>
+        <item>Bicicleta</item>
+        <item>Teleférico</item>
+        <item>Aeromóvel</item>
+        <item>Monotrilho</item>
+        <item>Balsa/Catamarã</item>
+    </string-array>
+    <string-array name="tipoCompartilhado">
+        <item>Táxi</item>
+        <item>Aplicativo</item>
+    </string-array>
 </resources>

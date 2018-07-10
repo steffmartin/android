@@ -6,34 +6,34 @@ package move.pdsi.facom.ufu.br.model;
 public class MeioDeTransporte {
     private String descricao;
     private float media,
-                  maximo,
-                  minimo;
+            maximo,
+            minimo;
     private int qtd;
 
-    public MeioDeTransporte(String descricao, float media, float maximo, float minimo, int qtd){
+    public MeioDeTransporte(String descricao, float media, float maximo, float minimo, int qtd) {
         this.descricao = descricao;
-        this.media     = media;
-        this.maximo    = maximo;
-        this.minimo    = minimo;
-        this.qtd       = qtd;
+        this.media = media;
+        this.maximo = maximo;
+        this.minimo = minimo;
+        this.qtd = qtd;
     }
 
-    public void MeioDeTransporte(String descricao){
-        this.descricao  = descricao;
-        this.media      = 0;
-        this.maximo     = 0;
-        this.minimo     = 0;
+    public void MeioDeTransporte(String descricao) {
+        this.descricao = descricao;
+        this.media = 0;
+        this.maximo = 0;
+        this.minimo = 0;
     }
 
     //atualiza as estatisticas do meio de transporte
     //é passado um valor de média e os valores são atualizados
-    private void atualizarEstatisticas(float valor){
-        if(valor > this.maximo) setMaximo(valor);
+    private void atualizarEstatisticas(float valor) {
+        if (valor > this.maximo) setMaximo(valor);
         else if (valor < this.minimo) setMinimo(valor);
         float media = getMedia();
         int qtd = getQtd();
         qtd++;
-        media = (media + valor)/qtd;
+        media = (media + valor) / qtd;
         setQtd(qtd);
     }
 

@@ -15,13 +15,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    /** Chamada ao clicar no botão de Meios de Transporte */
+    /**
+     * Chamada ao clicar no botão de Banco de Dados
+     */
+    public void criarBD(View view) {
+        //TODO chamar método para criar BD
+    }
+
+    /**
+     * Chamada ao clicar no botão de Meios de Transporte
+     */
     public void gerenciarMeios(View view) {
         Intent intent = new Intent(this, MeiosDeTransporteActivity.class);
         startActivity(intent);
     }
 
-    /** Chamada ao clicar no botão de Eventos */
+    /**
+     * Chamada ao clicar no botão de Eventos
+     */
     public void gerenciarEventos(View view) {
         Intent intent = new Intent(this, EventosActivity.class);
         startActivity(intent);

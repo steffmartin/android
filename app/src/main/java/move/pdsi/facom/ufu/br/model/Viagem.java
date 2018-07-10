@@ -5,17 +5,17 @@ package move.pdsi.facom.ufu.br.model;
  */
 public class Viagem extends Evento {
     private float inicio,
-                  fim,
-                  distancia;
+            fim,
+            distancia;
 
-    public  Viagem(MeioDeTransporte veiculo, float inicio, float fim){
+    public Viagem(MeioDeTransporte veiculo, float inicio, float fim) {
         super(veiculo);
-        this.inicio    = inicio;
-        this.fim       = fim;
+        this.inicio = inicio;
+        this.fim = fim;
         this.distancia = calcularDistancia(inicio, fim);
     }
 
-    private float calcularDistancia(float inicio, float fim){
+    private float calcularDistancia(float inicio, float fim) {
         float distancia = (fim - inicio);
         return distancia;
     }

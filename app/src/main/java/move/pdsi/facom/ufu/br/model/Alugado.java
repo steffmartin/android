@@ -5,17 +5,17 @@ package move.pdsi.facom.ufu.br.model;
  */
 public class Alugado extends MeioDeTransporte {
     private String locadora,
-                   marca,
-                   modelo,
-                   cor;
+            marca,
+            modelo,
+            cor;
     private float kmRodados;
 
-    public Alugado (String descricao, String locadora, String marca, String modelo, String cor){
+    public Alugado(String descricao, String locadora, String marca, String modelo, String cor) {
         super(descricao, 0f, 0f, 0f, 0);
         this.locadora = locadora;
-        this.marca    = marca;
-        this.modelo   = modelo;
-        this.cor      = cor;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.cor = cor;
     }
 
     public String getLocadora() {

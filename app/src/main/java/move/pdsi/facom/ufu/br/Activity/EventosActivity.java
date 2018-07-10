@@ -15,7 +15,9 @@ public class EventosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_eventos);
     }
 
-    /** Chamada ao clicar no botão de Eventos */
+    /**
+     * Chamada ao clicar no botão de Eventos
+     */
     public void addEvento(View view) {
         Intent intent = new Intent(this, addEvento.class);
         startActivity(intent);
