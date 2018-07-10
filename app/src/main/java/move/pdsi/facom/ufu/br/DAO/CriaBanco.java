@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by mirandagab on 08/07/2018.
  */
 public class CriaBanco extends SQLiteOpenHelper{
+
+    private static volatile CriaBanco instancia;
+
     private static final String NOME_BANCO = "move.db";
     private static final  int VERSAO_BANCO = 1;
 
@@ -215,6 +218,17 @@ public class CriaBanco extends SQLiteOpenHelper{
     public CriaBanco(Context context){
         super(context, NOME_BANCO, null, VERSAO_BANCO);
         this.mContext = context;
+    }
+
+    public static CriaBanco getInstance(Context context){
+        if (instancia == null){
+            synchronized (CriaBanco.class){
+                if (instancia == null){
+                    instancia = new CriaBanco(context);
+                }
+            }
+        }
+        return instancia;
     }
 
     @Override
