@@ -6,6 +6,10 @@
         <item>Público</item>
         <item>Compartilhado</item>
     </string-array>
+    <string-array name="eventos">
+        <item>Viagem</item>
+        <item>Despesa</item>
+    </string-array>
     <string-array name="tipoParticular">
         <item>Carro</item>
         <item>Caminhonete</item>
