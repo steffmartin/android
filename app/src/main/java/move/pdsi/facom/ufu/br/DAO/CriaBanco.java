@@ -20,13 +20,14 @@ public class CriaBanco extends SQLiteOpenHelper{
     public static final String TABELA_PUBLICO                      = "Publico";
     public static final String TABELA_PARTICULAR                   = "Particular";
     public static final String TABELA_VIAGEM                       = "Viagem";
-    public static final String TABELA_INDICES                      = "Indices";
+    public static final String TABELA_MEIODETRANSPORTE             = "MeioDeTransporte";
 
     //COLUNAS
     //nomes de colunas comuns
     public static final String KEY_ID                              = "_id";
     public static final String KEY_DESCRICAO                       = "descricao";
     public static final String KEY_TIPO                            = "tipo";
+    public static final String KEY_MEIODETRANSPORTEID              = "meiodetransporte_id";
 
     //tabelas Compartilhado e Publico - colunas
     public static final String KEY_EMPRESA                         = "empresa";
@@ -52,33 +53,47 @@ public class CriaBanco extends SQLiteOpenHelper{
     public static final String KEY_VALOR                           = "valor";
 
     //CRIAÇÃO DE TABELAS
+    //Criação de tabela MeioDeTransporte
+    private static final  String CREATE_TABLE_MEIODETRANSPORTE = "CREATE TABLE IF NOT EXISTS "
+            + TABELA_MEIODETRANSPORTE + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + KEY_DESCRICAO + " TEXT)";
+
     //Criação de tabela Compartilhado
     private static final String CREATE_TABLE_COMPARTILHADO = "CREATE TABLE IF NOT EXISTS "
-            + TABELA_COMPARTILHADO + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_DESCRICAO
-            + " TEXT," + KEY_TIPO + " TEXT," + KEY_EMPRESA + " TEXT)";
+            + TABELA_COMPARTILHADO + "(" + KEY_MEIODETRANSPORTEID + " INTEGER PRIMARY KEY," + KEY_DESCRICAO
+            + " TEXT," + KEY_TIPO + " TEXT," + KEY_EMPRESA + " TEXT, FOREIGN KEY("
+            + KEY_MEIODETRANSPORTEID + ") REFERENCES " + TABELA_MEIODETRANSPORTE
+            + "(" + KEY_ID + "))";
 
     //Criação de tabela Alugado
     private static final String CREATE_TABLE_ALUGADO = "CREATE TABLE IF NOT EXISTS "
-            + TABELA_ALUGADO + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_DESCRICAO
+            + TABELA_ALUGADO + "(" + KEY_MEIODETRANSPORTEID + " INTEGER PRIMARY KEY," + KEY_DESCRICAO
             + " TEXT," + KEY_TIPO + " TEXT," + KEY_LOCADORA + " TEXT," + KEY_MARCA
-            + " TEXT," + KEY_MODELO + " TEXT," + KEY_COR + " TEXT)";
+            + " TEXT," + KEY_MODELO + " TEXT," + KEY_COR + " TEXT, FOREIGN KEY("
+            + KEY_MEIODETRANSPORTEID + ") REFERENCES " + TABELA_MEIODETRANSPORTE
+            + "(" + KEY_ID + "))";
 
     //Criação de tabela Publico
     private static final String CREATE_TABLE_PUBLICO = "CREATE TABLE IF NOT EXISTS "
-            + TABELA_PUBLICO + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_DESCRICAO
-            + " TEXT," + KEY_TIPO + " TEXT," + KEY_EMPRESA + " TEXT)";
+            + TABELA_PUBLICO + "(" + KEY_MEIODETRANSPORTEID + " INTEGER PRIMARY KEY," + KEY_DESCRICAO
+            + " TEXT," + KEY_TIPO + " TEXT," + KEY_EMPRESA + " TEXT, FOREIGN KEY("
+            + KEY_MEIODETRANSPORTEID + ") REFERENCES " + TABELA_MEIODETRANSPORTE
+            + "(" + KEY_ID + "))";
 
     //Criação de tabela Particular
     private static final String CREATE_TABLE_PARTICULAR = "CREATE TABLE IF NOT EXISTS "
-            + TABELA_PARTICULAR + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_DESCRICAO
+            + TABELA_PARTICULAR + "(" + KEY_MEIODETRANSPORTEID + " INTEGER PRIMARY KEY," + KEY_DESCRICAO
             + " TEXT," + KEY_TIPO + " TEXT," + KEY_MARCA + " TEXT," + KEY_MODELO + " TEXT,"
             + KEY_COR + " TEXT," + KEY_MEDIA + " REAL," + KEY_MAXIMO + " REAL," + KEY_MINIMO
-            + " REAL)";
+            + " REAL, FOREIGN KEY(" + KEY_MEIODETRANSPORTEID + ") REFERENCES " + TABELA_MEIODETRANSPORTE
+            + "(" + KEY_ID + "))";
 
     //Criação de tabela Viagem
     private static final String CREATE_TABLE_VIAGEM = "CREATE TABLE IF NOT EXISTS "
-            + TABELA_VIAGEM + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_INICIO + " REAL,"
-            + KEY_FIM + " REAL," + KEY_DISTANCIA + " REAL)";
+            + TABELA_VIAGEM + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_INICIO + " TEXT,"
+            + KEY_FIM + " TEXT," + KEY_DISTANCIA + " REAL," + KEY_MEIODETRANSPORTEID + " INTEGER, "
+            + "FOREIGN KEY(" + KEY_MEIODETRANSPORTEID + ") REFERENCES " + TABELA_MEIODETRANSPORTE
+            + "(" + KEY_ID + "))";
 
 //     //Criação de tabela Indices
 //    private static final String CREATE_TABLE_INDICES = "CREATE TABLE IF NOT EXISTS "
@@ -105,6 +120,7 @@ public class CriaBanco extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         //criação das tabelas
+        db.execSQL(CREATE_TABLE_MEIODETRANSPORTE);
         db.execSQL(CREATE_TABLE_PARTICULAR);
         db.execSQL(CREATE_TABLE_ALUGADO);
         db.execSQL(CREATE_TABLE_COMPARTILHADO);

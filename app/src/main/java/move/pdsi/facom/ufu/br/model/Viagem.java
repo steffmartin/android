@@ -4,40 +4,41 @@ package move.pdsi.facom.ufu.br.model;
  * Created by mirandagab on 07/07/2018.
  */
 public class Viagem{
-    private int     id;
-    private float   inicio,
-                    fim,
-                    distancia;
+    private int     id,
+                    meioDeTransporteID;
+    private String  inicio,
+                    fim;
+    private float   distancia;
 
-    public Viagem(int id,float inicio, float fim) {
+    public Viagem(int id, int meioDeTransporteID, String inicio, String fim, float distancia) {
         this.id = id;
+        this.meioDeTransporteID = meioDeTransporteID;
         this.inicio = inicio;
         this.fim = fim;
-        this.distancia = calcularDistancia(inicio, fim);
-    }
-
-    private float calcularDistancia(float inicio, float fim) {
-        float distancia = (fim - inicio);
-        return distancia;
+        this.distancia = distancia;
     }
 
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
 
-    public float getInicio() {
+    public int getMeioDeTransporteID() { return meioDeTransporteID; }
+
+    public void setMeioDeTransporteID(int meioDeTransporteID) { this.meioDeTransporteID = meioDeTransporteID; }
+
+    public String getInicio() {
         return inicio;
     }
 
-    public void setInicio(float inicio) {
+    public void setInicio(String inicio) {
         this.inicio = inicio;
     }
 
-    public float getFim() {
+    public String getFim() {
         return fim;
     }
 
-    public void setFim(float fim) {
+    public void setFim(String fim) {
         this.fim = fim;
     }
 
