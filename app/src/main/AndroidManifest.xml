@@ -9,13 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="move.pdsi.facom.ufu.br.view.MainActivity">
+        <activity android:name="move.pdsi.facom.ufu.br.Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="move.pdsi.facom.ufu.br.Activity.MeiosDeTransporteActivity" />
+        <activity android:name="move.pdsi.facom.ufu.br.Activity.addMeioDeTranporteParticularActivity" />
+        <activity android:name="move.pdsi.facom.ufu.br.Activity.addMeioDeTransportePublicoActivity" />
+        <activity android:name="move.pdsi.facom.ufu.br.Activity.addMeioDeTransporteAlugadoActivity" />
+        <activity android:name="move.pdsi.facom.ufu.br.Activity.addMeioDeTransporteCompartilhadoActivity" />
+        <activity android:name="move.pdsi.facom.ufu.br.Activity.EventosActivity" />
+        <activity android:name="move.pdsi.facom.ufu.br.Activity.addEventoViagem" />
+        <activity android:name="move.pdsi.facom.ufu.br.Activity.addEventoDespesa"></activity>
     </application>
 
 </manifest>

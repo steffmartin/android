@@ -6,7 +6,7 @@ package move.pdsi.facom.ufu.br.model;
 public class Evento {
     private MeioDeTransporte veiculo;
 
-    public  Evento (MeioDeTransporte veiculo){
+    public Evento(MeioDeTransporte veiculo) {
         this.veiculo = veiculo;
     }
 

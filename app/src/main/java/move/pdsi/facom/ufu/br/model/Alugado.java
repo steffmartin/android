@@ -1,22 +1,44 @@
 package move.pdsi.facom.ufu.br.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by mirandagab on 07/07/2018.
  */
 public class Alugado extends MeioDeTransporte {
-    private String locadora,
-                   marca,
-                   modelo,
-                   cor;
-    private float kmRodados;
+    private int     id;
+    private String  descricao,
+                    tipo,
+                    locadora,
+                    marca,
+                    modelo,
+                    cor;
 
-    public Alugado (String descricao, String locadora, String marca, String modelo, String cor){
-        super(descricao, 0f, 0f, 0f, 0);
+    public Alugado(int id, String descricao, String tipo, String locadora, String marca,
+                   String modelo, String cor) {
+        super(descricao);
+        this.id = id;
+        this.descricao = descricao;
+        this.tipo = tipo;
         this.locadora = locadora;
-        this.marca    = marca;
-        this.modelo   = modelo;
-        this.cor      = cor;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.cor = cor;
     }
+
+    public Alugado(){ super(); }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
+
+    public String getDescricaoA() { return descricao; }
+
+    public void setDescricaoA(String descricao) { this.descricao = descricao; }
+
+    public String getTipo() { return tipo; }
+
+    public void setTipo(String tipo) { this.tipo = tipo; }
 
     public String getLocadora() {
         return locadora;
@@ -48,13 +70,5 @@ public class Alugado extends MeioDeTransporte {
 
     public void setCor(String cor) {
         this.cor = cor;
-    }
-
-    public float getKmRodados() {
-        return kmRodados;
-    }
-
-    public void setKmRodados(float kmRodados) {
-        this.kmRodados = kmRodados;
     }
 }
