@@ -41,13 +41,25 @@ public class MeiosDeTransporteDAO {
         return id;
     }
 
+    private int buscaID(String descricao){
+        int id;
+        String busca = "SELECT _id FROM MeioDeTransporte WHERE descricao = '" + descricao + "'";
+        SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
+
+        Cursor cursor = banco.rawQuery(busca, null);
+        cursor.moveToFirst();
+        id = cursor.getInt(0);
+        cursor.close();
+        return id;
+    }
+
     private List<MeioDeTransporte> buscaMeiosDeTransporte(){
         List<MeioDeTransporte> lista = new ArrayList<MeioDeTransporte>();
         String particularSQL = "SELECT * FROM PARTICULAR";
         String alugadoSQL = "SELECT * FROM ALUGADO";
         String compartilhadoSQL = "SELECT * FROM COMPARTILHADO";
         String publicoSQL = "SELECT * FROM PUBLICO";
-        SQLiteDatabase banco    = db.getInstance(mContext).getReadableDatabase();
+        SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
 
         //Incluir todos Meios de Transporte Particulares
         Cursor particular = banco.rawQuery(particularSQL, null);

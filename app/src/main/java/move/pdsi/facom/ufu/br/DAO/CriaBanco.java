@@ -90,8 +90,8 @@ public class CriaBanco extends SQLiteOpenHelper{
 
     //Criação de tabela Viagem
     private static final String CREATE_TABLE_VIAGEM = "CREATE TABLE IF NOT EXISTS "
-            + TABELA_VIAGEM + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_INICIO + " REAL,"
-            + KEY_FIM + " REAL," + KEY_DISTANCIA + " REAL," + KEY_MEIODETRANSPORTEID + " INTEGER, "
+            + TABELA_VIAGEM + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_INICIO + " TEXT,"
+            + KEY_FIM + " TEXT," + KEY_DISTANCIA + " REAL," + KEY_MEIODETRANSPORTEID + " INTEGER, "
             + "FOREIGN KEY(" + KEY_MEIODETRANSPORTEID + ") REFERENCES " + TABELA_MEIODETRANSPORTE
             + "(" + KEY_ID + "))";
 

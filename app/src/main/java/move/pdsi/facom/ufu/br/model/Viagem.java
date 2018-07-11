@@ -6,28 +6,16 @@ package move.pdsi.facom.ufu.br.model;
 public class Viagem{
     private int     id,
                     meioDeTransporteID;
-    private float   inicio,
-                    fim,
-                    distancia;
+    private String  inicio,
+                    fim;
+    private float   distancia;
 
-    public Viagem(int id, int meioDeTransporteID, float inicio, float fim) {
+    public Viagem(int id, int meioDeTransporteID, String inicio, String fim, float distancia) {
         this.id = id;
         this.meioDeTransporteID = meioDeTransporteID;
         this.inicio = inicio;
         this.fim = fim;
-        this.distancia = calcularDistancia(inicio, fim);
-    }
-
-    public Viagem(int id, int meioDeTransporteID, float distancia){
-        this.id = id;
-        this.meioDeTransporteID = meioDeTransporteID;
         this.distancia = distancia;
-        this.inicio = this.fim = 0f;
-    }
-
-    private float calcularDistancia(float inicio, float fim) {
-        float distancia = (fim - inicio);
-        return distancia;
     }
 
     public int getId() { return id; }
@@ -38,19 +26,19 @@ public class Viagem{
 
     public void setMeioDeTransporteID(int meioDeTransporteID) { this.meioDeTransporteID = meioDeTransporteID; }
 
-    public float getInicio() {
+    public String getInicio() {
         return inicio;
     }
 
-    public void setInicio(float inicio) {
+    public void setInicio(String inicio) {
         this.inicio = inicio;
     }
 
-    public float getFim() {
+    public String getFim() {
         return fim;
     }
 
-    public void setFim(float fim) {
+    public void setFim(String fim) {
         this.fim = fim;
     }
 
