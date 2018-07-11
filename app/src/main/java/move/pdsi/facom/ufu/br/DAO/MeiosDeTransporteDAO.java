@@ -50,6 +50,7 @@ public class MeiosDeTransporteDAO {
         cursor.moveToFirst();
         id = cursor.getInt(0);
         cursor.close();
+        banco.close();
         return id;
     }
 
@@ -125,8 +126,8 @@ public class MeiosDeTransporteDAO {
         }
         publico.close();
 
-        db.close();
         banco.close();
+        db.close();
         return lista;
     }
 
