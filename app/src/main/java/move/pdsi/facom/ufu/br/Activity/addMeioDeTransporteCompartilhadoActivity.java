@@ -9,14 +9,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.move.R;
 
 public class addMeioDeTransporteCompartilhadoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    MeiosDeTransporteDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meio_de_transporte_compartilhado);
+        dao = new MeiosDeTransporteDAO(getApplicationContext());
 
         Spinner categoriaSpinnerCompartilhado = (Spinner) findViewById(R.id.categoriaSpinnerCompartilhado);
         categoriaSpinnerCompartilhado.setSelection(3);
@@ -32,10 +36,11 @@ public class addMeioDeTransporteCompartilhadoActivity extends AppCompatActivity 
      * Chamada ao clicar no botão de Salvar
      */
     public void salvar(View view) {
-        //TODO método para salvar
-        //Após salvar, volta para tela de listagem
+        String descricao = ((EditText) findViewById(R.id.descricaoCompartilhado)).getText().toString();
+        String tipo = ((Spinner) findViewById(R.id.tipoSpinnerCompartilhado)).getSelectedItem().toString();
+        String empresa = ((EditText) findViewById(R.id.marcaCompartilhado)).getText().toString();
+        dao.adicionaCompartilhado(descricao, tipo, empresa);
         finish();
-        Toast.makeText(this, "Meio de Transporte Compartilhado adicionado com sucesso!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
