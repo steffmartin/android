@@ -16,11 +16,21 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Descrição"
+        android:hint="Descrição"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelCategoriaParticular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Categoria"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descricaoParticular" />
 
     <Spinner
         android:id="@+id/categoriaSpinnerParticular"
@@ -33,6 +43,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelCategoriaParticular" />
+
+    <TextView
+        android:id="@+id/labelTipoParticular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="TIpo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoriaSpinnerParticular" />
 
     <Spinner
         android:id="@+id/tipoSpinnerParticular"
@@ -56,7 +76,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Marca"
+        android:hint="Marca"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tipoSpinnerParticular" />
@@ -70,7 +90,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Modelo"
+        android:hint="Modelo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marcaParticular" />
@@ -84,7 +104,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Cor"
+        android:hint="Cor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/modeloParticular" />
@@ -102,23 +122,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/corParticular" />
 
-    <TextView
-        android:id="@+id/labelCategoriaParticular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Categoria"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descricaoParticular" />
-
-    <TextView
-        android:id="@+id/labelTipoParticular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="TIpo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoriaSpinnerParticular" />
 </android.support.constraint.ConstraintLayout>

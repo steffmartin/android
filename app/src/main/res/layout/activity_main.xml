@@ -6,19 +6,16 @@
     android:layout_height="match_parent"
     tools:context="move.pdsi.facom.ufu.br.Activity.MainActivity">
 
-    <Button
-        android:id="@+id/btnMeiosDeTransporte"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/sqLiteLabe"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:onClick="gerenciarMeios"
-        android:text="Meios de Transporte"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:text="SQLite"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnCriarBD"
@@ -32,7 +29,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/sqLiteLabe" />
+
+    <TextView
+        android:id="@+id/useCaseLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Casos de Uso"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCriarBD" />
+
+    <Button
+        android:id="@+id/btnMeiosDeTransporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="gerenciarMeios"
+        android:text="Meios de Transporte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/useCaseLabel" />
 
     <Button
         android:id="@+id/btnEventos"
@@ -48,29 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnMeiosDeTransporte" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="SQLite"
-        android:textAppearance="@android:style/TextAppearance.Material.Title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Casos de Uso"
-        android:textAppearance="@android:style/TextAppearance.Material.Title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCriarBD" />
-
-    <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/disclaimer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
