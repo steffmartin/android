@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import move.pdsi.facom.ufu.br.move.R;
 
@@ -19,6 +21,11 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
         Spinner categoriaSpinnerPublico = (Spinner) findViewById(R.id.categoriaSpinnerPublico);
         categoriaSpinnerPublico.setSelection(2);
         categoriaSpinnerPublico.setOnItemSelectedListener(this);
+
+        Intent intent = getIntent();
+        String categoria = intent.getStringExtra("categoria");
+        EditText editText = (EditText) findViewById(R.id.descricaoPublico);
+        editText.setText(categoria);
     }
 
     /**
@@ -27,10 +34,8 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
     public void salvar(View view) {
         //TODO método para salvar
         //Após salvar, volta para tela de listagem
-        Intent intent = new Intent(this, MeiosDeTransporteActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
         finish();
+        Toast.makeText(this, "Meio de Transporte Público adicionado com sucesso!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -39,25 +44,37 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
             case "Particular": {
                 //Particular
                 Intent intent = new Intent(this, addMeioDeTranporteParticularActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
+                EditText editText = (EditText) findViewById(R.id.descricaoPublico);
+                String message = editText.getText().toString();
+                intent.putExtra("categoria", message);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(0, 0);
                 break;
             }
             case "Alugado": {
                 //Alugado
                 Intent intent = new Intent(this, addMeioDeTransporteAlugadoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                EditText editText = (EditText) findViewById(R.id.descricaoPublico);
+                String message = editText.getText().toString();
+                intent.putExtra("categoria", message);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(0, 0);
                 break;
             }
             case "Compartilhado": {
                 //Compartilhado
                 Intent intent = new Intent(this, addMeioDeTransporteCompartilhadoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                EditText editText = (EditText) findViewById(R.id.descricaoPublico);
+                String message = editText.getText().toString();
+                intent.putExtra("categoria", message);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(0, 0);
                 break;
             }
             default:break;
