@@ -5,23 +5,25 @@ import java.util.ArrayList;
 /**
  * Created by mirandagab on 07/07/2018.
  */
-public class Publico {
+public class Publico extends MeioDeTransporte {
     private int     id;
     private String  descricao,
                     tipo,
                     empresa;
-    private ArrayList<Viagem> viagens;
 
     public Publico(int id, String descricao, String tipo, String empresa) {
+        super(descricao);
         this.id = id;
         this.descricao = descricao;
         this.tipo = tipo;
         this.empresa = empresa;
-        this.viagens = new ArrayList<Viagem>();
-
     }
 
-    private void incluirViagem(Viagem viagem){ this.viagens.add(viagem); }
+    public Publico(){ super(); }
+
+    public String getDescricaoPub() { return descricao; }
+
+    public void setDescricaoPub(String descricao) { this.descricao = descricao; }
 
     public String getTipo() {
         return tipo;
@@ -42,17 +44,4 @@ public class Publico {
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
-
-    public String getDescricao() { return descricao; }
-
-    public void setDescricao(String descricao) { this.descricao = descricao; }
-
-    public ArrayList<Viagem> getViagens() { return viagens; }
-
-    public void setViagens(ArrayList<Viagem> viagens) { this.viagens = viagens; }
-
-    @Override
-    public String toString() {
-        return descricao+" ("+tipo+")";
-    }
 }

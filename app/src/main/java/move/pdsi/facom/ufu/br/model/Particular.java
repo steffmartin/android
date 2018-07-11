@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by mirandagab on 07/07/2018.
  */
-public class Particular {
+public class Particular extends MeioDeTransporte {
     private int     id;
     private String  descricao,
                     tipo,
@@ -15,27 +15,27 @@ public class Particular {
     private float   media,  //media geral do veículo Particular
                     maximo, //melhor média
                     minimo; //pior média
-    private ArrayList<Viagem> viagens;
 
 
     public Particular(int id, String descricao, String marca, String modelo, String cor) {
+        super(descricao);
         this.id = id;
+        this.descricao = descricao;
         this.marca = marca;
         this.modelo = modelo;
         this.cor = cor;
-        this.media = this.maximo = this.minimo = 0f;
-        this.viagens = new ArrayList<Viagem>();
+        this.media = this.maximo = this.minimo = 0F;
     }
 
-    private void incluirViagem(Viagem viagem){ this.viagens.add(viagem); }
+    public Particular () { super(); }
 
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
 
-    public String getDescricao() { return descricao; }
+    public String getDescricaoP() { return descricao; }
 
-    public void setDescricao(String descricao) { this.descricao = descricao; }
+    public void setDescricaoP(String descricao) { this.descricao = descricao; }
 
     public String getTipo() { return tipo; }
 
@@ -75,9 +75,5 @@ public class Particular {
 
     public void setCor(String cor) {
         this.cor = cor;
-    }
-    @Override
-    public String toString() {
-        return descricao+" ("+tipo+")";
     }
 }

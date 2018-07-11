@@ -5,30 +5,29 @@ import java.util.ArrayList;
 /**
  * Created by mirandagab on 07/07/2018.
  */
-public class Compartilhado {
+public class Compartilhado extends MeioDeTransporte {
     private int     id;
     private String  descricao,
                     tipo,
                     empresa;
-    private ArrayList<Viagem> viagens;
 
     public Compartilhado(int id, String descricao, String tipo, String empresa) {
+        super(descricao);
         this.id = id;
         this.descricao = descricao;
         this.tipo = tipo;
         this.empresa = empresa;
-        this.viagens = new ArrayList<Viagem>();
     }
 
-    private void incluirViagem(Viagem viagem){ this.viagens.add(viagem); }
+    public Compartilhado() { super (); }
 
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
 
-    public String getDescricao() { return descricao; }
+    public String getDescricaoC() { return descricao; }
 
-    public void setDescricao(String descricao) { this.descricao = descricao; }
+    public void setDescricaoC(String descricao) { this.descricao = descricao; }
 
     public String getTipo() {
         return tipo;

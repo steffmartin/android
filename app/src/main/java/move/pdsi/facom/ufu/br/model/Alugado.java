@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by mirandagab on 07/07/2018.
  */
-public class Alugado {
+public class Alugado extends MeioDeTransporte {
     private int     id;
     private String  descricao,
                     tipo,
@@ -13,10 +13,10 @@ public class Alugado {
                     marca,
                     modelo,
                     cor;
-    private ArrayList<Viagem> viagens;
 
     public Alugado(int id, String descricao, String tipo, String locadora, String marca,
                    String modelo, String cor) {
+        super(descricao);
         this.id = id;
         this.descricao = descricao;
         this.tipo = tipo;
@@ -24,18 +24,17 @@ public class Alugado {
         this.marca = marca;
         this.modelo = modelo;
         this.cor = cor;
-        this.viagens = new ArrayList<Viagem>();
     }
 
-    private void incluirViagem(Viagem viagem){ this.viagens.add(viagem); }
+    public Alugado(){ super(); }
 
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
 
-    public String getDescricao() { return descricao; }
+    public String getDescricaoA() { return descricao; }
 
-    public void setDescricao(String descricao) { this.descricao = descricao; }
+    public void setDescricaoA(String descricao) { this.descricao = descricao; }
 
     public String getTipo() { return tipo; }
 
@@ -71,14 +70,5 @@ public class Alugado {
 
     public void setCor(String cor) {
         this.cor = cor;
-    }
-
-    public ArrayList<Viagem> getViagens() { return viagens; }
-
-    public void setViagens(ArrayList<Viagem> viagens) { this.viagens = viagens; }
-
-    @Override
-    public String toString() {
-        return descricao+" ("+tipo+")";
     }
 }
