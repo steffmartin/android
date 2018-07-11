@@ -76,4 +76,8 @@ public class Particular {
     public void setCor(String cor) {
         this.cor = cor;
     }
+    @Override
+    public String toString() {
+        return descricao+" ("+tipo+")";
+    }
 }

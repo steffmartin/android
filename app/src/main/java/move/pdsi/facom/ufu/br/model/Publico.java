@@ -50,4 +50,9 @@ public class Publico {
     public ArrayList<Viagem> getViagens() { return viagens; }
 
     public void setViagens(ArrayList<Viagem> viagens) { this.viagens = viagens; }
+
+    @Override
+    public String toString() {
+        return descricao+" ("+tipo+")";
+    }
 }

@@ -18,7 +18,7 @@ public class MeioDeTransporte {
         this.qtd = qtd;
     }
 
-    public void MeioDeTransporte(String descricao) {
+    public MeioDeTransporte(String descricao) {
         this.descricao = descricao;
         this.media = 0;
         this.maximo = 0;
@@ -75,5 +75,10 @@ public class MeioDeTransporte {
 
     public void setQtd(int qtd) {
         this.qtd = qtd;
+    }
+
+    @Override
+    public String toString() {
+        return descricao;
     }
 }

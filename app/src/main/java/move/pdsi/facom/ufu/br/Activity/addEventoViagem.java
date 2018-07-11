@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import move.pdsi.facom.ufu.br.model.Alugado;
+import move.pdsi.facom.ufu.br.model.MeioDeTransporte;
 import move.pdsi.facom.ufu.br.move.R;
 
 public class addEventoViagem extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -20,8 +24,18 @@ public class addEventoViagem extends AppCompatActivity implements AdapterView.On
 
         Spinner tipoEventosSpinner = (Spinner) findViewById(R.id.tipoEventosSpinner);
         tipoEventosSpinner.setSelection(0);
-
         tipoEventosSpinner.setOnItemSelectedListener(this);
+
+        Spinner meioTransporteEventoSpinner = (Spinner) findViewById(R.id.meioTransporteEventoSpinner);
+        //TODO Trocar este pedaço pelo array verdadeiro e apagar o FOR
+        ArrayList<MeioDeTransporte> listaMeios = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            listaMeios.add(new MeioDeTransporte("Carro "+i));
+        }
+        ArrayAdapter<MeioDeTransporte> adapter =
+                new ArrayAdapter<MeioDeTransporte>(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, listaMeios);
+        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+        meioTransporteEventoSpinner.setAdapter(adapter);
     }
 
     /**

@@ -45,4 +45,8 @@ public class Compartilhado {
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
     }
+    @Override
+    public String toString() {
+        return descricao+" ("+tipo+")";
+    }
 }
