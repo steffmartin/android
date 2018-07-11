@@ -44,4 +44,8 @@ public class Compartilhado extends MeioDeTransporte {
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
     }
+    @Override
+    public String toString() {
+        return descricao+" ("+tipo+")";
+    }
 }
