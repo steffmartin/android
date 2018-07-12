@@ -21,7 +21,7 @@ public class Publico extends MeioDeTransporte {
 
     public String getDescricaoPub() { return descricao; }
 
-    public void setDescricaoPub(String descricao) { this.descricao = descricao; }
+    public void setDescricaoPub(String descricao) { this.descricao = descricao; super.setDescricao(descricao); }
 
     public String getTipo() {
         return tipo;
@@ -45,6 +45,6 @@ public class Publico extends MeioDeTransporte {
 
     @Override
     public String toString() {
-        return descricao+" ("+tipo+")";
+        return "Público - " + descricao;
     }
 }

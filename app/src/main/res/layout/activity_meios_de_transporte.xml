@@ -19,4 +19,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listaDeMeiosTransporte"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/two_line_view_with_avatar" />
+
 </android.support.constraint.ConstraintLayout>

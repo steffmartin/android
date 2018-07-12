@@ -42,8 +42,12 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
         String marca = ((EditText) findViewById(R.id.marcaAlugado)).getText().toString();
         String modelo = ((EditText) findViewById(R.id.modeloAlugado)).getText().toString();
         String cor = ((EditText) findViewById(R.id.corAlugado)).getText().toString();
-        dao.adicionaAlugado(descricao, tipo, locadora, marca, modelo, cor);
-        finish();
+        if (descricao.equals("") || locadora.equals("") || marca.equals("") || modelo.equals("") || cor.equals("")) {
+            Toast.makeText(this, "Todos os campos são obrigatórios!", Toast.LENGTH_SHORT).show();
+        } else {
+            dao.adicionaAlugado(descricao, tipo, locadora, marca, modelo, cor);
+            finish();
+        }
     }
 
     @Override
@@ -52,7 +56,7 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
             case "Particular": {
                 //Particular
                 Intent intent = new Intent(this, addMeioDeTranporteParticularActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 EditText editText = (EditText) findViewById(R.id.descricaoAlugado);
                 String message = editText.getText().toString();
                 intent.putExtra("categoria", message);
@@ -64,7 +68,7 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
             case "Público": {
                 //Público
                 Intent intent = new Intent(this, addMeioDeTransportePublicoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 EditText editText = (EditText) findViewById(R.id.descricaoAlugado);
                 String message = editText.getText().toString();
                 intent.putExtra("categoria", message);
@@ -76,7 +80,7 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
             case "Compartilhado": {
                 //Compartilhado
                 Intent intent = new Intent(this, addMeioDeTransporteCompartilhadoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 EditText editText = (EditText) findViewById(R.id.descricaoAlugado);
                 String message = editText.getText().toString();
                 intent.putExtra("categoria", message);
@@ -85,7 +89,8 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
                 overridePendingTransition(0, 0);
                 break;
             }
-            default:break;
+            default:
+                break;
         }
     }
 

@@ -122,7 +122,7 @@ public class MeiosDeTransporteDAO {
                 pub.setTipo(publico.getString(2));
                 pub.setEmpresa(publico.getString(3));
                 lista.add(pub);
-            }while(compartilhado.moveToNext());
+            }while(publico.moveToNext());
         }
         publico.close();
 
