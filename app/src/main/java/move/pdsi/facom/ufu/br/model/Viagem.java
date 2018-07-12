@@ -18,6 +18,8 @@ public class Viagem{
         this.distancia = distancia;
     }
 
+    public Viagem(){}
+
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }

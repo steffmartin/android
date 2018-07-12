@@ -27,7 +27,7 @@ public class MeiosDeTransporteDAO {
         this.mContext = context;
     }
 
-    private long adicionaMeioDeTransporte(String descricao){
+    public long adicionaMeioDeTransporte(String descricao){
         ContentValues valores = new ContentValues();
         valores.put(CriaBanco.KEY_DESCRICAO, descricao);
 
@@ -41,7 +41,7 @@ public class MeiosDeTransporteDAO {
         return id;
     }
 
-    private int buscaID(String descricao){
+    public int buscaID(String descricao){
         int id;
         String busca = "SELECT _id FROM MeioDeTransporte WHERE descricao = '" + descricao + "'";
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
