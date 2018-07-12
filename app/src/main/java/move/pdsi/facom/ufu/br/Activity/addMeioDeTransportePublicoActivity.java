@@ -9,14 +9,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.move.R;
 
 public class addMeioDeTransportePublicoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    MeiosDeTransporteDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meio_de_transporte_publico);
+        dao = new MeiosDeTransporteDAO(getApplicationContext());
 
         Spinner categoriaSpinnerPublico = (Spinner) findViewById(R.id.categoriaSpinnerPublico);
         categoriaSpinnerPublico.setSelection(2);
@@ -32,10 +36,11 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
      * Chamada ao clicar no botão de Salvar
      */
     public void salvar(View view) {
-        //TODO método para salvar
-        //Após salvar, volta para tela de listagem
+        String descricao = ((EditText) findViewById(R.id.descricaoPublico)).getText().toString();
+        String tipo = ((Spinner) findViewById(R.id.tipoSpinnerPublico)).getSelectedItem().toString();
+        String empresa = ((EditText) findViewById(R.id.empresaPublico)).getText().toString();
+        dao.adicionaPublico(descricao, tipo, empresa);
         finish();
-        Toast.makeText(this, "Meio de Transporte Público adicionado com sucesso!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
