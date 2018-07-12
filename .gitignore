@@ -205,3 +205,4 @@ app/google-services.json
 
 
 # End of https://www.gitignore.io/api/java,android,windows,androidstudio
+*.lock
