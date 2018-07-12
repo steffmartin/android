@@ -4,17 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import move.pdsi.facom.ufu.br.DAO.CriaBanco;
 import move.pdsi.facom.ufu.br.DAO.CriaBancoCompleto;
 import move.pdsi.facom.ufu.br.OrionRESTClient.OrionRESTClient;
 import move.pdsi.facom.ufu.br.move.R;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,23 +36,36 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             OrionRESTClient cli = new OrionRESTClient();
+            Random random = new Random();
             JSONObject test = new JSONObject();
             test.put("id", "Teste");
             JSONObject attr = new JSONObject();
             attr.put("name","init");
             attr.put("type", "geo:point");
-            attr.put("value", "-3.691944, 40.418889");
+            attr.put("value", Double.toString(random.nextDouble()*12544));
             test.put("attribute1", attr);
             JSONObject attr2 = new JSONObject();
             attr2.put("name","end");
             attr2.put("type", "geo:point");
-            attr2.put("value", "40.418889, -3.691944");
+            attr2.put("value", Double.toString(random.nextDouble()*56785));
             test.put("attribute2", attr2);
             JSONObject resp = cli.post(test);
+            Toast.makeText(this,"Evento detectado e enviado para o Orion",Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
             Toast.makeText(this, "Erro de Comunicação com o Orion!", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             Toast.makeText(this, "Erro de Comunicação com o Orion!", Toast.LENGTH_SHORT).show();
+        }
+
+        OrionRESTClient cli = new OrionRESTClient();
+        try{
+            double a1 = Double.parseDouble(cli.get("attribute1").get("value").toString());
+            double a2 = Double.parseDouble(cli.get("attribute2").get("value").toString());
+
+        }catch (IOException ex){
+            Log.i("ioexception get","IOException GET");
+        }catch (JSONException ex){
+            Log.i("jsonexception get","JSONException GET");
         }
     }
 

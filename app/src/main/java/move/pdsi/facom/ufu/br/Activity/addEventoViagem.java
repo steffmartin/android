@@ -3,15 +3,21 @@ package move.pdsi.facom.ufu.br.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.List;
 
 import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
+import move.pdsi.facom.ufu.br.OrionRESTClient.OrionRESTClient;
 import move.pdsi.facom.ufu.br.model.MeioDeTransporte;
 import move.pdsi.facom.ufu.br.move.R;
 
