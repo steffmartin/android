@@ -33,7 +33,7 @@ public class Particular extends MeioDeTransporte {
 
     public String getDescricaoP() { return descricao; }
 
-    public void setDescricaoP(String descricao) { this.descricao = descricao; }
+    public void setDescricaoP(String descricao) { this.descricao = descricao; super.setDescricao(descricao); }
 
     public String getTipo() { return tipo; }
 
@@ -76,6 +76,6 @@ public class Particular extends MeioDeTransporte {
     }
     @Override
     public String toString() {
-        return descricao+" ("+tipo+")";
+        return "Particular - " + descricao;
     }
 }

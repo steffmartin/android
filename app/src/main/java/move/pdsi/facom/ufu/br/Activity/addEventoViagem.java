@@ -33,8 +33,8 @@ public class addEventoViagem extends AppCompatActivity implements AdapterView.On
 
         List<MeioDeTransporte> listaMeios = daoMeioTransporte.buscaMeiosDeTransporte();
         ArrayAdapter<MeioDeTransporte> adapter =
-                new ArrayAdapter<MeioDeTransporte>(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, listaMeios);
-        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+                new ArrayAdapter<MeioDeTransporte>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, listaMeios);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         meioTransporteEventoSpinner.setAdapter(adapter);
     }
 
@@ -50,16 +50,17 @@ public class addEventoViagem extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (parent.getItemAtPosition(position).toString()){
-            case "Despesa":{
+        switch (parent.getItemAtPosition(position).toString()) {
+            case "Despesa": {
                 Intent intent = new Intent(this, addEventoDespesa.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(0, 0);
                 break;
             }
-            default:break;
+            default:
+                break;
         }
     }
 

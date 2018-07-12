@@ -25,7 +25,7 @@ public class Compartilhado extends MeioDeTransporte {
 
     public String getDescricaoC() { return descricao; }
 
-    public void setDescricaoC(String descricao) { this.descricao = descricao; }
+    public void setDescricaoC(String descricao) { this.descricao = descricao; super.setDescricao(descricao); }
 
     public String getTipo() {
         return tipo;
@@ -45,6 +45,6 @@ public class Compartilhado extends MeioDeTransporte {
 
     @Override
     public String toString() {
-        return descricao+" ("+tipo+")";
+        return "Compartilhado - " + descricao;
     }
 }

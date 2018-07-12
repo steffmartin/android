@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+<<<<<<< HEAD
      * Chamada ao clicar no botão de Banco de Dados
      */
     public void criarBD(View view) {
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+=======
+>>>>>>> master
      * Chamada ao clicar no botão de Meios de Transporte
      */
     public void gerenciarMeios(View view) {

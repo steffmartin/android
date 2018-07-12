@@ -32,7 +32,7 @@ public class Alugado extends MeioDeTransporte {
 
     public String getDescricaoA() { return descricao; }
 
-    public void setDescricaoA(String descricao) { this.descricao = descricao; }
+    public void setDescricaoA(String descricao) { this.descricao = descricao; super.setDescricao(descricao); }
 
     public String getTipo() { return tipo; }
 
@@ -72,6 +72,6 @@ public class Alugado extends MeioDeTransporte {
 
     @Override
     public String toString() {
-        return descricao+" ("+tipo+")";
+        return "Alugado - " + descricao;
     }
 }

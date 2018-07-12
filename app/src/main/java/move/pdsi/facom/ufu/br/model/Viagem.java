@@ -5,9 +5,9 @@ package move.pdsi.facom.ufu.br.model;
  */
 public class Viagem{
     private int     id,
-                    meioDeTransporteID;
+            meioDeTransporteID;
     private String  inicio,
-                    fim;
+            fim;
     private float   distancia;
 
     public Viagem(int id, int meioDeTransporteID, String inicio, String fim, float distancia) {
