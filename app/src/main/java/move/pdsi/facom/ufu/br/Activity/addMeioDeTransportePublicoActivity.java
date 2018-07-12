@@ -39,8 +39,12 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
         String descricao = ((EditText) findViewById(R.id.descricaoPublico)).getText().toString();
         String tipo = ((Spinner) findViewById(R.id.tipoSpinnerPublico)).getSelectedItem().toString();
         String empresa = ((EditText) findViewById(R.id.empresaPublico)).getText().toString();
-        dao.adicionaPublico(descricao, tipo, empresa);
-        finish();
+        if (descricao.equals("") || empresa.equals("")) {
+            Toast.makeText(this, "Todos os campos são obrigatórios!", Toast.LENGTH_SHORT).show();
+        } else {
+            dao.adicionaPublico(descricao, tipo, empresa);
+            finish();
+        }
     }
 
     @Override
@@ -61,7 +65,7 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
             case "Alugado": {
                 //Alugado
                 Intent intent = new Intent(this, addMeioDeTransporteAlugadoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 EditText editText = (EditText) findViewById(R.id.descricaoPublico);
                 String message = editText.getText().toString();
                 intent.putExtra("categoria", message);
@@ -73,7 +77,7 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
             case "Compartilhado": {
                 //Compartilhado
                 Intent intent = new Intent(this, addMeioDeTransporteCompartilhadoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 EditText editText = (EditText) findViewById(R.id.descricaoPublico);
                 String message = editText.getText().toString();
                 intent.putExtra("categoria", message);
@@ -82,7 +86,8 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
                 overridePendingTransition(0, 0);
                 break;
             }
-            default:break;
+            default:
+                break;
         }
     }
 
