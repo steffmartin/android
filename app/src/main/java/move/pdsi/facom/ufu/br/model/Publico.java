@@ -1,7 +1,5 @@
 package move.pdsi.facom.ufu.br.model;
 
-import java.util.ArrayList;
-
 /**
  * Created by mirandagab on 07/07/2018.
  */
@@ -23,7 +21,7 @@ public class Publico extends MeioDeTransporte {
 
     public String getDescricaoPub() { return descricao; }
 
-    public void setDescricaoPub(String descricao) { this.descricao = descricao; }
+    public void setDescricaoPub(String descricao) { this.descricao = descricao; super.setDescricao(descricao); }
 
     public String getTipo() {
         return tipo;
@@ -44,4 +42,9 @@ public class Publico extends MeioDeTransporte {
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
+
+    @Override
+    public String toString() {
+        return "Público - " + descricao;
+    }
 }

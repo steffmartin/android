@@ -9,14 +9,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.move.R;
 
 public class addMeioDeTransporteCompartilhadoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    MeiosDeTransporteDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meio_de_transporte_compartilhado);
+        dao = new MeiosDeTransporteDAO(getApplicationContext());
 
         Spinner categoriaSpinnerCompartilhado = (Spinner) findViewById(R.id.categoriaSpinnerCompartilhado);
         categoriaSpinnerCompartilhado.setSelection(3);
@@ -32,10 +36,15 @@ public class addMeioDeTransporteCompartilhadoActivity extends AppCompatActivity 
      * Chamada ao clicar no botão de Salvar
      */
     public void salvar(View view) {
-        //TODO método para salvar
-        //Após salvar, volta para tela de listagem
-        finish();
-        Toast.makeText(this, "Meio de Transporte Compartilhado adicionado com sucesso!", Toast.LENGTH_SHORT).show();
+        String descricao = ((EditText) findViewById(R.id.descricaoCompartilhado)).getText().toString();
+        String tipo = ((Spinner) findViewById(R.id.tipoSpinnerCompartilhado)).getSelectedItem().toString();
+        String empresa = ((EditText) findViewById(R.id.marcaCompartilhado)).getText().toString();
+        if (descricao.equals("") || empresa.equals("")) {
+            Toast.makeText(this, "Todos os campos são obrigatórios!", Toast.LENGTH_SHORT).show();
+        } else {
+            dao.adicionaCompartilhado(descricao, tipo, empresa);
+            finish();
+        }
     }
 
     @Override
@@ -44,7 +53,7 @@ public class addMeioDeTransporteCompartilhadoActivity extends AppCompatActivity 
             case "Particular": {
                 //Particular
                 Intent intent = new Intent(this, addMeioDeTranporteParticularActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 EditText editText = (EditText) findViewById(R.id.descricaoCompartilhado);
                 String message = editText.getText().toString();
                 intent.putExtra("categoria", message);
@@ -56,7 +65,7 @@ public class addMeioDeTransporteCompartilhadoActivity extends AppCompatActivity 
             case "Alugado": {
                 //Alugado
                 Intent intent = new Intent(this, addMeioDeTransporteAlugadoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 EditText editText = (EditText) findViewById(R.id.descricaoCompartilhado);
                 String message = editText.getText().toString();
                 intent.putExtra("categoria", message);
@@ -68,7 +77,7 @@ public class addMeioDeTransporteCompartilhadoActivity extends AppCompatActivity 
             case "Público": {
                 //Público
                 Intent intent = new Intent(this, addMeioDeTransportePublicoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 EditText editText = (EditText) findViewById(R.id.descricaoCompartilhado);
                 String message = editText.getText().toString();
                 intent.putExtra("categoria", message);
@@ -77,7 +86,8 @@ public class addMeioDeTransporteCompartilhadoActivity extends AppCompatActivity 
                 overridePendingTransition(0, 0);
                 break;
             }
-            default:break;
+            default:
+                break;
         }
     }
 

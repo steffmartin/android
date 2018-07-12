@@ -54,7 +54,7 @@ public class MeiosDeTransporteDAO {
         return id;
     }
 
-    private List<MeioDeTransporte> buscaMeiosDeTransporte(){
+    public List<MeioDeTransporte> buscaMeiosDeTransporte(){
         List<MeioDeTransporte> lista = new ArrayList<MeioDeTransporte>();
         String particularSQL = "SELECT * FROM PARTICULAR";
         String alugadoSQL = "SELECT * FROM ALUGADO";
@@ -122,7 +122,7 @@ public class MeiosDeTransporteDAO {
                 pub.setTipo(publico.getString(2));
                 pub.setEmpresa(publico.getString(3));
                 lista.add(pub);
-            }while(compartilhado.moveToNext());
+            }while(publico.moveToNext());
         }
         publico.close();
 
@@ -131,7 +131,7 @@ public class MeiosDeTransporteDAO {
         return lista;
     }
 
-    private void adicionaParticular(String descricao, String tipo, String marca, String modelo,
+    public void adicionaParticular(String descricao, String tipo, String marca, String modelo,
                                     String cor, float media, float maximo, float minimo){
         long err = adicionaMeioDeTransporte(descricao);
         if(err != -1L) {
@@ -160,7 +160,7 @@ public class MeiosDeTransporteDAO {
         }
     }
 
-    private void adicionaAlugado(String descricao, String tipo, String locadora, String marca,
+    public void adicionaAlugado(String descricao, String tipo, String locadora, String marca,
                                  String modelo, String cor){
         long err = adicionaMeioDeTransporte(descricao);
         if(err != -1L) {
@@ -188,7 +188,7 @@ public class MeiosDeTransporteDAO {
         }
     }
 
-    private void adicionaCompartilhado(String descricao, String tipo, String empresa){
+    public void adicionaCompartilhado(String descricao, String tipo, String empresa){
         long err = adicionaMeioDeTransporte(descricao);
         if(err != -1L) {
             ContentValues valores = new ContentValues();
@@ -211,7 +211,7 @@ public class MeiosDeTransporteDAO {
         }
     }
 
-    private void adicionaPublico(String descricao, String tipo, String empresa){
+    public void adicionaPublico(String descricao, String tipo, String empresa){
         long err = adicionaMeioDeTransporte(descricao);
         if(err != -1L) {
             ContentValues valores = new ContentValues();

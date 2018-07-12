@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import move.pdsi.facom.ufu.br.DAO.CriaBanco;
 import move.pdsi.facom.ufu.br.DAO.CriaBancoCompleto;
 import move.pdsi.facom.ufu.br.move.R;
 
@@ -15,14 +16,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    /**
-     * Chamada ao clicar no botão de Banco de Dados
-     */
-    public void criarBD(View view) {
-        CriaBancoCompleto banco = new CriaBancoCompleto(this);
-        Toast.makeText(this, "Banco criado com sucesso!", Toast.LENGTH_SHORT).show();
     }
 
     /**

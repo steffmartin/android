@@ -9,14 +9,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.move.R;
 
 public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    MeiosDeTransporteDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meio_de_transporte_alugado);
+        dao = new MeiosDeTransporteDAO(getApplicationContext());
 
         Spinner categoriaSpinnerAlugado = (Spinner) findViewById(R.id.categoriaSpinnerAlugado);
         categoriaSpinnerAlugado.setSelection(1);
@@ -32,10 +36,18 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
      * Chamada ao clicar no botão de Salvar
      */
     public void salvar(View view) {
-        //TODO método para salvar
-        //Após salvar, volta para tela de listagem
-        finish();
-        Toast.makeText(this, "Meio de Transporte Alugado adicionado com sucesso!", Toast.LENGTH_SHORT).show();
+        String descricao = ((EditText) findViewById(R.id.descricaoAlugado)).getText().toString();
+        String tipo = ((Spinner) findViewById(R.id.tipoSpinnerAlugado)).getSelectedItem().toString();
+        String locadora = ((EditText) findViewById(R.id.locadoraAlugado)).getText().toString();
+        String marca = ((EditText) findViewById(R.id.marcaAlugado)).getText().toString();
+        String modelo = ((EditText) findViewById(R.id.modeloAlugado)).getText().toString();
+        String cor = ((EditText) findViewById(R.id.corAlugado)).getText().toString();
+        if (descricao.equals("") || locadora.equals("") || marca.equals("") || modelo.equals("") || cor.equals("")) {
+            Toast.makeText(this, "Todos os campos são obrigatórios!", Toast.LENGTH_SHORT).show();
+        } else {
+            dao.adicionaAlugado(descricao, tipo, locadora, marca, modelo, cor);
+            finish();
+        }
     }
 
     @Override
@@ -44,7 +56,7 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
             case "Particular": {
                 //Particular
                 Intent intent = new Intent(this, addMeioDeTranporteParticularActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 EditText editText = (EditText) findViewById(R.id.descricaoAlugado);
                 String message = editText.getText().toString();
                 intent.putExtra("categoria", message);
@@ -56,7 +68,7 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
             case "Público": {
                 //Público
                 Intent intent = new Intent(this, addMeioDeTransportePublicoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 EditText editText = (EditText) findViewById(R.id.descricaoAlugado);
                 String message = editText.getText().toString();
                 intent.putExtra("categoria", message);
@@ -68,7 +80,7 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
             case "Compartilhado": {
                 //Compartilhado
                 Intent intent = new Intent(this, addMeioDeTransporteCompartilhadoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 EditText editText = (EditText) findViewById(R.id.descricaoAlugado);
                 String message = editText.getText().toString();
                 intent.putExtra("categoria", message);
@@ -77,7 +89,8 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
                 overridePendingTransition(0, 0);
                 break;
             }
-            default:break;
+            default:
+                break;
         }
     }
 

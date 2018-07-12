@@ -22,11 +22,12 @@ public class addEventoDespesa extends AppCompatActivity implements AdapterView.O
 
         tipoEventosSpinner2.setOnItemSelectedListener(this);
     }
+
     /**
      * Chamada ao clicar no botão de Salvar
      */
     public void salvar(View view) {
-        //TODO método para salvar
+        //fazer método para salvar
         //Após salvar, volta para tela de listagem
         finish();
         Toast.makeText(this, "Despesa registrada com sucesso!", Toast.LENGTH_SHORT).show();
@@ -34,16 +35,17 @@ public class addEventoDespesa extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (parent.getItemAtPosition(position).toString()){
-            case "Viagem":{
+        switch (parent.getItemAtPosition(position).toString()) {
+            case "Viagem": {
                 Intent intent = new Intent(this, addEventoViagem.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(0, 0);
                 break;
             }
-            default:break;
+            default:
+                break;
         }
     }
 

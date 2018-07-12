@@ -1,7 +1,5 @@
 package move.pdsi.facom.ufu.br.model;
 
-import java.util.ArrayList;
-
 /**
  * Created by mirandagab on 07/07/2018.
  */
@@ -27,7 +25,7 @@ public class Compartilhado extends MeioDeTransporte {
 
     public String getDescricaoC() { return descricao; }
 
-    public void setDescricaoC(String descricao) { this.descricao = descricao; }
+    public void setDescricaoC(String descricao) { this.descricao = descricao; super.setDescricao(descricao); }
 
     public String getTipo() {
         return tipo;
@@ -43,5 +41,10 @@ public class Compartilhado extends MeioDeTransporte {
 
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
+    }
+
+    @Override
+    public String toString() {
+        return "Compartilhado - " + descricao;
     }
 }
