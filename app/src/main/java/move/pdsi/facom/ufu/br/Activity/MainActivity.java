@@ -2,6 +2,7 @@ package move.pdsi.facom.ufu.br.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
 
     /**
@@ -29,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
      * Chamada ao clicar no botão de Banco de Dados
      */
     public void orion(View view) {
-        CriaBanco banco = new CriaBanco(this);
-        Toast.makeText(this, "Banco criado com sucesso!", Toast.LENGTH_SHORT).show();
 
         try {
             OrionRESTClient cli = new OrionRESTClient();
