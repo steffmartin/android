@@ -5,10 +5,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
-
 import move.pdsi.facom.ufu.br.DAO.CriaBanco;
 import move.pdsi.facom.ufu.br.DAO.CriaBancoCompleto;
+import move.pdsi.facom.ufu.br.OrionRESTClient.OrionRESTClient;
 import move.pdsi.facom.ufu.br.move.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,9 +21,42 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     /**
+<<<<<<< HEAD
+     * Chamada ao clicar no botão de Banco de Dados
+     */
+    public void criarBD(View view) {
+        CriaBanco banco = new CriaBanco(this);
+        Toast.makeText(this, "Banco criado com sucesso!", Toast.LENGTH_SHORT).show();
+
+        try {
+            OrionRESTClient cli = new OrionRESTClient();
+            JSONObject test = new JSONObject();
+            test.put("id", "Teste");
+            JSONObject attr = new JSONObject();
+            attr.put("name","init");
+            attr.put("type", "geo:point");
+            attr.put("value", "-3.691944, 40.418889");
+            test.put("attribute1", attr);
+            JSONObject attr2 = new JSONObject();
+            attr2.put("name","end");
+            attr2.put("type", "geo:point");
+            attr2.put("value", "40.418889, -3.691944");
+            test.put("attribute2", attr2);
+            JSONObject resp = cli.post(test);
+        } catch (JSONException e) {
+            Toast.makeText(this, "Erro de Comunicação com o Orion!", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Toast.makeText(this, "Erro de Comunicação com o Orion!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+=======
+>>>>>>> master
      * Chamada ao clicar no botão de Meios de Transporte
      */
     public void gerenciarMeios(View view) {
