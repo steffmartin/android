@@ -3,33 +3,36 @@ package move.pdsi.facom.ufu.br.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.List;
 
+import move.pdsi.facom.ufu.br.DAO.EventosDAO;
 import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
-import move.pdsi.facom.ufu.br.OrionRESTClient.OrionRESTClient;
 import move.pdsi.facom.ufu.br.model.MeioDeTransporte;
 import move.pdsi.facom.ufu.br.move.R;
 
 public class addEventoViagem extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     MeiosDeTransporteDAO daoMeioTransporte;
+    EventosDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_evento_viagem);
         daoMeioTransporte = new MeiosDeTransporteDAO(getApplicationContext());
+        dao = new EventosDAO(getApplicationContext());
+
+        Intent intent = getIntent();
+        String distancia = intent.getStringExtra("distancia");
+        EditText editText = (EditText) findViewById(R.id.distanciaEvento);
+        editText.setText(distancia);
 
         Spinner tipoEventosSpinner = (Spinner) findViewById(R.id.tipoEventosSpinner);
         tipoEventosSpinner.setSelection(0);
@@ -48,10 +51,17 @@ public class addEventoViagem extends AppCompatActivity implements AdapterView.On
      * Chamada ao clicar no botão de Salvar
      */
     public void salvar(View view) {
-        //TODO método para salvar
-        //Após salvar, volta para tela de listagem
-        finish();
-        Toast.makeText(this, "Viagem registrada com sucesso!", Toast.LENGTH_SHORT).show();
+        String horaInicial = ((EditText) findViewById(R.id.horaInicial)).getText().toString();
+        String horaFinal = ((EditText) findViewById(R.id.horaFinal)).getText().toString();
+        String dataEvento = ((EditText) findViewById(R.id.dataEvento)).getText().toString();
+        String distanciaEvento = ((EditText) findViewById(R.id.distanciaEvento)).getText().toString();
+        String meioTransporteEventoSpinner = ((Spinner) findViewById(R.id.meioTransporteEventoSpinner)).getSelectedItem().toString();
+        if (horaInicial.equals("") || horaFinal.equals("") || dataEvento.equals("") || distanciaEvento.equals("") || meioTransporteEventoSpinner.equals("")) {
+            Toast.makeText(this, "Todos os campos são obrigatórios!", Toast.LENGTH_SHORT).show();
+        } else {
+            dao.adicionaViagem(horaInicial, horaFinal, Float.parseFloat(distanciaEvento), daoMeioTransporte.buscaID(meioTransporteEventoSpinner.split(" - ")[1]));
+            finish();
+        }
     }
 
     @Override

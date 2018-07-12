@@ -6,6 +6,7 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 import move.pdsi.facom.ufu.br.DAO.CriaBanco;
 import move.pdsi.facom.ufu.br.DAO.CriaBancoCompleto;
@@ -52,21 +53,32 @@ public class MainActivity extends AppCompatActivity {
             JSONObject resp = cli.post(test);
             Toast.makeText(this,"Evento detectado e enviado para o Orion",Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
-            Toast.makeText(this, "Erro de Comunicação com o Orion!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Erro de Comunicação com o Orion! (1)", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
-            Toast.makeText(this, "Erro de Comunicação com o Orion!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Erro de Comunicação com o Orion! (2)", Toast.LENGTH_SHORT).show();
         }
 
         OrionRESTClient cli = new OrionRESTClient();
         try{
-            double a1 = Double.parseDouble(cli.get("attribute1").get("value").toString());
-            double a2 = Double.parseDouble(cli.get("attribute2").get("value").toString());
+            double a1 = Double.parseDouble(cli.get("attribute1").getString("Response"));
+            double a2 = Double.parseDouble(cli.get("attribute2").getString("Response"));
+            double distancia = Math.abs(a2-a1);
+
+            //Abre tela de add Evento
+            Intent intent = new Intent(this, addEventoViagem.class);
+            String message = ""+distancia;
+            intent.putExtra("distancia", message);
+            startActivity(intent);
 
         }catch (IOException ex){
             Log.i("ioexception get","IOException GET");
+            Toast.makeText(this,"Erro de Comunicação com o Orion! (3)",Toast.LENGTH_SHORT).show();
         }catch (JSONException ex){
             Log.i("jsonexception get","JSONException GET");
+            Toast.makeText(this,"Erro de Comunicação com o Orion! (4)",Toast.LENGTH_SHORT).show();
         }
+
+
     }
 
     /**
