@@ -10,14 +10,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.move.R;
 
 public class addMeioDeTranporteParticularActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    MeiosDeTransporteDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meio_de_tranporte_particular);
+        dao = new MeiosDeTransporteDAO(getApplicationContext());
 
         Spinner categoriaSpinnerParticular = (Spinner) findViewById(R.id.categoriaSpinnerParticular);
         categoriaSpinnerParticular.setSelection(0);
@@ -33,10 +37,13 @@ public class addMeioDeTranporteParticularActivity extends AppCompatActivity impl
      * Chamada ao clicar no botão de Salvar
      */
     public void salvar(View view) {
-        //TODO método para salvar
-        //Após salvar, volta para tela de listagem
+        String descricao = ((EditText) findViewById(R.id.descricaoParticular)).getText().toString();
+        String tipo = ((Spinner) findViewById(R.id.tipoSpinnerParticular)).getSelectedItem().toString();
+        String marca = ((EditText) findViewById(R.id.marcaParticular)).getText().toString();
+        String modelo = ((EditText) findViewById(R.id.modeloParticular)).getText().toString();
+        String cor = ((EditText) findViewById(R.id.corParticular)).getText().toString();
+        dao.adicionaParticular(descricao, tipo, marca, modelo,cor, 0,0,0);
         finish();
-        Toast.makeText(this, "Meio de Transporte Particular adicionado com sucesso!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

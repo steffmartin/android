@@ -9,14 +9,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.move.R;
 
 public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    MeiosDeTransporteDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meio_de_transporte_alugado);
+        dao = new MeiosDeTransporteDAO(getApplicationContext());
 
         Spinner categoriaSpinnerAlugado = (Spinner) findViewById(R.id.categoriaSpinnerAlugado);
         categoriaSpinnerAlugado.setSelection(1);
@@ -32,10 +36,14 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
      * Chamada ao clicar no botão de Salvar
      */
     public void salvar(View view) {
-        //TODO método para salvar
-        //Após salvar, volta para tela de listagem
+        String descricao = ((EditText) findViewById(R.id.descricaoAlugado)).getText().toString();
+        String tipo = ((Spinner) findViewById(R.id.tipoSpinnerAlugado)).getSelectedItem().toString();
+        String locadora = ((EditText) findViewById(R.id.locadoraAlugado)).getText().toString();
+        String marca = ((EditText) findViewById(R.id.marcaAlugado)).getText().toString();
+        String modelo = ((EditText) findViewById(R.id.modeloAlugado)).getText().toString();
+        String cor = ((EditText) findViewById(R.id.corAlugado)).getText().toString();
+        dao.adicionaAlugado(descricao, tipo, locadora, marca, modelo, cor);
         finish();
-        Toast.makeText(this, "Meio de Transporte Alugado adicionado com sucesso!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

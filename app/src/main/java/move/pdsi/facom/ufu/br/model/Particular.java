@@ -1,7 +1,5 @@
 package move.pdsi.facom.ufu.br.model;
 
-import java.util.ArrayList;
-
 /**
  * Created by mirandagab on 07/07/2018.
  */
@@ -75,5 +73,9 @@ public class Particular extends MeioDeTransporte {
 
     public void setCor(String cor) {
         this.cor = cor;
+    }
+    @Override
+    public String toString() {
+        return descricao+" ("+tipo+")";
     }
 }
