@@ -249,6 +249,7 @@ public class MeiosDeTransporteDAO {
         long err = adicionaMeioDeTransporte(descricao);
         if(err != -1L) {
             ContentValues valores = new ContentValues();
+            valores.put(CriaBanco.KEY_MEIODETRANSPORTEID, err);
             valores.put(CriaBanco.KEY_DESCRICAO, descricao);
             valores.put(CriaBanco.KEY_TIPO, tipo);
             valores.put(CriaBanco.KEY_EMPRESA, empresa);
@@ -272,6 +273,7 @@ public class MeiosDeTransporteDAO {
         long err = adicionaMeioDeTransporte(descricao);
         if(err != -1L) {
             ContentValues valores = new ContentValues();
+            valores.put(CriaBanco.KEY_MEIODETRANSPORTEID, err);
             valores.put(CriaBanco.KEY_DESCRICAO, descricao);
             valores.put(CriaBanco.KEY_TIPO, tipo);
             valores.put(CriaBanco.KEY_EMPRESA, empresa);
