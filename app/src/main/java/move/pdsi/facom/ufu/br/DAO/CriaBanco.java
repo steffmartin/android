@@ -7,54 +7,46 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by mirandagab on 08/07/2018.
  */
-public class CriaBanco extends SQLiteOpenHelper{
+public class CriaBanco extends SQLiteOpenHelper {
 
     private static volatile CriaBanco instancia;
 
     private static final String NOME_BANCO = "move.db";
-    private static final  int VERSAO_BANCO = 1;
-
     //TABELAS
-    public static final String TABELA_COMPARTILHADO                = "Compartilhado";
-    public static final String TABELA_ALUGADO                      = "Alugado";
-    public static final String TABELA_PUBLICO                      = "Publico";
-    public static final String TABELA_PARTICULAR                   = "Particular";
-    public static final String TABELA_VIAGEM                       = "Viagem";
-    public static final String TABELA_MEIODETRANSPORTE             = "MeioDeTransporte";
-
+    public static final String TABELA_COMPARTILHADO = "Compartilhado";
+    public static final String TABELA_ALUGADO = "Alugado";
+    public static final String TABELA_PUBLICO = "Publico";
+    public static final String TABELA_PARTICULAR = "Particular";
+    public static final String TABELA_VIAGEM = "Viagem";
+    public static final String TABELA_MEIODETRANSPORTE = "MeioDeTransporte";
     //COLUNAS
     //nomes de colunas comuns
-    public static final String KEY_ID                              = "_id";
-    public static final String KEY_DESCRICAO                       = "descricao";
-    public static final String KEY_TIPO                            = "tipo";
-    public static final String KEY_MEIODETRANSPORTEID              = "meiodetransporte_id";
-
+    public static final String KEY_ID = "_id";
+    public static final String KEY_DESCRICAO = "descricao";
+    public static final String KEY_TIPO = "tipo";
+    public static final String KEY_MEIODETRANSPORTEID = "meiodetransporte_id";
     //tabelas Compartilhado e Publico - colunas
-    public static final String KEY_EMPRESA                         = "empresa";
-
+    public static final String KEY_EMPRESA = "empresa";
     //tabela Alugado - colunas
-    public static final String KEY_LOCADORA                        = "locadora";
-    public static final String KEY_MARCA                           = "marca";
-    public static final String KEY_MODELO                          = "modelo";
-    public static final String KEY_COR                             = "cor";
-
+    public static final String KEY_LOCADORA = "locadora";
+    public static final String KEY_MARCA = "marca";
+    public static final String KEY_MODELO = "modelo";
+    public static final String KEY_COR = "cor";
     //tabela Particular - colunas
-    public static final String KEY_MEDIA                           = "media";
-    public static final String KEY_MAXIMO                          = "maximo";
-    public static final String KEY_MINIMO                          = "minimo";
-
+    public static final String KEY_MEDIA = "media";
+    public static final String KEY_MAXIMO = "maximo";
+    public static final String KEY_MINIMO = "minimo";
     //tabela Viagem - colunas
-    public static final String KEY_INICIO                          = "inicio";
-    public static final String KEY_FIM                             = "fim";
-    public static final String KEY_DISTANCIA                       = "distancia";
-
+    public static final String KEY_INICIO = "inicio";
+    public static final String KEY_FIM = "fim";
+    public static final String KEY_DISTANCIA = "distancia";
     //tabela Indices - colunas
-    public static final String KEY_TABELA                          = "tabela";
-    public static final String KEY_VALOR                           = "valor";
-
+    public static final String KEY_TABELA = "tabela";
+    public static final String KEY_VALOR = "valor";
+    private static final int VERSAO_BANCO = 1;
     //CRIAÇÃO DE TABELAS
     //Criação de tabela MeioDeTransporte
-    private static final  String CREATE_TABLE_MEIODETRANSPORTE = "CREATE TABLE IF NOT EXISTS "
+    private static final String CREATE_TABLE_MEIODETRANSPORTE = "CREATE TABLE IF NOT EXISTS "
             + TABELA_MEIODETRANSPORTE + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + KEY_DESCRICAO + " TEXT)";
 
@@ -101,15 +93,15 @@ public class CriaBanco extends SQLiteOpenHelper{
 
     private Context mContext;
 
-    public CriaBanco(Context context){
+    public CriaBanco(Context context) {
         super(context, NOME_BANCO, null, VERSAO_BANCO);
         this.mContext = context;
     }
 
-    public static CriaBanco getInstance(Context context){
-        if (instancia == null){
-            synchronized (CriaBanco.class){
-                if (instancia == null){
+    public static CriaBanco getInstance(Context context) {
+        if (instancia == null) {
+            synchronized (CriaBanco.class) {
+                if (instancia == null) {
                     instancia = new CriaBanco(context);
                 }
             }

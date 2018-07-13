@@ -10,7 +10,10 @@ public class Evento {
         this.veiculo = veiculo;
     }
 
-    public Evento(){};
+    public Evento() {
+    }
+
+    ;
 
     public int getVeiculo() {
         return veiculo;

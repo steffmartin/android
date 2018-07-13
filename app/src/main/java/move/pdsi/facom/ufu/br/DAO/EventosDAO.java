@@ -19,12 +19,12 @@ public class EventosDAO {
     private CriaBanco db;
     private Context mContext;
 
-    public EventosDAO(Context context){
+    public EventosDAO(Context context) {
         this.db = new CriaBanco(context);
         this.mContext = context;
     }
 
-    public void adicionaViagem(String inicio, String fim, float distancia, int id){
+    public void adicionaViagem(String inicio, String fim, float distancia, int id) {
         ContentValues valores = new ContentValues();
         valores.put(CriaBanco.KEY_INICIO, inicio);
         valores.put(CriaBanco.KEY_FIM, fim);
@@ -42,14 +42,14 @@ public class EventosDAO {
         banco.close();
     }
 
-    public List<Evento> buscaViagens(){
+    public List<Evento> buscaViagens() {
         List<Evento> lista = new ArrayList<Evento>();
         String busca = "SELECT * FROM Viagem";
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
 
         Cursor buscar = banco.rawQuery(busca, null);
-        if(buscar.moveToFirst()){
-            do{
+        if (buscar.moveToFirst()) {
+            do {
                 Viagem v = new Viagem();
                 v.setId(buscar.getInt(0));
                 v.setInicio(buscar.getString(1));
@@ -57,7 +57,7 @@ public class EventosDAO {
                 v.setDistancia(buscar.getFloat(3));
                 v.setMeioDeTransporteID(buscar.getInt(4));
                 lista.add(v);
-            }while(buscar.moveToNext());
+            } while (buscar.moveToNext());
         }
         buscar.close();
         banco.close();

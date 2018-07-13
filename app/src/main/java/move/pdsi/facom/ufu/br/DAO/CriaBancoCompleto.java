@@ -7,94 +7,94 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by mirandagab on 08/07/2018.
  */
-public class CriaBancoCompleto extends SQLiteOpenHelper{
+public class CriaBancoCompleto extends SQLiteOpenHelper {
 
     private static volatile CriaBancoCompleto instancia;
 
     private static final String NOME_BANCO = "move.db";
-    private static final  int VERSAO_BANCO = 1;
+    private static final int VERSAO_BANCO = 1;
 
     //TABELAS
-    private static final String TABELA_TIPOSPARTICULAR              = "TipoParticular";
-    private static final String TABELA_TIPOSPUBLICO                 = "TipoPublico";
-    private static final String TABELA_MEIODETRANSPORTE             = "MeioDeTransporte";
-    private static final String TABELA_TIPOSCOMPARTILHADO           = "TiposCompartilhado";
-    private static final String TABELA_TIPOSALUGADO                 = "TiposAlugado";
-    private static final String TABELA_TIPOGASTO                    = "TipoGasto";
-    private static final String TABELA_USUARIO                      = "Usuario";
-    private static final String TABELA_ANUNCIO                      = "Anuncio";
-    private static final String TABELA_ESTATISTICASCONTA            = "EstatisticasConta";
-    private static final String TABELA_EVENTO                       = "Evento";
-    private static final String TABELA_ESTATISTICASMEIOTRANSPORTE   = "EstatisticasMeioTransporte";
-    private static final String TABELA_USUARIOHASMEIOTRANSPORTE     = "Usuario_has_MeioDeTransporte";
-    private static final String TABELA_COMPARTILHADO                = "Compartilhado";
-    private static final String TABELA_ALUGADO                      = "Alugado";
-    private static final String TABELA_GASTO                        = "Gasto";
-    private static final String TABELA_PUBLICO                      = "Publico";
-    private static final String TABELA_PARTICULAR                   = "Particular";
-    private static final String TABELA_VIAGEM                       = "Viagem";
+    private static final String TABELA_TIPOSPARTICULAR = "TipoParticular";
+    private static final String TABELA_TIPOSPUBLICO = "TipoPublico";
+    private static final String TABELA_MEIODETRANSPORTE = "MeioDeTransporte";
+    private static final String TABELA_TIPOSCOMPARTILHADO = "TiposCompartilhado";
+    private static final String TABELA_TIPOSALUGADO = "TiposAlugado";
+    private static final String TABELA_TIPOGASTO = "TipoGasto";
+    private static final String TABELA_USUARIO = "Usuario";
+    private static final String TABELA_ANUNCIO = "Anuncio";
+    private static final String TABELA_ESTATISTICASCONTA = "EstatisticasConta";
+    private static final String TABELA_EVENTO = "Evento";
+    private static final String TABELA_ESTATISTICASMEIOTRANSPORTE = "EstatisticasMeioTransporte";
+    private static final String TABELA_USUARIOHASMEIOTRANSPORTE = "Usuario_has_MeioDeTransporte";
+    private static final String TABELA_COMPARTILHADO = "Compartilhado";
+    private static final String TABELA_ALUGADO = "Alugado";
+    private static final String TABELA_GASTO = "Gasto";
+    private static final String TABELA_PUBLICO = "Publico";
+    private static final String TABELA_PARTICULAR = "Particular";
+    private static final String TABELA_VIAGEM = "Viagem";
 
     //COLUNAS
     //nomes de colunas comuns
-    private static final String KEY_ID                              = "_id";
-    private static final String KEY_DESCRICAO                       = "descricao";
+    private static final String KEY_ID = "_id";
+    private static final String KEY_DESCRICAO = "descricao";
 
     //tabela Usuario - colunas
-    private static final String KEY_NOME                            = "nome";
-    private static final String KEY_SOBRENOME                       = "sobrenome";
-    private static final String KEY_EMAIL                           = "email";
-    private static final String KEY_SENHA                           = "senha";
-    private static final String KEY_FACEBOOK                        = "facebook";
-    private static final String KEY_SINCRONIZAR                     = "sincronizar";
+    private static final String KEY_NOME = "nome";
+    private static final String KEY_SOBRENOME = "sobrenome";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_SENHA = "senha";
+    private static final String KEY_FACEBOOK = "facebook";
+    private static final String KEY_SINCRONIZAR = "sincronizar";
 
     //tabela Anuncio - colunas
-    private static final String KEY_ANUNCIANTE                      = "anunciante";
-    private static final String KEY_IMAGEM                          = "imagem";
-    private static final String KEY_TELEFONE                        = "telefone";
-    private static final String KEY_WEBSITE                         = "website";
-    private static final String KEY_APPURL                          = "appURL";
+    private static final String KEY_ANUNCIANTE = "anunciante";
+    private static final String KEY_IMAGEM = "imagem";
+    private static final String KEY_TELEFONE = "telefone";
+    private static final String KEY_WEBSITE = "website";
+    private static final String KEY_APPURL = "appURL";
 
     //tabela EstatisticasConta - colunas
-    private static final String KEY_USUARIOID                       = "Usuario_id";
-    private static final String KEY_QTDMEIOSTRANSPORTES             = "qtdMeiosTransporte";
-    private static final String KEY_ULTIMOLOGIN                     = "ultimoLogin";
+    private static final String KEY_USUARIOID = "Usuario_id";
+    private static final String KEY_QTDMEIOSTRANSPORTES = "qtdMeiosTransporte";
+    private static final String KEY_ULTIMOLOGIN = "ultimoLogin";
 
     //tabela Evento - colunas
-    private static final String KEY_MEIODETRANSPORTEID              = "MeioDeTransporte_id";
+    private static final String KEY_MEIODETRANSPORTEID = "MeioDeTransporte_id";
 
     //tabela EstatisticasMeioTransporte - colunas
-    private static final String KEY_MEDIA                           = "media";
-    private static final String KEY_MAXIMO                          = "maximo";
-    private static final String KEY_MINIMO                          = "minino";
-    private static final String KEY_QTD                             = "qtd";
+    private static final String KEY_MEDIA = "media";
+    private static final String KEY_MAXIMO = "maximo";
+    private static final String KEY_MINIMO = "minino";
+    private static final String KEY_QTD = "qtd";
 
     //tabela Compartilhado - colunas
-    private static final String KEY_TIPOSCOMPARTILHADOID            = "TiposCompartilhado_id";
-    private static final String KEY_EMPRESA                         = "empresa";
+    private static final String KEY_TIPOSCOMPARTILHADOID = "TiposCompartilhado_id";
+    private static final String KEY_EMPRESA = "empresa";
 
     //tabela Alugado - colunas
-    private static final String KEY_TIPOSALUGADOID                  = "TiposAlugado_id";
-    private static final String KEY_LOCADORA                        = "locadora";
-    private static final String KEY_MARCA                           = "marca";
-    private static final String KEY_MODELO                          = "modelo";
-    private static final String KEY_COR                             = "cor";
+    private static final String KEY_TIPOSALUGADOID = "TiposAlugado_id";
+    private static final String KEY_LOCADORA = "locadora";
+    private static final String KEY_MARCA = "marca";
+    private static final String KEY_MODELO = "modelo";
+    private static final String KEY_COR = "cor";
 
     //tabela Gasto - colunas
-    private static final String KEY_TIPOGASTOID                     = "TipoGasto_id";
-    private static final String KEY_VALOR                           = "valor";
-    private static final String KEY_OBSERVACAO                      = "observacao";
+    private static final String KEY_TIPOGASTOID = "TipoGasto_id";
+    private static final String KEY_VALOR = "valor";
+    private static final String KEY_OBSERVACAO = "observacao";
 
     //tabela Publico - colunas
-    private static final String KEY_TIPOSPUBLICOID                  = "TiposPublico_id";
+    private static final String KEY_TIPOSPUBLICOID = "TiposPublico_id";
 
     //tabela Particular - colunas
-    private static final String KEY_TIPOSPARTICULARID               = "TiposParticular_id";
+    private static final String KEY_TIPOSPARTICULARID = "TiposParticular_id";
 
     //tabela Viagem - colunas
-    private static final String KEY_EVENTOID                        = "Eventos_id";
-    private static final String KEY_INICIO                          = "inicio";
-    private static final String KEY_FIM                             = "fim";
-    private static final String KEY_DISTANCIA                       = "distancia";
+    private static final String KEY_EVENTOID = "Eventos_id";
+    private static final String KEY_INICIO = "inicio";
+    private static final String KEY_FIM = "fim";
+    private static final String KEY_DISTANCIA = "distancia";
 
     //CRIAÇÃO DE TABELAS
     //Criação de tabela TiposParticular
@@ -136,7 +136,7 @@ public class CriaBancoCompleto extends SQLiteOpenHelper{
 
     //Criação de tabela Anuncio
     private static final String CREATE_TABLE_ANUNCIO = "CREATE TABLE IF NOT EXISTS "
-            + TABELA_ANUNCIO+ "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + TABELA_ANUNCIO + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + KEY_ANUNCIANTE + " VARCHAR," + KEY_IMAGEM + " VARCHAR,"
             + KEY_TELEFONE + " VARCHAR," + KEY_WEBSITE + " VARCHAR,"
             + KEY_APPURL + " VARCHAR);";
@@ -215,15 +215,15 @@ public class CriaBancoCompleto extends SQLiteOpenHelper{
 
     private Context mContext;
 
-    public CriaBancoCompleto(Context context){
+    public CriaBancoCompleto(Context context) {
         super(context, NOME_BANCO, null, VERSAO_BANCO);
         this.mContext = context;
     }
 
-    public static CriaBancoCompleto getInstance(Context context){
-        if (instancia == null){
-            synchronized (CriaBancoCompleto.class){
-                if (instancia == null){
+    public static CriaBancoCompleto getInstance(Context context) {
+        if (instancia == null) {
+            synchronized (CriaBancoCompleto.class) {
+                if (instancia == null) {
                     instancia = new CriaBancoCompleto(context);
                 }
             }

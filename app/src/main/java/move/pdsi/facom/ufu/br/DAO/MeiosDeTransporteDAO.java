@@ -22,12 +22,12 @@ public class MeiosDeTransporteDAO {
     private CriaBanco db;
     private Context mContext;
 
-    public MeiosDeTransporteDAO(Context context){
+    public MeiosDeTransporteDAO(Context context) {
         this.db = new CriaBanco(context);
         this.mContext = context;
     }
 
-    public long adicionaMeioDeTransporte(String descricao){
+    public long adicionaMeioDeTransporte(String descricao) {
         ContentValues valores = new ContentValues();
         valores.put(CriaBanco.KEY_DESCRICAO, descricao);
 
@@ -41,7 +41,7 @@ public class MeiosDeTransporteDAO {
         return id;
     }
 
-    public int buscaID(String descricao){
+    public int buscaID(String descricao) {
         int id;
         String busca = "SELECT _id FROM MeioDeTransporte WHERE descricao = '" + descricao + "'";
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
@@ -54,7 +54,7 @@ public class MeiosDeTransporteDAO {
         return id;
     }
 
-    public MeioDeTransporte buscaMeioDeTransporte(int id){
+    public MeioDeTransporte buscaMeioDeTransporte(int id) {
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
         Cursor cursor;
         String particular = "SELECT * FROM Particular WHERE meiodetransporte_id = " + id;
@@ -64,7 +64,7 @@ public class MeiosDeTransporteDAO {
 
 
         cursor = banco.rawQuery(particular, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             Particular p = new Particular();
             p.setId(cursor.getInt(0));
             p.setDescricaoP(cursor.getString(1));
@@ -78,7 +78,7 @@ public class MeiosDeTransporteDAO {
             return p;
         }
         cursor = banco.rawQuery(alugado, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             Alugado a = new Alugado();
             a.setId(cursor.getInt(0));
             a.setDescricaoA(cursor.getString(1));
@@ -90,7 +90,7 @@ public class MeiosDeTransporteDAO {
             return a;
         }
         cursor = banco.rawQuery(compartilhado, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             Compartilhado c = new Compartilhado();
             c.setId(cursor.getInt(0));
             c.setDescricaoC(cursor.getString(1));
@@ -100,7 +100,7 @@ public class MeiosDeTransporteDAO {
         }
 
         cursor = banco.rawQuery(publico, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             Publico pub = new Publico();
             pub.setId(cursor.getInt(0));
             pub.setDescricaoPub(cursor.getString(1));
@@ -111,7 +111,7 @@ public class MeiosDeTransporteDAO {
         return null;
     }
 
-    public List<MeioDeTransporte> buscaMeiosDeTransporte(){
+    public List<MeioDeTransporte> buscaMeiosDeTransporte() {
         List<MeioDeTransporte> lista = new ArrayList<MeioDeTransporte>();
         String particularSQL = "SELECT * FROM PARTICULAR";
         String alugadoSQL = "SELECT * FROM ALUGADO";
@@ -121,27 +121,27 @@ public class MeiosDeTransporteDAO {
 
         //Incluir todos Meios de Transporte Particulares
         Cursor particular = banco.rawQuery(particularSQL, null);
-        if(particular.moveToFirst()){
-            do{
-               Particular p = new Particular();
-               p.setId(particular.getInt(0));
-               p.setDescricaoP(particular.getString(1));
-               p.setTipo(particular.getString(2));
-               p.setMarca(particular.getString(3));
-               p.setModelo(particular.getString(4));
-               p.setCor(particular.getString(5));
-               p.setMedia(particular.getFloat(6));
-               p.setMaximo(particular.getFloat(7));
-               p.setMinimo(particular.getFloat(8));
-               lista.add(p);
-            }while(particular.moveToNext());
+        if (particular.moveToFirst()) {
+            do {
+                Particular p = new Particular();
+                p.setId(particular.getInt(0));
+                p.setDescricaoP(particular.getString(1));
+                p.setTipo(particular.getString(2));
+                p.setMarca(particular.getString(3));
+                p.setModelo(particular.getString(4));
+                p.setCor(particular.getString(5));
+                p.setMedia(particular.getFloat(6));
+                p.setMaximo(particular.getFloat(7));
+                p.setMinimo(particular.getFloat(8));
+                lista.add(p);
+            } while (particular.moveToNext());
         }
         particular.close();
 
         //Incluir todos Meios de Transporte Alugados
         Cursor alugado = banco.rawQuery(alugadoSQL, null);
-        if(alugado.moveToFirst()){
-            do{
+        if (alugado.moveToFirst()) {
+            do {
                 Alugado a = new Alugado();
                 a.setId(alugado.getInt(0));
                 a.setDescricaoA(alugado.getString(1));
@@ -151,35 +151,35 @@ public class MeiosDeTransporteDAO {
                 a.setModelo(alugado.getString(5));
                 a.setCor(alugado.getString(6));
                 lista.add(a);
-            }while(alugado.moveToNext());
+            } while (alugado.moveToNext());
         }
         alugado.close();
 
         //Incluir todos Meios de Transporte Compartilhados
         Cursor compartilhado = banco.rawQuery(compartilhadoSQL, null);
-        if(compartilhado.moveToFirst()){
-            do{
+        if (compartilhado.moveToFirst()) {
+            do {
                 Compartilhado c = new Compartilhado();
                 c.setId(compartilhado.getInt(0));
                 c.setDescricaoC(compartilhado.getString(1));
                 c.setTipo(compartilhado.getString(2));
                 c.setEmpresa(compartilhado.getString(3));
                 lista.add(c);
-            }while(compartilhado.moveToNext());
+            } while (compartilhado.moveToNext());
         }
         compartilhado.close();
 
         //Incluir todos Meios de Transporte Públicos
         Cursor publico = banco.rawQuery(publicoSQL, null);
-        if(publico.moveToFirst()){
-            do{
+        if (publico.moveToFirst()) {
+            do {
                 Publico pub = new Publico();
                 pub.setId(publico.getInt(0));
                 pub.setDescricaoPub(publico.getString(1));
                 pub.setTipo(publico.getString(2));
                 pub.setEmpresa(publico.getString(3));
                 lista.add(pub);
-            }while(publico.moveToNext());
+            } while (publico.moveToNext());
         }
         publico.close();
 
@@ -189,9 +189,9 @@ public class MeiosDeTransporteDAO {
     }
 
     public void adicionaParticular(String descricao, String tipo, String marca, String modelo,
-                                    String cor, float media, float maximo, float minimo){
+                                   String cor, float media, float maximo, float minimo) {
         long err = adicionaMeioDeTransporte(descricao);
-        if(err != -1L) {
+        if (err != -1L) {
             ContentValues valores = new ContentValues();
             valores.put(CriaBanco.KEY_DESCRICAO, descricao);
             valores.put(CriaBanco.KEY_TIPO, tipo);
@@ -218,9 +218,9 @@ public class MeiosDeTransporteDAO {
     }
 
     public void adicionaAlugado(String descricao, String tipo, String locadora, String marca,
-                                 String modelo, String cor){
+                                String modelo, String cor) {
         long err = adicionaMeioDeTransporte(descricao);
-        if(err != -1L) {
+        if (err != -1L) {
             ContentValues valores = new ContentValues();
             valores.put(CriaBanco.KEY_MEIODETRANSPORTEID, err);
             valores.put(CriaBanco.KEY_DESCRICAO, descricao);
@@ -245,9 +245,9 @@ public class MeiosDeTransporteDAO {
         }
     }
 
-    public void adicionaCompartilhado(String descricao, String tipo, String empresa){
+    public void adicionaCompartilhado(String descricao, String tipo, String empresa) {
         long err = adicionaMeioDeTransporte(descricao);
-        if(err != -1L) {
+        if (err != -1L) {
             ContentValues valores = new ContentValues();
             valores.put(CriaBanco.KEY_MEIODETRANSPORTEID, err);
             valores.put(CriaBanco.KEY_DESCRICAO, descricao);
@@ -269,9 +269,9 @@ public class MeiosDeTransporteDAO {
         }
     }
 
-    public void adicionaPublico(String descricao, String tipo, String empresa){
+    public void adicionaPublico(String descricao, String tipo, String empresa) {
         long err = adicionaMeioDeTransporte(descricao);
-        if(err != -1L) {
+        if (err != -1L) {
             ContentValues valores = new ContentValues();
             valores.put(CriaBanco.KEY_MEIODETRANSPORTEID, err);
             valores.put(CriaBanco.KEY_DESCRICAO, descricao);

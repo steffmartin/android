@@ -4,7 +4,7 @@ package move.pdsi.facom.ufu.br.model;
  * Created by mirandagab on 07/07/2018.
  */
 public class MeioDeTransporte {
-    private int    id;
+    private int id;
     private String descricao;
 
 
@@ -12,11 +12,16 @@ public class MeioDeTransporte {
         this.descricao = descricao;
     }
 
-    public MeioDeTransporte() {}
+    public MeioDeTransporte() {
+    }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getDescricao() {
         return descricao;
@@ -27,5 +32,7 @@ public class MeioDeTransporte {
     }
 
     @Override
-    public String toString(){ return descricao; }
+    public String toString() {
+        return descricao;
+    }
 }

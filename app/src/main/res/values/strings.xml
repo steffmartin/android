@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MOVE</string>
+    <string name="app_name">Move</string>
     <string-array name="categorias">
         <item>Particular</item>
         <item>Alugado</item>
@@ -9,6 +9,18 @@
     <string-array name="eventos">
         <item>Viagem</item>
         <item>Despesa</item>
+    </string-array>
+    <string-array name="tiposDespeesa">
+        <item>Combustível</item>
+        <item>Óleo</item>
+        <item>Estacionamento</item>
+        <item>Pedágio</item>
+        <item>Acessórios</item>
+        <item>Peças</item>
+        <item>Limpeza</item>
+        <item>Mecânico</item>
+        <item>Seguro</item>
+        <item>Imposto</item>
     </string-array>
     <string-array name="tipoParticular">
         <item>Carro</item>

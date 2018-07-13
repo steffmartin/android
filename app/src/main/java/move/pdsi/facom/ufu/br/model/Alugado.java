@@ -4,13 +4,13 @@ package move.pdsi.facom.ufu.br.model;
  * Created by mirandagab on 07/07/2018.
  */
 public class Alugado extends MeioDeTransporte {
-    private int     id;
-    private String  descricao,
-                    tipo,
-                    locadora,
-                    marca,
-                    modelo,
-                    cor;
+    private int id;
+    private String descricao,
+            tipo,
+            locadora,
+            marca,
+            modelo,
+            cor;
 
     public Alugado(int id, String descricao, String tipo, String locadora, String marca,
                    String modelo, String cor) {
@@ -24,19 +24,34 @@ public class Alugado extends MeioDeTransporte {
         this.cor = cor;
     }
 
-    public Alugado(){ super(); }
+    public Alugado() {
+        super();
+    }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getDescricaoA() { return descricao; }
+    public String getDescricaoA() {
+        return descricao;
+    }
 
-    public void setDescricaoA(String descricao) { this.descricao = descricao; super.setDescricao(descricao); }
+    public void setDescricaoA(String descricao) {
+        this.descricao = descricao;
+        super.setDescricao(descricao);
+    }
 
-    public String getTipo() { return tipo; }
+    public String getTipo() {
+        return tipo;
+    }
 
-    public void setTipo(String tipo) { this.tipo = tipo; }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     public String getLocadora() {
         return locadora;

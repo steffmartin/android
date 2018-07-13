@@ -3,12 +3,12 @@ package move.pdsi.facom.ufu.br.model;
 /**
  * Created by mirandagab on 07/07/2018.
  */
-public class Viagem extends Evento{
-    private int     id,
+public class Viagem extends Evento {
+    private int id,
             meioDeTransporteID;
-    private String  inicio,
+    private String inicio,
             fim;
-    private float   distancia;
+    private float distancia;
 
     public Viagem(int id, int meioDeTransporteID, String inicio, String fim, float distancia) {
         super(id);
@@ -19,17 +19,25 @@ public class Viagem extends Evento{
         this.distancia = distancia;
     }
 
-    public Viagem(){
+    public Viagem() {
         super();
     }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public int getMeioDeTransporteID() { return meioDeTransporteID; }
+    public int getMeioDeTransporteID() {
+        return meioDeTransporteID;
+    }
 
-    public void setMeioDeTransporteID(int meioDeTransporteID) { this.meioDeTransporteID = meioDeTransporteID; }
+    public void setMeioDeTransporteID(int meioDeTransporteID) {
+        this.meioDeTransporteID = meioDeTransporteID;
+    }
 
     public String getInicio() {
         return inicio;
