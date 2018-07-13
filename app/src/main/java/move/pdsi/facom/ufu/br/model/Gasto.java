@@ -8,7 +8,7 @@ public class Gasto extends Evento {
             observacao;
     private float valor;
 
-    public Gasto(MeioDeTransporte veiculo, String tipo, float valor, String observacao) {
+    public Gasto(int veiculo, String tipo, float valor, String observacao) {
         super(veiculo);
         this.tipo = tipo;
         this.valor = valor;

@@ -43,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
             JSONObject attr = new JSONObject();
             attr.put("name","init");
             attr.put("type", "geo:point");
-            attr.put("value", Double.toString(random.nextDouble()*12544));
+            attr.put("value", Double.toString(random.nextDouble()*100));
             test.put("attribute1", attr);
             JSONObject attr2 = new JSONObject();
             attr2.put("name","end");
             attr2.put("type", "geo:point");
-            attr2.put("value", Double.toString(random.nextDouble()*56785));
+            attr2.put("value", Double.toString(random.nextDouble()*1000));
             test.put("attribute2", attr2);
             JSONObject resp = cli.post(test);
             Toast.makeText(this,"Evento detectado e enviado para o Orion",Toast.LENGTH_SHORT).show();
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
             //Abre tela de add Evento
             Intent intent = new Intent(this, addEventoViagem.class);
-            String message = ""+distancia;
+            String message = String.format("%1$,.2f", distancia);
             intent.putExtra("distancia", message);
             startActivity(intent);
 

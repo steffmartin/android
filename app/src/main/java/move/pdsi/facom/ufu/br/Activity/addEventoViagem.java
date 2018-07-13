@@ -1,11 +1,13 @@
 package move.pdsi.facom.ufu.br.Activity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -16,6 +18,8 @@ import move.pdsi.facom.ufu.br.DAO.EventosDAO;
 import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.model.MeioDeTransporte;
 import move.pdsi.facom.ufu.br.move.R;
+
+import static android.graphics.Color.GREEN;
 
 public class addEventoViagem extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -31,8 +35,14 @@ public class addEventoViagem extends AppCompatActivity implements AdapterView.On
 
         Intent intent = getIntent();
         String distancia = intent.getStringExtra("distancia");
-        EditText editText = (EditText) findViewById(R.id.distanciaEvento);
-        editText.setText(distancia);
+
+        if(distancia != null){
+            EditText editText = (EditText) findViewById(R.id.distanciaEvento);
+            editText.setText(distancia);
+            Button button = (Button) findViewById(R.id.btnSalvarEvento);
+            button.setText("Confirmar Classificação");
+            button.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+        }
 
         Spinner tipoEventosSpinner = (Spinner) findViewById(R.id.tipoEventosSpinner);
         tipoEventosSpinner.setSelection(0);

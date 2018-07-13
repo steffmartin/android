@@ -20,7 +20,7 @@ import static android.graphics.Color.GREEN;
 import static android.graphics.Color.RED;
 import static android.graphics.Color.YELLOW;
 
-class MeioTransporteAdapter extends RecyclerView.Adapter<MeioTransporteViewHolder> {
+class MeioTransporteAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
 
     private final List<MeioDeTransporte> lista;
 
@@ -30,13 +30,13 @@ class MeioTransporteAdapter extends RecyclerView.Adapter<MeioTransporteViewHolde
 
     @NonNull
     @Override
-    public MeioTransporteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MeioTransporteViewHolder(LayoutInflater.from(parent.getContext())
+    public TwoLineViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new TwoLineViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.two_line_view_with_avatar, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MeioTransporteViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TwoLineViewHolder holder, int position) {
         MeioDeTransporte item = lista.get(position);
 
         if (item.getDescricao() != null) {

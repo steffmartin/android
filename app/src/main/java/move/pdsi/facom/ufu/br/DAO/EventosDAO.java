@@ -9,6 +9,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import move.pdsi.facom.ufu.br.model.Evento;
 import move.pdsi.facom.ufu.br.model.Viagem;
 
 /**
@@ -41,8 +42,8 @@ public class EventosDAO {
         banco.close();
     }
 
-    public List<Viagem> buscaViagens(){
-        List<Viagem> lista = new ArrayList<Viagem>();
+    public List<Evento> buscaViagens(){
+        List<Evento> lista = new ArrayList<Evento>();
         String busca = "SELECT * FROM Viagem";
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
 

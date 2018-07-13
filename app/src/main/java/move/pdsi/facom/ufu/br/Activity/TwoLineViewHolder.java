@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import move.pdsi.facom.ufu.br.move.R;
 
-public class MeioTransporteViewHolder extends RecyclerView.ViewHolder {
+public class TwoLineViewHolder extends RecyclerView.ViewHolder {
 
     final ImageView avatar;
     final TextView avatar_text;
@@ -15,7 +15,7 @@ public class MeioTransporteViewHolder extends RecyclerView.ViewHolder {
     final TextView linha2;
 
 
-    public MeioTransporteViewHolder(View view) {
+    public TwoLineViewHolder(View view) {
         super(view);
         avatar = (ImageView) view.findViewById(R.id.avatar);
         avatar_text = (TextView) view.findViewById(R.id.avatar_text);

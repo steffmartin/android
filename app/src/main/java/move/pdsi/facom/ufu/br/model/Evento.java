@@ -4,17 +4,19 @@ package move.pdsi.facom.ufu.br.model;
  * Created by mirandagab on 07/07/2018.
  */
 public class Evento {
-    private MeioDeTransporte veiculo;
+    private int veiculo;
 
-    public Evento(MeioDeTransporte veiculo) {
+    public Evento(int veiculo) {
         this.veiculo = veiculo;
     }
 
-    public MeioDeTransporte getVeiculo() {
+    public Evento(){};
+
+    public int getVeiculo() {
         return veiculo;
     }
 
-    public void setVeiculo(MeioDeTransporte veiculo) {
+    public void setVeiculo(int veiculo) {
         this.veiculo = veiculo;
     }
 }
