@@ -57,10 +57,10 @@ public class MeiosDeTransporteDAO {
     public MeioDeTransporte buscaMeioDeTransporte(int id){
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
         Cursor cursor;
-        String particular = "SELECT * FROM Particular WHERE meiodetransporte_id = '" + id + "'";
-        String alugado = "SELECT * FROM Alugado WHERE meiodetransporte_id = '" + id + "'";
-        String compartilhado = "SELECT * FROM Compartilhado WHERE meiodetransporte_id = '" + id + "'";
-        String publico = "SELECT * FROM Publico WHERE meiodetransporte_id = '" + id + "'";
+        String particular = "SELECT * FROM Particular WHERE meiodetransporte_id = " + id;
+        String alugado = "SELECT * FROM Alugado WHERE meiodetransporte_id = " + id;
+        String compartilhado = "SELECT * FROM Compartilhado WHERE meiodetransporte_id = " + id;
+        String publico = "SELECT * FROM Publico WHERE meiodetransporte_id = " + id;
 
 
         cursor = banco.rawQuery(particular, null);
