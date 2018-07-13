@@ -54,6 +54,63 @@ public class MeiosDeTransporteDAO {
         return id;
     }
 
+    public MeioDeTransporte buscaMeioDeTransporte(int id){
+        SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
+        Cursor cursor;
+        String particular = "SELECT * FROM Particular WHERE id = '" + id + "'";
+        String alugado = "SELECT * FROM Alugado WHERE id = '" + id + "'";
+        String compartilhado = "SELECT * FROM Compartilhado WHERE id = '" + id + "'";
+        String publico = "SELECT * FROM Publico WHERE id = '" + id + "'";
+
+
+        cursor = banco.rawQuery(particular, null);
+        if(cursor.moveToFirst()){
+            Particular p = new Particular();
+            p.setId(cursor.getInt(0));
+            p.setDescricaoP(cursor.getString(1));
+            p.setTipo(cursor.getString(2));
+            p.setMarca(cursor.getString(3));
+            p.setModelo(cursor.getString(4));
+            p.setCor(cursor.getString(5));
+            p.setMedia(cursor.getFloat(6));
+            p.setMaximo(cursor.getFloat(7));
+            p.setMinimo(cursor.getFloat(8));
+            return p;
+        }
+        cursor = banco.rawQuery(alugado, null);
+        if(cursor.moveToFirst()){
+            Alugado a = new Alugado();
+            a.setId(cursor.getInt(0));
+            a.setDescricaoA(cursor.getString(1));
+            a.setTipo(cursor.getString(2));
+            a.setLocadora(cursor.getString(3));
+            a.setMarca(cursor.getString(4));
+            a.setModelo(cursor.getString(5));
+            a.setCor(cursor.getString(6));
+            return a;
+        }
+        cursor = banco.rawQuery(compartilhado, null);
+        if(cursor.moveToFirst()){
+            Compartilhado c = new Compartilhado();
+            c.setId(cursor.getInt(0));
+            c.setDescricaoC(cursor.getString(1));
+            c.setTipo(cursor.getString(2));
+            c.setEmpresa(cursor.getString(3));
+            return c;
+        }
+
+        cursor = banco.rawQuery(publico, null);
+        if(cursor.moveToFirst()){
+            Publico pub = new Publico();
+            pub.setId(cursor.getInt(0));
+            pub.setDescricaoPub(cursor.getString(1));
+            pub.setTipo(cursor.getString(2));
+            pub.setEmpresa(cursor.getString(3));
+            return pub;
+        }
+        return null;
+    }
+
     public List<MeioDeTransporte> buscaMeiosDeTransporte(){
         List<MeioDeTransporte> lista = new ArrayList<MeioDeTransporte>();
         String particularSQL = "SELECT * FROM PARTICULAR";
