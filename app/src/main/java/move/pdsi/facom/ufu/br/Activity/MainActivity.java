@@ -42,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
             test.put("id", "Teste");
             JSONObject attr = new JSONObject();
             attr.put("name","init");
-            attr.put("type", "geo:point");
+            attr.put("type", "Float");
             attr.put("value", Double.toString(random.nextDouble()*12544));
             test.put("attribute1", attr);
             JSONObject attr2 = new JSONObject();
             attr2.put("name","end");
-            attr2.put("type", "geo:point");
+            attr2.put("type", "Float");
             attr2.put("value", Double.toString(random.nextDouble()*56785));
             test.put("attribute2", attr2);
             JSONObject resp = cli.post(test);
