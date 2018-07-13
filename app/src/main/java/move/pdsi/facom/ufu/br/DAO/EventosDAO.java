@@ -55,6 +55,7 @@ public class EventosDAO {
                 v.setInicio(buscar.getString(1));
                 v.setFim(buscar.getString(2));
                 v.setDistancia(buscar.getFloat(3));
+                v.setMeioDeTransporteID(buscar.getInt(4));
                 lista.add(v);
             }while(buscar.moveToNext());
         }
