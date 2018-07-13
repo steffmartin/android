@@ -1,5 +1,6 @@
 package move.pdsi.facom.ufu.br.Activity;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.model.Evento;
 import move.pdsi.facom.ufu.br.model.Gasto;
 import move.pdsi.facom.ufu.br.model.Viagem;
@@ -18,10 +20,13 @@ import static android.graphics.Color.RED;
 public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
 
     private final List<Evento> lista;
+    private MeiosDeTransporteDAO dao;
 
-    public EventoAdapter(List<Evento> lista){
+    public EventoAdapter(List<Evento> lista, Context context) {
         this.lista = lista;
+        dao = new MeiosDeTransporteDAO(context);
     }
+
     @Override
     public TwoLineViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new TwoLineViewHolder(LayoutInflater.from(parent.getContext())
@@ -32,7 +37,7 @@ public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
     public void onBindViewHolder(TwoLineViewHolder holder, int position) {
         Evento item = lista.get(position);
 
-        if (item instanceof Viagem){
+        if (item instanceof Viagem) {
             holder.avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
             holder.avatar_text.setText("V");
 
@@ -43,10 +48,11 @@ public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
             linha1 += " Km";
             holder.linha1.setText(linha1);
 
-            //TODO pegar carro pelo ID e colocar a descrição
-            holder.linha2.setText("Descrição do Carro");
+            if (dao.buscaMeioDeTransporte(it.getMeioDeTransporteID()) != null) {
+                holder.linha2.setText(dao.buscaMeioDeTransporte(it.getMeioDeTransporteID()).toString());
+            }
 
-        } else if(item instanceof Gasto){
+        } else if (item instanceof Gasto) {
             holder.avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
             holder.avatar_text.setText("G");
 

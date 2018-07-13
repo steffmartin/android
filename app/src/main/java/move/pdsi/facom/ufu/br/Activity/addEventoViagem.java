@@ -33,28 +33,47 @@ public class addEventoViagem extends AppCompatActivity implements AdapterView.On
         daoMeioTransporte = new MeiosDeTransporteDAO(getApplicationContext());
         dao = new EventosDAO(getApplicationContext());
 
-        Intent intent = getIntent();
-        String distancia = intent.getStringExtra("distancia");
+        if (daoMeioTransporte.buscaMeiosDeTransporte().size() > 0) {
+            Intent intent = getIntent();
+            String distanciaEvento = intent.getStringExtra("distanciaEvento");
 
-        if(distancia != null){
-            EditText editText = (EditText) findViewById(R.id.distanciaEvento);
-            editText.setText(distancia);
-            Button button = (Button) findViewById(R.id.btnSalvarEvento);
-            button.setText("Confirmar Classificação");
-            button.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+            if (distanciaEvento != null) {
+                String horaInicial = intent.getStringExtra("horaInicial");
+                String horaFinal = intent.getStringExtra("horaFinal");
+                String dataEvento = intent.getStringExtra("dataEvento");
+
+                EditText editText = (EditText) findViewById(R.id.distanciaEvento);
+                editText.setText(distanciaEvento);
+
+                EditText hini = (EditText) findViewById(R.id.horaInicial);
+                hini.setText(horaInicial);
+
+                EditText hfin = (EditText) findViewById(R.id.horaFinal);
+                hfin.setText(horaFinal);
+
+                EditText dt = (EditText) findViewById(R.id.dataEvento);
+                dt.setText(dataEvento);
+
+                Button button = (Button) findViewById(R.id.btnSalvarEvento);
+                button.setText("Confirmar Classificação");
+                button.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+            }
+
+            Spinner tipoEventosSpinner = (Spinner) findViewById(R.id.tipoEventosSpinner);
+            tipoEventosSpinner.setSelection(0);
+            tipoEventosSpinner.setOnItemSelectedListener(this);
+
+            Spinner meioTransporteEventoSpinner = (Spinner) findViewById(R.id.meioTransporteEventoSpinner);
+
+            List<MeioDeTransporte> listaMeios = daoMeioTransporte.buscaMeiosDeTransporte();
+            ArrayAdapter<MeioDeTransporte> adapter =
+                    new ArrayAdapter<MeioDeTransporte>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, listaMeios);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            meioTransporteEventoSpinner.setAdapter(adapter);
+        } else {
+            Toast.makeText(this, "Ainda não há nenhum Meio de Transporte cadastrado!", Toast.LENGTH_SHORT).show();
+            finish();
         }
-
-        Spinner tipoEventosSpinner = (Spinner) findViewById(R.id.tipoEventosSpinner);
-        tipoEventosSpinner.setSelection(0);
-        tipoEventosSpinner.setOnItemSelectedListener(this);
-
-        Spinner meioTransporteEventoSpinner = (Spinner) findViewById(R.id.meioTransporteEventoSpinner);
-
-        List<MeioDeTransporte> listaMeios = daoMeioTransporte.buscaMeiosDeTransporte();
-        ArrayAdapter<MeioDeTransporte> adapter =
-                new ArrayAdapter<MeioDeTransporte>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, listaMeios);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        meioTransporteEventoSpinner.setAdapter(adapter);
     }
 
     /**
@@ -69,7 +88,7 @@ public class addEventoViagem extends AppCompatActivity implements AdapterView.On
         if (horaInicial.equals("") || horaFinal.equals("") || dataEvento.equals("") || distanciaEvento.equals("") || meioTransporteEventoSpinner.equals("")) {
             Toast.makeText(this, "Todos os campos são obrigatórios!", Toast.LENGTH_SHORT).show();
         } else {
-            dao.adicionaViagem(horaInicial, horaFinal, Float.parseFloat(distanciaEvento), daoMeioTransporte.buscaID(meioTransporteEventoSpinner.split(" - ")[1]));
+            dao.adicionaViagem(horaInicial, horaFinal, Float.parseFloat(distanciaEvento.replace(",", ".")), daoMeioTransporte.buscaID(meioTransporteEventoSpinner.split(" - ")[1]));
             finish();
         }
     }

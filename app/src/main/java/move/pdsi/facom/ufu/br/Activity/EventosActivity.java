@@ -25,7 +25,7 @@ public class EventosActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new EventoAdapter(dao.buscaViagens()));
+        recyclerView.setAdapter(new EventoAdapter(dao.buscaViagens(), getApplicationContext()));
     }
 
     /**

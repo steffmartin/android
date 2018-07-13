@@ -6,19 +6,16 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
-import move.pdsi.facom.ufu.br.DAO.CriaBanco;
-import move.pdsi.facom.ufu.br.DAO.CriaBancoCompleto;
-import move.pdsi.facom.ufu.br.OrionRESTClient.OrionRESTClient;
-import move.pdsi.facom.ufu.br.move.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Random;
+
+import move.pdsi.facom.ufu.br.OrionRESTClient.OrionRESTClient;
+import move.pdsi.facom.ufu.br.move.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             JSONObject attr2 = new JSONObject();
             attr2.put("name","end");
             attr2.put("type", "String");
-            attr2.put("value",Double.toString(random.nextDouble()*10000) );
+            attr2.put("value", Double.toString(random.nextDouble() * 1000));
             test.put("attribute2", attr2);
             JSONObject attr3 = new JSONObject();
             attr3.put("name","hor1");
@@ -86,8 +83,10 @@ public class MainActivity extends AppCompatActivity {
 
             //Abre tela de add Evento
             Intent intent = new Intent(this, addEventoViagem.class);
-            String message = String.format("%1$,.2f", distancia);
-            intent.putExtra("distancia", message);
+            intent.putExtra("distanciaEvento", String.format("%1$,.2f", distancia));
+            intent.putExtra("horaInicial", hor1);
+            intent.putExtra("horaFinal", hor2);
+            intent.putExtra("dataEvento", data);
             startActivity(intent);
 
         }catch (IOException ex){
