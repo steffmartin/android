@@ -34,6 +34,7 @@ public class OrionRESTClient {
         OutputStream os = null;
             os = con.getOutputStream();
             os.write("POST /v2/entities/ HTTP/1.1\r\n".getBytes("UTF-8"));
+            os.write(("Host: "+OrionRESTClient.ADDRESS).getBytes("UTF-8"));
             os.write("Content-Type: application/json\r\nAccept: application/json\r\n\r\n".getBytes("UTF-8"));
             String in = input.toString()+"\r\n\r\n";
             os.write(in.getBytes("UTF-8"));
@@ -60,6 +61,7 @@ public class OrionRESTClient {
         OutputStream os = null;
             os = con.getOutputStream();
             os.write(("GET /v2/entities/Teste/attrs/"+resource+"/value HTTP/1.1\r\n").getBytes("UTF-8"));
+            os.write(("Host: "+OrionRESTClient.ADDRESS).getBytes("UTF-8"));
             os.write("Content-Type: application/json\r\nAccept: application/json\r\n\r\n".getBytes("UTF-8"));
             os.flush();
         InputStreamReader in = null;
