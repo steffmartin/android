@@ -4,6 +4,7 @@ package move.pdsi.facom.ufu.br.model;
  * Created by mirandagab on 07/07/2018.
  */
 public class Viagem extends Evento {
+    //TODO @Gabriel o meioDeTransporteID poderia ficar na classe pai
     private int id,
             meioDeTransporteID;
     private String inicio,

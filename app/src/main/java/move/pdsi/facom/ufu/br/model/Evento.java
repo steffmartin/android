@@ -3,11 +3,12 @@ package move.pdsi.facom.ufu.br.model;
 /**
  * Created by mirandagab on 07/07/2018.
  */
+//TODO @Gabriel falta atributo DATA nesta classe
 public class Evento {
-    private int veiculo;
+    private int id;
 
-    public Evento(int veiculo) {
-        this.veiculo = veiculo;
+    public Evento(int id) {
+        this.id = id;
     }
 
     public Evento() {
@@ -15,11 +16,11 @@ public class Evento {
 
     ;
 
-    public int getVeiculo() {
-        return veiculo;
+    public int getId() {
+        return id;
     }
 
-    public void setVeiculo(int veiculo) {
-        this.veiculo = veiculo;
+    public void setId(int id) {
+        this.id = id;
     }
 }

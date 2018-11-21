@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="TIpo"
+        android:text="Tipo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,7 +95,7 @@
     <TextView
         android:id="@+id/labelMeioTransporteEvento"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="18dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Meio de Transporte"

@@ -1,13 +1,11 @@
 package move.pdsi.facom.ufu.br.Activity;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -19,7 +17,6 @@ import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.model.MeioDeTransporte;
 import move.pdsi.facom.ufu.br.move.R;
 
-import static android.graphics.Color.GREEN;
 
 public class addEventoViagem extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -34,30 +31,6 @@ public class addEventoViagem extends AppCompatActivity implements AdapterView.On
         dao = new EventosDAO(getApplicationContext());
 
         if (daoMeioTransporte.buscaMeiosDeTransporte().size() > 0) {
-            Intent intent = getIntent();
-            String distanciaEvento = intent.getStringExtra("distanciaEvento");
-
-            if (distanciaEvento != null) {
-                String horaInicial = intent.getStringExtra("horaInicial");
-                String horaFinal = intent.getStringExtra("horaFinal");
-                String dataEvento = intent.getStringExtra("dataEvento");
-
-                EditText editText = (EditText) findViewById(R.id.distanciaEvento);
-                editText.setText(distanciaEvento);
-
-                EditText hini = (EditText) findViewById(R.id.horaInicial);
-                hini.setText(horaInicial);
-
-                EditText hfin = (EditText) findViewById(R.id.horaFinal);
-                hfin.setText(horaFinal);
-
-                EditText dt = (EditText) findViewById(R.id.dataEvento);
-                dt.setText(dataEvento);
-
-                Button button = (Button) findViewById(R.id.btnSalvarEvento);
-                button.setText("Confirmar Classificação");
-                button.setBackgroundTintList(ColorStateList.valueOf(GREEN));
-            }
 
             Spinner tipoEventosSpinner = (Spinner) findViewById(R.id.tipoEventosSpinner);
             tipoEventosSpinner.setSelection(0);
@@ -89,8 +62,10 @@ public class addEventoViagem extends AppCompatActivity implements AdapterView.On
             Toast.makeText(this, "Todos os campos são obrigatórios!", Toast.LENGTH_SHORT).show();
         } else {
             try {
+                //TODO @Gabriel corrigir método de adicionaViagem do EventosDAO pois não está salvando a DATA
                 dao.adicionaViagem(horaInicial, horaFinal, Float.parseFloat(distanciaEvento.replace(",", ".")), daoMeioTransporte.buscaID(meioTransporteEventoSpinner.split(" - ")[1]));
                 finish();
+                Toast.makeText(this, "Evento registrado com sucesso!", Toast.LENGTH_SHORT).show();
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Informe apenas números na distância e não coloque separação de milhares.", Toast.LENGTH_SHORT).show();
             }

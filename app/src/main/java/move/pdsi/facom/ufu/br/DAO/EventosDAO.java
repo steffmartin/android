@@ -24,12 +24,12 @@ public class EventosDAO {
         this.mContext = context;
     }
 
-    public void adicionaViagem(String inicio, String fim, float distancia, int id) {
+    public void adicionaViagem(String inicio, String fim, float distancia, int meioDeTransporteID) {
         ContentValues valores = new ContentValues();
         valores.put(CriaBanco.KEY_INICIO, inicio);
         valores.put(CriaBanco.KEY_FIM, fim);
         valores.put(CriaBanco.KEY_DISTANCIA, distancia);
-        valores.put(CriaBanco.KEY_MEIODETRANSPORTEID, id);
+        valores.put(CriaBanco.KEY_MEIODETRANSPORTEID, meioDeTransporteID);
 
         SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
         long erro = banco.insert(CriaBanco.TABELA_VIAGEM, null, valores);

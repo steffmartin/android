@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -22,10 +23,16 @@ import static android.graphics.Color.YELLOW;
 
 class MeioTransporteAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
 
-    private final List<MeioDeTransporte> lista;
+    public interface OnMeioDeTransporteClickListener {
+        void onItemClick(MeioDeTransporte item);
+    }
 
-    public MeioTransporteAdapter(List<MeioDeTransporte> lista) {
+    private final List<MeioDeTransporte> lista;
+    private final OnMeioDeTransporteClickListener listener;
+
+    public MeioTransporteAdapter(List<MeioDeTransporte> lista, OnMeioDeTransporteClickListener listener) {
         this.lista = lista;
+        this.listener = listener;
     }
 
     @NonNull
@@ -37,7 +44,13 @@ class MeioTransporteAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TwoLineViewHolder holder, int position) {
-        MeioDeTransporte item = lista.get(position);
+        final MeioDeTransporte item = lista.get(position);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                listener.onItemClick(item);
+            }
+        });
 
         if (item.getDescricao() != null) {
             holder.linha1.setText(item.getDescricao());
@@ -72,6 +85,7 @@ class MeioTransporteAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
                 }
             }
         }
+
     }
 
     @Override

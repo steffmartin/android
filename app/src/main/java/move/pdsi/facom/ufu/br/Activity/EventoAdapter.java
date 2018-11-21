@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -19,11 +20,17 @@ import static android.graphics.Color.RED;
 
 public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
 
+    public interface OnEventoClickListener {
+        void onItemClick(Evento item);
+    }
+
     private final List<Evento> lista;
+    private final OnEventoClickListener listener;
     private MeiosDeTransporteDAO dao;
 
-    public EventoAdapter(List<Evento> lista, Context context) {
+    public EventoAdapter(List<Evento> lista, OnEventoClickListener listener, Context context) {
         this.lista = lista;
+        this.listener = listener;
         dao = new MeiosDeTransporteDAO(context);
     }
 
@@ -35,7 +42,13 @@ public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
 
     @Override
     public void onBindViewHolder(TwoLineViewHolder holder, int position) {
-        Evento item = lista.get(position);
+        final Evento item = lista.get(position);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                listener.onItemClick(item);
+            }
+        });
 
         if (item instanceof Viagem) {
             holder.avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
@@ -56,11 +69,17 @@ public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
             holder.avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
             holder.avatar_text.setText("G");
 
+            Gasto it = (Gasto) item;
+
             String linha1 = "Gasto de R$";
-            linha1 += String.format("%1$,.2f", 0);
+            linha1 += String.format("%1$,.2f", it.getValor());
             holder.linha1.setText(linha1);
 
-            holder.linha2.setText("Descrição do Gasto");
+            if (dao.buscaMeioDeTransporte(it.getMeioDeTransporteID()) != null) {
+                holder.linha2.setText(dao.buscaMeioDeTransporte(it.getMeioDeTransporteID()).toString());
+            }
+
+            holder.linha2.setText(it.getTipo());
         }
     }
 

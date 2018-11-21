@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
+import move.pdsi.facom.ufu.br.model.MeioDeTransporte;
 import move.pdsi.facom.ufu.br.move.R;
 
 public class MeiosDeTransporteActivity extends AppCompatActivity {
@@ -25,7 +27,13 @@ public class MeiosDeTransporteActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new MeioTransporteAdapter(dao.buscaMeiosDeTransporte()));
+        recyclerView.setAdapter(new MeioTransporteAdapter(dao.buscaMeiosDeTransporte(), new MeioTransporteAdapter.OnMeioDeTransporteClickListener() {
+            @Override
+            public void onItemClick(MeioDeTransporte item) {
+                //TODO @Steffan chamar a tela de visualizar meio de trnasporte aqui
+                Toast.makeText(getApplicationContext(), "Item clicado:" + item.getDescricao(), Toast.LENGTH_SHORT).show(); //Só teste
+            }
+        }));
     }
 
     /**
