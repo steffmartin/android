@@ -19,6 +19,8 @@ public class EventosDAO {
     private CriaBanco db;
     private Context mContext;
 
+    //TODO @Gabriel preciso dos métodos editar e excluir tanto para viagem quanto gasto
+
     public EventosDAO(Context context) {
         this.db = new CriaBanco(context);
         this.mContext = context;

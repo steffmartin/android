@@ -1,8 +1,11 @@
 package move.pdsi.facom.ufu.br.Activity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,7 +24,7 @@ import static android.graphics.Color.GREEN;
 import static android.graphics.Color.RED;
 import static android.graphics.Color.YELLOW;
 
-public class readMeioDeTransporte extends AppCompatActivity {
+public class readMeioDeTransporteActivity extends AppCompatActivity {
 
     MeiosDeTransporteDAO dao;
     MeioDeTransporte item;
@@ -40,10 +43,17 @@ public class readMeioDeTransporte extends AppCompatActivity {
         TextView linha1 = (TextView) findViewById(R.id.readDescricao);
         TextView linha2 = (TextView) findViewById(R.id.readCategoria);
         TextView tipo = (TextView) findViewById(R.id.readTipo);
+        TextView labelMarca = (TextView) findViewById(R.id.readMarcaLabel);
         TextView marca = (TextView) findViewById(R.id.readMarca);
+        TextView labelModelo = (TextView) findViewById(R.id.readModeloLabel);
         TextView modelo = (TextView) findViewById(R.id.readModelo);
+        TextView labelCor = (TextView) findViewById(R.id.readCorLabel);
         TextView cor = (TextView) findViewById(R.id.readCor);
+        TextView labelLocEmpresa = (TextView) findViewById(R.id.readEmpresaLabel);
         TextView locEmpresa = (TextView) findViewById(R.id.readLocEmpresa);
+        ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.readTransporteLayout);
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(constraintLayout);
 
         if (item.getDescricao() != null) {
             linha1.setText(item.getDescricao());
@@ -66,7 +76,6 @@ public class readMeioDeTransporte extends AppCompatActivity {
             modelo.setText(alugado.getModelo());
             cor.setText(alugado.getCor());
             locEmpresa.setText(alugado.getLocadora());
-            TextView labelLocEmpresa = (TextView) findViewById(R.id.readEmpresaLabel);
             labelLocEmpresa.setText("Locadora");
         } else {
             if (item instanceof Publico) {
@@ -75,6 +84,16 @@ public class readMeioDeTransporte extends AppCompatActivity {
                 Publico publico = (Publico) item;
                 tipo.setText(publico.getTipo());
                 locEmpresa.setText(publico.getEmpresa());
+                constraintLayout.removeView(marca);
+                constraintLayout.removeView(modelo);
+                constraintLayout.removeView(cor);
+                constraintLayout.removeView(labelMarca);
+                constraintLayout.removeView(labelModelo);
+                constraintLayout.removeView(labelCor);
+                constraintSet.connect(labelLocEmpresa.getId(), ConstraintSet.TOP,
+                        tipo.getId(), ConstraintSet.BOTTOM, 16);
+
+
             } else {
                 if (item instanceof Compartilhado) {
                     linha2.setText("Compartilhado");
@@ -82,6 +101,14 @@ public class readMeioDeTransporte extends AppCompatActivity {
                     Compartilhado compartilhado = (Compartilhado) item;
                     tipo.setText(compartilhado.getTipo());
                     locEmpresa.setText(compartilhado.getEmpresa());
+                    constraintLayout.removeView(marca);
+                    constraintLayout.removeView(modelo);
+                    constraintLayout.removeView(cor);
+                    constraintLayout.removeView(labelMarca);
+                    constraintLayout.removeView(labelModelo);
+                    constraintLayout.removeView(labelCor);
+                    constraintSet.connect(labelLocEmpresa.getId(), ConstraintSet.TOP,
+                            tipo.getId(), ConstraintSet.BOTTOM, 16);
                 } else {
                     if (item instanceof Particular) {
                         linha2.setText("Particular");
@@ -91,21 +118,25 @@ public class readMeioDeTransporte extends AppCompatActivity {
                         marca.setText(particular.getMarca());
                         modelo.setText(particular.getModelo());
                         cor.setText(particular.getCor());
+                        constraintLayout.removeView(labelLocEmpresa);
+                        constraintLayout.removeView(locEmpresa);
                     } else {
                         linha2.setText("");
                     }
                 }
             }
         }
+        constraintSet.applyTo(constraintLayout);
 
     }
 
     public void editar(View view) {
-        //TODO após criar tela de edição, implementar este metodo chamando ela
+        //TODO @Steffan após criar tela de edição, implementar este metodo chamando ela
     }
 
-    public void excluir() {
-        //TODO @Steffan implementar método de excluir
+    public void excluir(View view) {
+        //TODO @Gabriel implementar método de excluir no DAO de transportes
+        //dao.excluir(item.getId());
     }
 
 }

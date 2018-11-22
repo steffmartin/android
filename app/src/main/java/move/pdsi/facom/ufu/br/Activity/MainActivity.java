@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
      * Chamada ao clicar no botão de Meios de Transporte
      */
     public void gerenciarMeios(View view) {
-        Intent intent = new Intent(this, MeiosDeTransporteActivity.class);
+        Intent intent = new Intent(this, listMeioDeTransporteActivity.class);
         startActivity(intent);
     }
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
      * Chamada ao clicar no botão de Eventos
      */
     public void gerenciarEventos(View view) {
-        Intent intent = new Intent(this, EventosActivity.class);
+        Intent intent = new Intent(this, listEventoActivity.class);
         startActivity(intent);
     }
 }

@@ -6,13 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.model.MeioDeTransporte;
 import move.pdsi.facom.ufu.br.move.R;
 
-public class MeiosDeTransporteActivity extends AppCompatActivity {
+public class listMeioDeTransporteActivity extends AppCompatActivity {
 
     MeiosDeTransporteDAO dao;
     RecyclerView recyclerView;
@@ -30,8 +29,7 @@ public class MeiosDeTransporteActivity extends AppCompatActivity {
         recyclerView.setAdapter(new MeioTransporteAdapter(dao.buscaMeiosDeTransporte(), new MeioTransporteAdapter.OnMeioDeTransporteClickListener() {
             @Override
             public void onItemClick(MeioDeTransporte item) {
-                Toast.makeText(getApplicationContext(), "Item clicado:" + item.getDescricao(), Toast.LENGTH_SHORT).show(); //Só teste
-                Intent intent = new Intent(getApplicationContext(), readMeioDeTransporte.class);
+                Intent intent = new Intent(getApplicationContext(), readMeioDeTransporteActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("item", item);
                 startActivity(intent);

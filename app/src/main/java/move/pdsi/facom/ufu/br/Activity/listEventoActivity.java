@@ -6,14 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import move.pdsi.facom.ufu.br.DAO.EventosDAO;
 import move.pdsi.facom.ufu.br.model.Evento;
-import move.pdsi.facom.ufu.br.model.MeioDeTransporte;
 import move.pdsi.facom.ufu.br.move.R;
 
-public class EventosActivity extends AppCompatActivity {
+public class listEventoActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     EventosDAO dao;
@@ -32,8 +30,10 @@ public class EventosActivity extends AppCompatActivity {
         recyclerView.setAdapter(new EventoAdapter(dao.buscaViagens(), new EventoAdapter.OnEventoClickListener(){//TODO Substituir o dao.buscaViagens() da linha abaixo para dao.buscaEventos() quando for criado
             @Override
             public void onItemClick(Evento item) {
-                //TODO @Steffan chamar a tela de visualizar evento aqui
-                Toast.makeText(getApplicationContext(), "Item clicado:" + item.getId(), Toast.LENGTH_SHORT).show(); //Só teste
+                Intent intent = new Intent(getApplicationContext(), readEventoActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("item2", item);
+                startActivity(intent);
             }
         } ,getApplicationContext()));
     }
@@ -42,7 +42,7 @@ public class EventosActivity extends AppCompatActivity {
      * Chamada ao clicar no botão de Eventos
      */
     public void addEvento(View view) {
-        Intent intent = new Intent(this, addEventoViagem.class);
+        Intent intent = new Intent(this, addEventoViagemActivity.class);
         startActivity(intent);
     }
 }

@@ -67,7 +67,7 @@ public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
 
         } else if (item instanceof Gasto) {
             holder.avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
-            holder.avatar_text.setText("G");
+            holder.avatar_text.setText("$");
 
             Gasto it = (Gasto) item;
 
@@ -78,8 +78,6 @@ public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
             if (dao.buscaMeioDeTransporte(it.getMeioDeTransporteID()) != null) {
                 holder.linha2.setText(dao.buscaMeioDeTransporte(it.getMeioDeTransporteID()).toString());
             }
-
-            holder.linha2.setText(it.getTipo());
         }
     }
 

@@ -2,14 +2,14 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/readTransporteLayout"
+    android:id="@+id/readEventoLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="move.pdsi.facom.ufu.br.Activity.readMeioDeTransporteActivity"
+    tools:context="move.pdsi.facom.ufu.br.Activity.readEventoActivity"
     tools:layout_editor_absoluteY="81dp">
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/view2"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:background="?attr/colorButtonNormal"
@@ -19,192 +19,160 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/readAvatar"
+        android:id="@+id/readAvatar2"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/ic_circle_solid"
         android:contentDescription="Avatar"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/readAvatar_text"
+        android:id="@+id/readAvatar_text2"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical|center_horizontal"
         android:maxLines="1"
-        android:text="C"
+        android:text="V"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/readAvatar"
-        app:layout_constraintTop_toTopOf="@+id/readAvatar" />
+        app:layout_constraintStart_toStartOf="@+id/readAvatar2"
+        app:layout_constraintTop_toTopOf="@+id/readAvatar2" />
 
     <TextView
-        android:id="@+id/readDescricao"
+        android:id="@+id/readEventoTipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Descricao"
+        android:text="Viagem|Gasto"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/readAvatar" />
+        app:layout_constraintTop_toBottomOf="@+id/readAvatar_text2" />
 
     <TextView
-        android:id="@+id/readCategoria"
+        android:id="@+id/readEventoMeioTransporte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Categoria"
+        android:text="Meio de Transporte"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/readDescricao" />
+        app:layout_constraintTop_toBottomOf="@+id/readEventoTipo" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
     <TextView
-        android:id="@+id/readTipoLabel"
+        android:id="@+id/readEventoDataLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="Tipo"
+        android:text="Data"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/readCategoria" />
+        app:layout_constraintTop_toBottomOf="@+id/readEventoMeioTransporte" />
 
     <TextView
-        android:id="@+id/readTipo"
-        android:layout_width="0dp"
+        android:id="@+id/readEventoData"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Tipo"
-        android:textAlignment="viewStart"
+        android:text="___/___/______"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/readTipoLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/readEventoDataLabel" />
 
     <TextView
-        android:id="@+id/readMarcaLabel"
+        android:id="@+id/readEventoCampo1Label"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="21dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="Marca"
+        android:text="Distância"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/readCategoria" />
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/readEventoMeioTransporte" />
 
     <TextView
-        android:id="@+id/readMarca"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Marca"
-        android:textAlignment="viewStart"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/readMarcaLabel" />
-
-    <TextView
-        android:id="@+id/readCorLabel"
+        android:id="@+id/readEventoCampo1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Cor"
+        android:layout_marginTop="8dp"
+        android:text="Km ou Valor"
         android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/readMarca" />
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/readEventoCampo1Label" />
 
     <TextView
-        android:id="@+id/readCor"
+        android:id="@+id/readEventoCampo2Label"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Horário Inicial"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/readEventoData" />
+
+    <TextView
+        android:id="@+id/readEventoCampo2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Cor"
+        android:text="Hora1 ou Categoria"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/readEventoCampo2Label" />
+
+    <TextView
+        android:id="@+id/readEventoCampo3Label"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Horário Final"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/readEventoCampo1" />
+
+    <TextView
+        android:id="@+id/readEventoCampo3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Hora 2 ou Descrição"
         android:textAlignment="viewStart"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/readCorLabel" />
-
-    <TextView
-        android:id="@+id/readModeloLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Modelo"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/readTipo" />
-
-    <TextView
-        android:id="@+id/readModelo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Modelo"
-        android:textAlignment="viewStart"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/readModeloLabel" />
-
-    <TextView
-        android:id="@+id/readEmpresaLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Empresa"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/readModelo" />
-
-    <TextView
-        android:id="@+id/readLocEmpresa"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Locadora ou Empresa"
-        android:textAlignment="viewStart"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/readEmpresaLabel" />
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/readEventoCampo3Label" />
 
     <Button
-        android:id="@+id/btnEditarMeioTransporte"
+        android:id="@+id/btnEditarEvento"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -213,11 +181,11 @@
         android:onClick="editar"
         android:text="Editar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnExcluirMeioTransporte"
+        android:id="@+id/btnExcluirEvento"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
@@ -229,7 +197,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
         tools:backgroundTint="@android:color/holo_red_light" />
-
 </android.support.constraint.ConstraintLayout>
