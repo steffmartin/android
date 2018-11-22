@@ -27,6 +27,9 @@ public class MeiosDeTransporteDAO {
         this.mContext = context;
     }
 
+    //TODO @Gabriel precido de um método para excluir um meio de transporte
+    //TODO @Gabriel precido de um método para editar um meio de transporte
+
     public long adicionaMeioDeTransporte(String descricao) {
         ContentValues valores = new ContentValues();
         valores.put(CriaBanco.KEY_DESCRICAO, descricao);

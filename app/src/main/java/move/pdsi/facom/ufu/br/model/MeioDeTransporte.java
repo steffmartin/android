@@ -1,9 +1,11 @@
 package move.pdsi.facom.ufu.br.model;
 
+import java.io.Serializable;
+
 /**
  * Created by mirandagab on 07/07/2018.
  */
-public class MeioDeTransporte {
+public class MeioDeTransporte implements Serializable {
     private int id;
     private String descricao;
 

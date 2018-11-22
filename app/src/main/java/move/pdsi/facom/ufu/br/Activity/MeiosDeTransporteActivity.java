@@ -30,8 +30,11 @@ public class MeiosDeTransporteActivity extends AppCompatActivity {
         recyclerView.setAdapter(new MeioTransporteAdapter(dao.buscaMeiosDeTransporte(), new MeioTransporteAdapter.OnMeioDeTransporteClickListener() {
             @Override
             public void onItemClick(MeioDeTransporte item) {
-                //TODO @Steffan chamar a tela de visualizar meio de trnasporte aqui
                 Toast.makeText(getApplicationContext(), "Item clicado:" + item.getDescricao(), Toast.LENGTH_SHORT).show(); //Só teste
+                Intent intent = new Intent(getApplicationContext(), readMeioDeTransporte.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("item", item);
+                startActivity(intent);
             }
         }));
     }
