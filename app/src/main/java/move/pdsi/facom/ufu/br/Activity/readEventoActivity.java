@@ -39,7 +39,7 @@ public class readEventoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_read_evento);
         dao = new EventosDAO(getApplicationContext());
 
-        meiosDeTransporteDAO =  new MeiosDeTransporteDAO(getApplicationContext());
+        meiosDeTransporteDAO = new MeiosDeTransporteDAO(getApplicationContext());
 
         Intent intent = getIntent();
         item = (Evento) intent.getSerializableExtra("item2");
@@ -95,11 +95,23 @@ public class readEventoActivity extends AppCompatActivity {
     }
 
     public void editar(View view) {
-        //TODO @Steffan após criar tela de edição, implementar este metodo chamando ela
+        Intent intent;
+        if (item instanceof Viagem) {
+            intent = new Intent(this, addEventoViagemActivity.class);
+        } else {
+            //Gasto
+            intent = new Intent(this, addEventoDespesaActivity.class);
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("data", item.getData());
+        intent.putExtra("item", item);
+        startActivity(intent);
+        finish();
+
     }
 
     public void excluir(View view) {
-        //TODO @Gabriel implementar método de excluir no DAO de eventos
+        //TODO Implementar método de excluir no DAO de eventos (despesa e viagem)
         //dao.excluir(item.getId());
     }
 

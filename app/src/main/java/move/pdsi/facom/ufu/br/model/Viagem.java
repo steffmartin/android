@@ -11,8 +11,8 @@ public class Viagem extends Evento {
             fim;
     private float distancia;
 
-    public Viagem(int id, int meioDeTransporteID, String inicio, String fim, float distancia) {
-        super(id);
+    public Viagem(int id, String data, int meioDeTransporteID, String inicio, String fim, float distancia) {
+        super(id,data);
         this.id = id;
         this.meioDeTransporteID = meioDeTransporteID;
         this.inicio = inicio;

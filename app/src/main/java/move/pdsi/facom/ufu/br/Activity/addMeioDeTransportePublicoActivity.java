@@ -81,7 +81,7 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
             if (item == null) {
                 dao.adicionaPublico(descricao, tipo, empresa);
             } else {
-                //TODO @Gabriel criar método de editar meio de transporte
+                //TODO Criar método de editar meio de transporte publico no MeiosDeTransporteDAO
                 //dao.editar(parametros...);
             }
             finish();

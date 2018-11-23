@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -14,7 +15,10 @@ import java.util.List;
 
 import move.pdsi.facom.ufu.br.DAO.EventosDAO;
 import move.pdsi.facom.ufu.br.DAO.MeiosDeTransporteDAO;
+import move.pdsi.facom.ufu.br.model.Evento;
+import move.pdsi.facom.ufu.br.model.Gasto;
 import move.pdsi.facom.ufu.br.model.MeioDeTransporte;
+import move.pdsi.facom.ufu.br.model.Viagem;
 import move.pdsi.facom.ufu.br.move.R;
 
 
@@ -22,6 +26,7 @@ public class addEventoViagemActivity extends AppCompatActivity implements Adapte
 
     MeiosDeTransporteDAO daoMeioTransporte;
     EventosDAO dao;
+    Evento item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,32 @@ public class addEventoViagemActivity extends AppCompatActivity implements Adapte
                     new ArrayAdapter<MeioDeTransporte>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, listaMeios);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             meioTransporteEventoSpinner.setAdapter(adapter);
+
+            Intent intent = getIntent();
+            String data = intent.getStringExtra("data");
+            EditText editText = (EditText) findViewById(R.id.dataEvento);
+            editText.setText(data);
+
+            item = (Evento) intent.getSerializableExtra("item");
+            EditText horaInicial = (EditText) findViewById(R.id.horaInicial);
+            EditText horaFinal = (EditText) findViewById(R.id.horaFinal);
+            EditText distancia = (EditText) findViewById(R.id.distanciaEvento);
+            if (item != null) {
+                Button button = (Button) findViewById(R.id.btnSalvarEvento);
+                button.setText("Confirmar Alterações");
+                if (item instanceof Viagem) {
+                    Viagem viagem = (Viagem) item;
+                    meioTransporteEventoSpinner.setSelection(getIndex(meioTransporteEventoSpinner, daoMeioTransporte.buscaMeioDeTransporte(viagem.getMeioDeTransporteID()).toString()));
+                    horaInicial.setText(viagem.getInicio());
+                    horaFinal.setText(viagem.getFim());
+                    distancia.setText(viagem.getDistancia() + "");
+                } else {
+                    //Gasto
+                    Gasto gasto = (Gasto) item;
+                    meioTransporteEventoSpinner.setSelection(getIndex(meioTransporteEventoSpinner, daoMeioTransporte.buscaMeioDeTransporte(gasto.getMeioDeTransporteID()).toString()));
+                }
+            }
+
         } else {
             Toast.makeText(this, "Ainda não há nenhum Meio de Transporte cadastrado!", Toast.LENGTH_SHORT).show();
             finish();
@@ -61,14 +92,20 @@ public class addEventoViagemActivity extends AppCompatActivity implements Adapte
         if (horaInicial.equals("") || horaFinal.equals("") || dataEvento.equals("") || distanciaEvento.equals("") || meioTransporteEventoSpinner.equals("")) {
             Toast.makeText(this, "Todos os campos são obrigatórios!", Toast.LENGTH_SHORT).show();
         } else {
-            try {
-                //TODO @Gabriel corrigir método de adicionaViagem do EventosDAO pois não está salvando a DATA
-                dao.adicionaViagem(horaInicial, horaFinal, Float.parseFloat(distanciaEvento.replace(",", ".")), daoMeioTransporte.buscaID(meioTransporteEventoSpinner.split(" - ")[1]));
-                finish();
-                Toast.makeText(this, "Evento registrado com sucesso!", Toast.LENGTH_SHORT).show();
-            } catch (NumberFormatException e) {
-                Toast.makeText(this, "Informe apenas números na distância e não coloque separação de milhares.", Toast.LENGTH_SHORT).show();
+            if (item == null) {
+                try {
+                    //TODO Corrigir método de adicionaViagem do EventosDAO pois não está salvando a DATA
+                    dao.adicionaViagem(dataEvento, horaInicial, horaFinal, Float.parseFloat(distanciaEvento.replace(",", ".")), daoMeioTransporte.buscaID(meioTransporteEventoSpinner.split(" - ")[1]));
+                    finish();
+                    Toast.makeText(this, "Evento registrado com sucesso!", Toast.LENGTH_SHORT).show();
+                } catch (NumberFormatException e) {
+                    Toast.makeText(this, "Informe apenas números na distância e não coloque separação de milhares.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                //TODO Criar método de editar viagem no EventosDAO
+                //dao.editar(parametros...);
             }
+
         }
     }
 
@@ -78,6 +115,9 @@ public class addEventoViagemActivity extends AppCompatActivity implements Adapte
             case "Despesa": {
                 Intent intent = new Intent(this, addEventoDespesaActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
+                String dataEvento = ((EditText) findViewById(R.id.dataEvento)).getText().toString();
+                intent.putExtra("data", dataEvento);
+                intent.putExtra("item", item);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(0, 0);
@@ -91,5 +131,15 @@ public class addEventoViagemActivity extends AppCompatActivity implements Adapte
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    private int getIndex(Spinner spinner, String myString) {
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)) {
+                return i;
+            }
+        }
+
+        return 0;
     }
 }

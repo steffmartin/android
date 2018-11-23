@@ -93,7 +93,7 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
             if(item == null){
                 dao.adicionaAlugado(descricao, tipo, locadora, marca, modelo, cor);
             } else{
-                //TODO @Gabriel criar método de editar meio de transporte
+                //TODO Criar método de editar meio de transporte alugado no MeiosDeTransporteDAO
                 //dao.editar(parametros...);
             }
             finish();

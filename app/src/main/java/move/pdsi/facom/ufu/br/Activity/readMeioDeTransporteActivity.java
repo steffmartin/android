@@ -155,7 +155,7 @@ public class readMeioDeTransporteActivity extends AppCompatActivity {
     }
 
     public void excluir(View view) {
-        //TODO @Gabriel implementar método de excluir no DAO de transportes
+        //TODO Implementar método de excluir no DAO de transportes (para os 4 tipos)
         //dao.excluir(item.getId());
     }
 

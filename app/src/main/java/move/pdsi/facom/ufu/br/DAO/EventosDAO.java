@@ -19,14 +19,12 @@ public class EventosDAO {
     private CriaBanco db;
     private Context mContext;
 
-    //TODO @Gabriel preciso dos métodos editar e excluir tanto para viagem quanto gasto
-
     public EventosDAO(Context context) {
         this.db = new CriaBanco(context);
         this.mContext = context;
     }
 
-    public void adicionaViagem(String inicio, String fim, float distancia, int meioDeTransporteID) {
+    public void adicionaViagem(String data, String inicio, String fim, float distancia, int meioDeTransporteID) {
         ContentValues valores = new ContentValues();
         valores.put(CriaBanco.KEY_INICIO, inicio);
         valores.put(CriaBanco.KEY_FIM, fim);

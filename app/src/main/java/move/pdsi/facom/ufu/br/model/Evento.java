@@ -5,12 +5,14 @@ import java.io.Serializable;
 /**
  * Created by mirandagab on 07/07/2018.
  */
-//TODO @Gabriel falta atributo DATA nesta classe
+
 public class Evento implements Serializable {
     private int id;
+    private String data;
 
-    public Evento(int id) {
+    public Evento(int id, String data) {
         this.id = id;
+        this.data = data;
     }
 
     public Evento() {
@@ -24,5 +26,13 @@ public class Evento implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }

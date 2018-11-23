@@ -89,7 +89,7 @@ public class addMeioDeTranporteParticularActivity extends AppCompatActivity impl
             if(item == null){
                 dao.adicionaParticular(descricao, tipo, marca, modelo, cor, 0, 0, 0);
             } else{
-                //TODO @Gabriel criar método de editar meio de transporte
+                //TODO Criar método de editar meio de transporte particular no MeiosDeTransporteDAO
                 //dao.editar(parametros...);
             }
             finish();

@@ -26,8 +26,8 @@ public class listEventoActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        //TODO @Gabriel, fazer um método no EventosDAO buscaGastos() e outro buscaEventos() (que inclui viagens e gastos ordenados por data decrescente)
-        recyclerView.setAdapter(new EventoAdapter(dao.buscaViagens(), new EventoAdapter.OnEventoClickListener(){//TODO Substituir o dao.buscaViagens() da linha abaixo para dao.buscaEventos() quando for criado
+        //TODO Criar um método no EventosDAO buscaEventos() (que inclui viagens e gastos ordenados por data decrescente), Substituir o dao.buscaViagens() da linha abaixo para dao.buscaEventos() quando for criado
+        recyclerView.setAdapter(new EventoAdapter(dao.buscaViagens(), new EventoAdapter.OnEventoClickListener(){
             @Override
             public void onItemClick(Evento item) {
                 Intent intent = new Intent(getApplicationContext(), readEventoActivity.class);

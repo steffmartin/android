@@ -11,8 +11,8 @@ public class Gasto extends Evento {
             observacao;
     private float valor;
 
-    public Gasto(int id, int meioDeTransporteID, String tipo, float valor, String observacao) {
-        super(id);
+    public Gasto(int id, String data, int meioDeTransporteID, String tipo, float valor, String observacao) {
+        super(id,data);
         this.meioDeTransporteID = meioDeTransporteID;
         this.tipo = tipo;
         this.valor = valor;

@@ -81,7 +81,7 @@ public class addMeioDeTransporteCompartilhadoActivity extends AppCompatActivity 
             if (item == null) {
                 dao.adicionaCompartilhado(descricao, tipo, empresa);
             } else {
-                //TODO @Gabriel criar método de editar meio de transporte
+                //TODO Criar método de editar meio de transporte compartilhado no MeiosDeTransporteDAO
                 //dao.editar(parametros...);
             }
             finish();
