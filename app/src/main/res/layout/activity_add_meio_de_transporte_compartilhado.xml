@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/labelTipoCompartilhado" />
 
     <EditText
-        android:id="@+id/marcaCompartilhado"
+        android:id="@+id/empresaCompartilhado"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

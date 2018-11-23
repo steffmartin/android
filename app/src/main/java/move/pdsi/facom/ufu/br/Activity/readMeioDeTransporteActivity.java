@@ -8,6 +8,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -131,7 +132,26 @@ public class readMeioDeTransporteActivity extends AppCompatActivity {
     }
 
     public void editar(View view) {
-        //TODO @Steffan após criar tela de edição, implementar este metodo chamando ela
+        Intent intent;
+        if (item instanceof Alugado) {
+            intent = new Intent(this, addMeioDeTransporteAlugadoActivity.class);
+        } else {
+            if (item instanceof Publico) {
+                intent = new Intent(this, addMeioDeTransportePublicoActivity.class);
+            } else {
+                if (item instanceof Compartilhado) {
+                    intent = new Intent(this, addMeioDeTransporteCompartilhadoActivity.class);
+                } else {
+                    //Particular
+                    intent = new Intent(this, addMeioDeTranporteParticularActivity.class);
+                }
+            }
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("descricao", item.getDescricao());
+        intent.putExtra("item", item);
+        startActivity(intent);
+        finish();
     }
 
     public void excluir(View view) {
