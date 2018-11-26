@@ -1,5 +1,6 @@
 package move.pdsi.facom.ufu.br.model;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,43 +9,51 @@ import java.util.Date;
  */
 public class Usuario {
 
-    private String nome,
-            sobrenome,
-            email,
-            senha,
-            foto;
-    private Boolean facebook;
-    private int qtdMeiosDeTransporte;
-    private Date ultimoLogin;
+    private int id;
+    private String nome;
+    private String sobrenome;
+    private String email;
+    private String senha;
+    private String foto;
+    private String facebook;
+    private boolean sincronizar;
     private ArrayList<MeioDeTransporte> transportes;
+    private EstatisticasConta statistics;
 
-    public Usuario() {
-        this.nome = "Flavio";
-        this.sobrenome = "Silva";
-        this.email = "flavio@ufu.br";
-        this.senha = "pdsi20181";
-        this.qtdMeiosDeTransporte = 0;
-        this.ultimoLogin = new Date();
-        transportes = new ArrayList<MeioDeTransporte>();
-        this.facebook = false;
+    public Usuario(int id) {
+        this.transportes = new ArrayList<>(10);
+        this.statistics = new EstatisticasConta(id,0,null);
     }
 
-    private void atualizarUltimoLogin() {
-        setUltimoLogin(new Date());
+    public Usuario(int id, String nome, String sobrenome, String email, String senha){
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.email = email;
+        this.senha = senha;
+        this.transportes = new ArrayList<>(10);
+        this.statistics = new EstatisticasConta(id,0,null);
     }
 
     private void incluirMeioDeTransporte(MeioDeTransporte transporte) {
         this.transportes.add(transporte);
-        int i = getQtdMeiosDeTransporte();
-        i++;
-        setQtdMeiosDeTransporte(i);
+        this.statistics.incrementQtdMeioTransporte();
     }
 
     private void excluirMeioDeTransporte(MeioDeTransporte transporte) {
-
+        this.transportes.remove(transporte);
+        this.statistics.decrementQtdMeioTransporte();
     }
 
     //getters and setters
+    public int getId(){
+        return this.id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -85,35 +94,40 @@ public class Usuario {
         this.foto = foto;
     }
 
-    public Boolean getFacebook() {
+    public String getFacebook() {
         return facebook;
     }
 
-    public void setFacebook(Boolean facebook) {
+    public void setFacebook(String facebook) {
         this.facebook = facebook;
     }
 
+    public boolean isSincronizar() {
+        return sincronizar;
+    }
+
+    public void setSincronizar(boolean sincronizar){
+        this.sincronizar = sincronizar;
+    }
+
     public int getQtdMeiosDeTransporte() {
-        return qtdMeiosDeTransporte;
+        return this.statistics.getQtdMeiosTransporte();
     }
 
     public void setQtdMeiosDeTransporte(int qtdMeiosDeTransporte) {
-        this.qtdMeiosDeTransporte = qtdMeiosDeTransporte;
+        this.statistics.setQtdMeiosTransporte(qtdMeiosDeTransporte);
     }
 
-    public Date getUltimoLogin() {
-        return ultimoLogin;
+    public void setUltimoLogin(Timestamp ultimoLogin){
+        this.statistics.setUltimoLogin(ultimoLogin);
     }
 
-    public void setUltimoLogin(Date ultimoLogin) {
-        this.ultimoLogin = ultimoLogin;
+    public Timestamp getUltimoLogin(){
+        return this.statistics.getUltimoLogin();
     }
 
     public ArrayList<MeioDeTransporte> getTransportes() {
         return transportes;
     }
 
-    public void setTransportes(ArrayList<MeioDeTransporte> transportes) {
-        this.transportes = transportes;
-    }
 }

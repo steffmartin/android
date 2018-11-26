@@ -4,16 +4,12 @@ package move.pdsi.facom.ufu.br.model;
  * Created by mirandagab on 07/07/2018.
  */
 public class Gasto extends Evento {
-    //TODO @Gabriel o meioDeTransporteID poderia ficar na classe pai
-    private int id,
-            meioDeTransporteID;
-    private String tipo,
-            observacao;
+    private String tipo;
+    private String observacao;
     private float valor;
 
-    public Gasto(int id, String data, int meioDeTransporteID, String tipo, float valor, String observacao) {
-        super(id,data);
-        this.meioDeTransporteID = meioDeTransporteID;
+    public Gasto(int evento_id, String data, String tipo, float valor, String observacao) {
+        super(evento_id,data);
         this.tipo = tipo;
         this.valor = valor;
         this.observacao = observacao;
@@ -23,13 +19,9 @@ public class Gasto extends Evento {
         super();
     }
 
-    public int getId() {        return id;    }
+    public int getId() {        return super.getId();    }
 
-    public void setId(int id) {        this.id = id;    }
-
-    public int getMeioDeTransporteID() {        return meioDeTransporteID;    }
-
-    public void setMeioDeTransporteID(int meioDeTransporteID) {        this.meioDeTransporteID = meioDeTransporteID;    }
+    public void setId(int id) {        super.setId(id);   }
 
     public String getTipo() {
         return tipo;

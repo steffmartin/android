@@ -3,16 +3,12 @@ package move.pdsi.facom.ufu.br.model;
 /**
  * Created by mirandagab on 07/07/2018.
  */
-public class Compartilhado extends MeioDeTransporte {
-    private int id;
-    private String descricao,
-            tipo,
-            empresa;
+public class Compartilhado extends MeioDeTransporte{
+    private String tipo;
+    private String empresa;
 
-    public Compartilhado(int id, String descricao, String tipo, String empresa) {
-        super(descricao);
-        this.id = id;
-        this.descricao = descricao;
+    public Compartilhado(int evento_id, String descricao, String tipo, String empresa) {
+        super(evento_id, descricao);
         this.tipo = tipo;
         this.empresa = empresa;
     }
@@ -22,28 +18,27 @@ public class Compartilhado extends MeioDeTransporte {
     }
 
     public int getId() {
-        return id;
+        return super.getId();
     }
 
     public void setId(int id) {
-        this.id = id;
+        super.setId(id);
     }
 
     public String getDescricaoC() {
-        return descricao;
+        return super.getDescricao();
     }
 
     public void setDescricaoC(String descricao) {
-        this.descricao = descricao;
         super.setDescricao(descricao);
     }
 
-    public String getTipo() {
-        return tipo;
+    public char getTipo() {
+        return super.getTipo();
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipo(char tipo) {
+        super.setTipo(tipo);
     }
 
     public String getEmpresa() {
@@ -52,10 +47,5 @@ public class Compartilhado extends MeioDeTransporte {
 
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
-    }
-
-    @Override
-    public String toString() {
-        return "Compartilhado - " + descricao;
     }
 }

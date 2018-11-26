@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class Evento implements Serializable {
     private int id;
     private String data;
+    private int meiodetransporte_id;
 
     public Evento(int id, String data) {
         this.id = id;
@@ -17,8 +18,6 @@ public class Evento implements Serializable {
 
     public Evento() {
     }
-
-    ;
 
     public int getId() {
         return id;
@@ -35,4 +34,8 @@ public class Evento implements Serializable {
     public void setData(String data) {
         this.data = data;
     }
+
+    public int getMeiodetransporte_id(){return this.meiodetransporte_id;}
+
+    public void setMeiodetransporte_id(int meiodetransporte_id){this.meiodetransporte_id = meiodetransporte_id;}
 }

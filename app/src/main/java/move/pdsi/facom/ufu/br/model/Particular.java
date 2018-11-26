@@ -4,21 +4,18 @@ package move.pdsi.facom.ufu.br.model;
  * Created by mirandagab on 07/07/2018.
  */
 public class Particular extends MeioDeTransporte {
-    private int id;
-    private String descricao,
-            tipo,
-            marca,
-            modelo,
-            cor;
-    private float media,  //media geral do veículo Particular
-            maximo, //melhor média
-            minimo; //pior média
+
+    private String tipo;
+    private String marca;
+    private String modelo;
+    private String cor;
+    private float media;  //media geral do veículo Particular
+    private float maximo; //melhor média
+    private float minimo; //pior média
 
 
-    public Particular(int id, String descricao, String marca, String modelo, String cor) {
-        super(descricao);
-        this.id = id;
-        this.descricao = descricao;
+    public Particular(int evento_id, String descricao, String marca, String modelo, String cor) {
+        super(evento_id,descricao);
         this.marca = marca;
         this.modelo = modelo;
         this.cor = cor;
@@ -30,28 +27,27 @@ public class Particular extends MeioDeTransporte {
     }
 
     public int getId() {
-        return id;
+        return super.getId();
     }
 
     public void setId(int id) {
-        this.id = id;
+        super.setId(id);
     }
 
     public String getDescricaoP() {
-        return descricao;
+        return super.getDescricao();
     }
 
     public void setDescricaoP(String descricao) {
-        this.descricao = descricao;
         super.setDescricao(descricao);
     }
 
-    public String getTipo() {
-        return tipo;
+    public char getTipo() {
+        return super.getTipo();
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipo(char tipo) {
+        super.setTipo(tipo);
     }
 
     public float getMedia() {
@@ -100,10 +96,5 @@ public class Particular extends MeioDeTransporte {
 
     public void setCor(String cor) {
         this.cor = cor;
-    }
-
-    @Override
-    public String toString() {
-        return "Particular - " + descricao;
     }
 }

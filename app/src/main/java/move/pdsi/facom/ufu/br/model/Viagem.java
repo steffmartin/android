@@ -4,17 +4,12 @@ package move.pdsi.facom.ufu.br.model;
  * Created by mirandagab on 07/07/2018.
  */
 public class Viagem extends Evento {
-    //TODO @Gabriel o meioDeTransporteID poderia ficar na classe pai
-    private int id,
-            meioDeTransporteID;
-    private String inicio,
-            fim;
+    private String inicio;
+    private String fim;
     private float distancia;
 
-    public Viagem(int id, String data, int meioDeTransporteID, String inicio, String fim, float distancia) {
-        super(id,data);
-        this.id = id;
-        this.meioDeTransporteID = meioDeTransporteID;
+    public Viagem(int evento_id, String data, String inicio, String fim, float distancia) {
+        super(evento_id,data);
         this.inicio = inicio;
         this.fim = fim;
         this.distancia = distancia;
@@ -25,21 +20,18 @@ public class Viagem extends Evento {
     }
 
     public int getId() {
-        return id;
+        return super.getId();
     }
 
     public void setId(int id) {
-        this.id = id;
+        super.setId(id);
     }
-
-    public int getMeioDeTransporteID() {
-        return meioDeTransporteID;
+    public String getData(){
+        return this.getData();
     }
-
-    public void setMeioDeTransporteID(int meioDeTransporteID) {
-        this.meioDeTransporteID = meioDeTransporteID;
+    public void setData(String data){
+        this.setData(data);
     }
-
     public String getInicio() {
         return inicio;
     }
