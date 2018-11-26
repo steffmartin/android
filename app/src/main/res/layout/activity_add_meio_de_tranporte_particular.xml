@@ -8,12 +8,46 @@
     tools:context="move.pdsi.facom.ufu.br.Activity.addMeioDeTranporteParticularActivity"
     tools:layout_editor_absoluteY="81dp">
 
+    <View
+        android:id="@+id/view3"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:background="?attr/colorButtonNormal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/readAvatar3"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_circle_solid"
+        android:backgroundTint="@color/particular"
+        android:contentDescription="Avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:tint="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="@+id/readAvatar3"
+        app:layout_constraintEnd_toEndOf="@+id/readAvatar3"
+        app:layout_constraintStart_toStartOf="@+id/readAvatar3"
+        app:layout_constraintTop_toTopOf="@+id/readAvatar3"
+        app:srcCompat="@drawable/ic_meio_de_transporte" />
+
     <EditText
         android:id="@+id/descricaoParticular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Descrição"
@@ -21,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/readAvatar3" />
 
     <TextView
         android:id="@+id/labelCategoriaParticular"
@@ -88,11 +122,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="4dp"
         android:ems="10"
         android:hint="Modelo"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marcaParticular" />
 
@@ -100,15 +134,15 @@
         android:id="@+id/corParticular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Cor"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modeloParticular" />
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/marcaParticular" />
 
     <Button
         android:id="@+id/btnCriarMeioParticular"
@@ -122,5 +156,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
 </android.support.constraint.ConstraintLayout>

@@ -7,6 +7,39 @@
     android:layout_height="match_parent"
     tools:context="move.pdsi.facom.ufu.br.Activity.addEventoViagemActivity">
 
+    <View
+        android:id="@+id/view7"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:background="?attr/colorButtonNormal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/readAvatar7"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_circle_solid"
+        android:backgroundTint="@color/viagem"
+        android:contentDescription="Avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:tint="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="@+id/readAvatar7"
+        app:layout_constraintEnd_toEndOf="@+id/readAvatar7"
+        app:layout_constraintStart_toStartOf="@+id/readAvatar7"
+        app:layout_constraintTop_toTopOf="@+id/readAvatar7"
+        app:srcCompat="@drawable/ic_deslocamento" />
+
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
@@ -19,10 +52,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="Tipo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/readAvatar7" />
 
     <Spinner
         android:id="@+id/tipoEventosSpinner"
@@ -49,7 +81,7 @@
         android:inputType="time"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipoEventosSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/dataEvento" />
 
     <EditText
         android:id="@+id/horaFinal"
@@ -63,7 +95,7 @@
         android:inputType="time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/tipoEventosSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/distanciaEvento" />
 
     <EditText
         android:id="@+id/dataEvento"
@@ -77,7 +109,7 @@
         android:inputType="date"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horaInicial" />
+        app:layout_constraintTop_toBottomOf="@+id/meioTransporteEventoSpinner" />
 
     <EditText
         android:id="@+id/distanciaEvento"
@@ -91,7 +123,7 @@
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/horaFinal" />
+        app:layout_constraintTop_toBottomOf="@+id/meioTransporteEventoSpinner" />
 
     <TextView
         android:id="@+id/labelMeioTransporteEvento"
@@ -101,7 +133,7 @@
         android:layout_marginTop="8dp"
         android:text="Meio de Transporte"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dataEvento" />
+        app:layout_constraintTop_toBottomOf="@+id/tipoEventosSpinner" />
 
     <Spinner
         android:id="@+id/meioTransporteEventoSpinner"

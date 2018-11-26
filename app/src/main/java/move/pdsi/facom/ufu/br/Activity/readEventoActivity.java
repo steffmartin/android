@@ -2,6 +2,7 @@ package move.pdsi.facom.ufu.br.Activity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -57,7 +58,11 @@ public class readEventoActivity extends AppCompatActivity {
         TextView campo3 = (TextView) findViewById(R.id.readEventoCampo3);
 
         if (item instanceof Viagem) {
-            avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                avatar.setBackgroundTintList(getColorStateList(R.color.viagem));
+            } else {
+                avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+            }
             avatar_text.setText("V");
 
             Viagem viagem = (Viagem) item;
@@ -73,7 +78,11 @@ public class readEventoActivity extends AppCompatActivity {
 
 
         } else if (item instanceof Gasto) {
-            avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                avatar.setBackgroundTintList(getColorStateList(R.color.despesa));
+            } else {
+                avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
+            }
             avatar_text.setText("$");
 
             Gasto gasto = (Gasto) item;

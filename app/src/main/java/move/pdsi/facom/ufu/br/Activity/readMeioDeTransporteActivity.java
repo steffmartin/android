@@ -3,6 +3,7 @@ package move.pdsi.facom.ufu.br.Activity;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -70,7 +71,11 @@ public class readMeioDeTransporteActivity extends AppCompatActivity {
 
         if (item instanceof Alugado) {
             linha2.setText("Alugado");
-            avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                avatar.setBackgroundTintList(getColorStateList(R.color.alugado));
+            } else {
+                avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+            }
             Alugado alugado = (Alugado) item;
             tipo.setText(alugado.getTipo());
             marca.setText(alugado.getMarca());
@@ -81,7 +86,11 @@ public class readMeioDeTransporteActivity extends AppCompatActivity {
         } else {
             if (item instanceof Publico) {
                 linha2.setText("Público");
-                avatar.setBackgroundTintList(ColorStateList.valueOf(CYAN));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    avatar.setBackgroundTintList(getColorStateList(R.color.publico));
+                } else {
+                    avatar.setBackgroundTintList(ColorStateList.valueOf(CYAN));
+                }
                 Publico publico = (Publico) item;
                 tipo.setText(publico.getTipo());
                 locEmpresa.setText(publico.getEmpresa());
@@ -98,7 +107,11 @@ public class readMeioDeTransporteActivity extends AppCompatActivity {
             } else {
                 if (item instanceof Compartilhado) {
                     linha2.setText("Compartilhado");
-                    avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        avatar.setBackgroundTintList(getColorStateList(R.color.compartilhado));
+                    } else {
+                        avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
+                    }
                     Compartilhado compartilhado = (Compartilhado) item;
                     tipo.setText(compartilhado.getTipo());
                     locEmpresa.setText(compartilhado.getEmpresa());
@@ -113,7 +126,11 @@ public class readMeioDeTransporteActivity extends AppCompatActivity {
                 } else {
                     if (item instanceof Particular) {
                         linha2.setText("Particular");
-                        avatar.setBackgroundTintList(ColorStateList.valueOf(YELLOW));
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            avatar.setBackgroundTintList(getColorStateList(R.color.particular));
+                        } else {
+                            avatar.setBackgroundTintList(ColorStateList.valueOf(YELLOW));
+                        }
                         Particular particular = (Particular) item;
                         tipo.setText(particular.getTipo());
                         marca.setText(particular.getMarca());

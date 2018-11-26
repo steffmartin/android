@@ -1,6 +1,8 @@
 package move.pdsi.facom.ufu.br.Activity;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,10 +31,12 @@ class MeioTransporteAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
 
     private final List<MeioDeTransporte> lista;
     private final OnMeioDeTransporteClickListener listener;
+    Context context;
 
-    public MeioTransporteAdapter(List<MeioDeTransporte> lista, OnMeioDeTransporteClickListener listener) {
+    public MeioTransporteAdapter(List<MeioDeTransporte> lista, OnMeioDeTransporteClickListener listener, Context context) {
         this.lista = lista;
         this.listener = listener;
+        this.context = context;
     }
 
     @NonNull
@@ -47,7 +51,8 @@ class MeioTransporteAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
         final MeioDeTransporte item = lista.get(position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 listener.onItemClick(item);
             }
         });
@@ -66,19 +71,36 @@ class MeioTransporteAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
 
         if (item instanceof Alugado) {
             holder.linha2.setText("Alugado");
-            holder.avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                holder.avatar.setBackgroundTintList(context.getColorStateList(R.color.alugado));
+            } else {
+                holder.avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+            }
+
         } else {
             if (item instanceof Publico) {
                 holder.linha2.setText("Público");
-                holder.avatar.setBackgroundTintList(ColorStateList.valueOf(CYAN));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    holder.avatar.setBackgroundTintList(context.getColorStateList(R.color.publico));
+                } else {
+                    holder.avatar.setBackgroundTintList(ColorStateList.valueOf(CYAN));
+                }
             } else {
                 if (item instanceof Compartilhado) {
                     holder.linha2.setText("Compartilhado");
-                    holder.avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        holder.avatar.setBackgroundTintList(context.getColorStateList(R.color.compartilhado));
+                    } else {
+                        holder.avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
+                    }
                 } else {
                     if (item instanceof Particular) {
                         holder.linha2.setText("Particular");
-                        holder.avatar.setBackgroundTintList(ColorStateList.valueOf(YELLOW));
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            holder.avatar.setBackgroundTintList(context.getColorStateList(R.color.particular));
+                        } else {
+                            holder.avatar.setBackgroundTintList(ColorStateList.valueOf(YELLOW));
+                        }
                     } else {
                         holder.linha2.setText("");
                     }

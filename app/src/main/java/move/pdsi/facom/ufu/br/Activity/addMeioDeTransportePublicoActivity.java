@@ -84,6 +84,7 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
                 //TODO Criar método de editar meio de transporte publico no MeiosDeTransporteDAO
                 //dao.editar(parametros...);
             }
+            setResult(getResources().getInteger(R.integer.SUCESS));
             finish();
         }
     }
@@ -94,7 +95,7 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
             case "Particular": {
                 //Particular
                 Intent intent = new Intent(this, addMeioDeTranporteParticularActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
                 EditText editText = (EditText) findViewById(R.id.descricaoPublico);
                 String message = editText.getText().toString();
                 intent.putExtra("descricao", message);
@@ -107,7 +108,7 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
             case "Alugado": {
                 //Alugado
                 Intent intent = new Intent(this, addMeioDeTransporteAlugadoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
                 EditText editText = (EditText) findViewById(R.id.descricaoPublico);
                 String message = editText.getText().toString();
                 intent.putExtra("descricao", message);
@@ -120,7 +121,7 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
             case "Compartilhado": {
                 //Compartilhado
                 Intent intent = new Intent(this, addMeioDeTransporteCompartilhadoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION  | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
                 EditText editText = (EditText) findViewById(R.id.descricaoPublico);
                 String message = editText.getText().toString();
                 intent.putExtra("descricao", message);
