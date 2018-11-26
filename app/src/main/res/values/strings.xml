@@ -67,5 +67,4 @@
     <string name="nav_header_title">Nome do usuário</string>
     <string name="nav_header_subtitle">email_do_usuario@email.com</string>
     <string name="nav_header_desc">Cabeçalho</string>
-    <string name="action_settings">Configurações</string>
 </resources>
