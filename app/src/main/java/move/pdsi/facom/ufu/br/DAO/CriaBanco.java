@@ -40,9 +40,7 @@ public class CriaBanco extends SQLiteOpenHelper {
     public static final String KEY_INICIO = "inicio";
     public static final String KEY_FIM = "fim";
     public static final String KEY_DISTANCIA = "distancia";
-    //tabela Indices - colunas
-    public static final String KEY_TABELA = "tabela";
-    public static final String KEY_VALOR = "valor";
+
     private static final int VERSAO_BANCO = 1;
     //CRIAÇÃO DE TABELAS
     //Criação de tabela MeioDeTransporte
@@ -86,10 +84,6 @@ public class CriaBanco extends SQLiteOpenHelper {
             + KEY_FIM + " TEXT," + KEY_DISTANCIA + " REAL," + KEY_MEIODETRANSPORTEID + " INTEGER, "
             + "FOREIGN KEY(" + KEY_MEIODETRANSPORTEID + ") REFERENCES " + TABELA_MEIODETRANSPORTE
             + "(" + KEY_ID + "))";
-
-//     //Criação de tabela Indices
-//    private static final String CREATE_TABLE_INDICES = "CREATE TABLE IF NOT EXISTS "
-//             + TABELA_INDICES + "(" + KEY_TABELA + " TEXT," + KEY_VALOR + " INTEGER)";
 
     private Context mContext;
 

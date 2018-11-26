@@ -74,6 +74,7 @@ public class main_Activity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         //Menu lateral
         if (id == R.id.nav_transportes) {
@@ -89,7 +90,6 @@ public class main_Activity extends AppCompatActivity
             System.exit(0);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
         return true;

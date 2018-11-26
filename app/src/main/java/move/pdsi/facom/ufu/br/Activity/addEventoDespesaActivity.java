@@ -47,6 +47,7 @@ public class addEventoDespesaActivity extends AppCompatActivity implements Adapt
                     new ArrayAdapter<MeioDeTransporte>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, listaMeios);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             meioTransporteEventoSpinner.setAdapter(adapter);
+            meioTransporteEventoSpinner.setSelection(getIndex(meioTransporteEventoSpinner, getIntent().getStringExtra("meioTransporte")));
 
             Intent intent = getIntent();
             String data = intent.getStringExtra("data");
@@ -120,6 +121,7 @@ public class addEventoDespesaActivity extends AppCompatActivity implements Adapt
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION  | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
                 String dataDespesa = ((EditText) findViewById(R.id.dataDespesa)).getText().toString();
                 intent.putExtra("data", dataDespesa);
+                intent.putExtra("meioTransporte", ((Spinner) findViewById(R.id.meioTransporteEventoSpinner2)).getSelectedItem().toString());
                 intent.putExtra("item", item);
                 startActivity(intent);
                 finish();
