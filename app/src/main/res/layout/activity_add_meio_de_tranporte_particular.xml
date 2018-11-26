@@ -8,6 +8,13 @@
     tools:context="move.pdsi.facom.ufu.br.Activity.addMeioDeTranporteParticularActivity"
     tools:layout_editor_absoluteY="81dp">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
     <View
         android:id="@+id/view3"
         android:layout_width="wrap_content"
@@ -156,12 +163,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
 
 </android.support.constraint.ConstraintLayout>

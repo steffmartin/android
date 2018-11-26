@@ -3,7 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/menuLateralTOP"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard"
+            android:title="Início" />
+    </group>
+
+    <group
+        android:id="@+id/menuLateralFunctions"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_transportes"
             android:icon="@drawable/ic_meio_de_transporte"
@@ -16,6 +27,15 @@
             android:id="@+id/nav_relatorios"
             android:icon="@drawable/ic_relatorios"
             android:title="Relatórios" />
+    </group>
+
+    <group
+        android:id="@+id/menuLateralBOTTOM"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_sair"
+            android:icon="@drawable/ic_close"
+            android:title="Sair" />
     </group>
 
 </menu>

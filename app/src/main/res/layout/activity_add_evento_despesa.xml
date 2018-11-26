@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     tools:context="move.pdsi.facom.ufu.br.Activity.addEventoDespesaActivity">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
     <View
         android:id="@+id/view8"
         android:layout_width="wrap_content"
@@ -63,34 +70,25 @@
         app:layout_constraintTop_toBottomOf="@+id/lebalTipoEvento2" />
 
     <TextView
-        android:id="@+id/lebalTipoEvento3"
+        android:id="@+id/labelMeioTransporteEvento2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="18dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Categoria"
+        android:text="Meio de Transporte"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descricaoDespesa" />
+        app:layout_constraintTop_toBottomOf="@+id/tipoEventosSpinner2" />
 
     <Spinner
-        android:id="@+id/categoriaDespesaSpinner"
+        android:id="@+id/meioTransporteEventoSpinner2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:entries="@array/tiposDespeesa"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lebalTipoEvento3" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/labelMeioTransporteEvento2" />
 
     <EditText
         android:id="@+id/dataDespesa"
@@ -120,27 +118,6 @@
         app:layout_constraintStart_toEndOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/meioTransporteEventoSpinner2" />
 
-    <TextView
-        android:id="@+id/labelMeioTransporteEvento2"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Meio de Transporte"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipoEventosSpinner2" />
-
-    <Spinner
-        android:id="@+id/meioTransporteEventoSpinner2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelMeioTransporteEvento2" />
-
     <EditText
         android:id="@+id/descricaoDespesa"
         android:layout_width="0dp"
@@ -155,6 +132,29 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dataDespesa" />
+
+    <TextView
+        android:id="@+id/lebalTipoEvento3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Categoria"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descricaoDespesa" />
+
+    <Spinner
+        android:id="@+id/categoriaDespesaSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:entries="@array/tiposDespeesa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lebalTipoEvento3" />
 
     <Button
         android:id="@+id/btnSalvarDespesa"
