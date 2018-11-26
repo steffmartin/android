@@ -1,5 +1,6 @@
 package move.pdsi.facom.ufu.br.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -86,12 +87,13 @@ public class addMeioDeTranporteParticularActivity extends AppCompatActivity impl
         if (descricao.equals("") || marca.equals("") || modelo.equals("") || cor.equals("")) {
             Toast.makeText(this, "Todos os campos são obrigatórios!", Toast.LENGTH_SHORT).show();
         } else {
-            if(item == null){
+            if (item == null) {
                 dao.adicionaParticular(descricao, tipo, marca, modelo, cor, 0, 0, 0);
-            } else{
+            } else {
                 //TODO Criar método de editar meio de transporte particular no MeiosDeTransporteDAO
                 //dao.editar(parametros...);
             }
+            setResult(getResources().getInteger(R.integer.SUCESS));
             finish();
         }
     }
@@ -102,7 +104,7 @@ public class addMeioDeTranporteParticularActivity extends AppCompatActivity impl
             case "Alugado": {
                 //Alugado
                 Intent intent = new Intent(this, addMeioDeTransporteAlugadoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
                 EditText editText = (EditText) findViewById(R.id.descricaoParticular);
                 String message = editText.getText().toString();
                 intent.putExtra("descricao", message);
@@ -115,7 +117,7 @@ public class addMeioDeTranporteParticularActivity extends AppCompatActivity impl
             case "Público": {
                 //Público
                 Intent intent = new Intent(this, addMeioDeTransportePublicoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
                 EditText editText = (EditText) findViewById(R.id.descricaoParticular);
                 String message = editText.getText().toString();
                 intent.putExtra("descricao", message);
@@ -128,7 +130,7 @@ public class addMeioDeTranporteParticularActivity extends AppCompatActivity impl
             case "Compartilhado": {
                 //Compartilhado
                 Intent intent = new Intent(this, addMeioDeTransporteCompartilhadoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION  | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
                 EditText editText = (EditText) findViewById(R.id.descricaoParticular);
                 String message = editText.getText().toString();
                 intent.putExtra("descricao", message);

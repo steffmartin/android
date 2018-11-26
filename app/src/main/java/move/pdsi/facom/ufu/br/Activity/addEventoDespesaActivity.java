@@ -97,6 +97,7 @@ public class addEventoDespesaActivity extends AppCompatActivity implements Adapt
                 try {
                     //TODO Criar método no EventosDAO para adicionar a despesa
                     //dao.adicionaDespesa();
+                    setResult(getResources().getInteger(R.integer.SUCESS));
                     finish();
                     Toast.makeText(this, "Despesa registrada com sucesso!", Toast.LENGTH_SHORT).show();
                 } catch (NumberFormatException e) {
@@ -116,7 +117,7 @@ public class addEventoDespesaActivity extends AppCompatActivity implements Adapt
         switch (parent.getItemAtPosition(position).toString()) {
             case "Viagem": {
                 Intent intent = new Intent(this, addEventoViagemActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION  | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
                 String dataDespesa = ((EditText) findViewById(R.id.dataDespesa)).getText().toString();
                 intent.putExtra("data", dataDespesa);
                 intent.putExtra("item", item);

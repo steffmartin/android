@@ -61,4 +61,11 @@
         <item>Táxi</item>
         <item>Aplicativo</item>
     </string-array>
+    <string name="title_activity_menu_lateral">Move</string>
+    <string name="navigation_drawer_open">Abrir menu</string>
+    <string name="navigation_drawer_close">Fechar menu</string>
+    <string name="nav_header_title">Nome do usuário</string>
+    <string name="nav_header_subtitle">email_do_usuario@email.com</string>
+    <string name="nav_header_desc">Cabeçalho</string>
+    <string name="action_settings">Configurações</string>
 </resources>

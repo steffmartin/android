@@ -96,6 +96,7 @@ public class addEventoViagemActivity extends AppCompatActivity implements Adapte
                 try {
                     //TODO Corrigir método de adicionaViagem do EventosDAO pois não está salvando a DATA
                     dao.adicionaViagem(dataEvento, horaInicial, horaFinal, Float.parseFloat(distanciaEvento.replace(",", ".")), daoMeioTransporte.buscaID(meioTransporteEventoSpinner.split(" - ")[1]));
+                    setResult(getResources().getInteger(R.integer.SUCESS));
                     finish();
                     Toast.makeText(this, "Evento registrado com sucesso!", Toast.LENGTH_SHORT).show();
                 } catch (NumberFormatException e) {
@@ -114,7 +115,7 @@ public class addEventoViagemActivity extends AppCompatActivity implements Adapte
         switch (parent.getItemAtPosition(position).toString()) {
             case "Despesa": {
                 Intent intent = new Intent(this, addEventoDespesaActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
                 String dataEvento = ((EditText) findViewById(R.id.dataEvento)).getText().toString();
                 intent.putExtra("data", dataEvento);
                 intent.putExtra("item", item);
