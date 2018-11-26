@@ -23,6 +23,7 @@
         android:layout_height="80dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/ic_circle_solid"
+        android:backgroundTint="@color/despesa"
         android:contentDescription="Avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +70,7 @@
         android:layout_marginTop="8dp"
         android:text="Categoria"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipoEventosSpinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/descricaoDespesa" />
 
     <Spinner
         android:id="@+id/categoriaDespesaSpinner"
@@ -103,7 +104,7 @@
         android:inputType="date"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoriaDespesaSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/meioTransporteEventoSpinner2" />
 
     <EditText
         android:id="@+id/valorDespesa"
@@ -117,7 +118,7 @@
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/categoriaDespesaSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/meioTransporteEventoSpinner2" />
 
     <TextView
         android:id="@+id/labelMeioTransporteEvento2"
@@ -127,7 +128,7 @@
         android:layout_marginTop="8dp"
         android:text="Meio de Transporte"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dataDespesa" />
+        app:layout_constraintTop_toBottomOf="@+id/tipoEventosSpinner2" />
 
     <Spinner
         android:id="@+id/meioTransporteEventoSpinner2"
@@ -153,7 +154,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meioTransporteEventoSpinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/dataDespesa" />
 
     <Button
         android:id="@+id/btnSalvarDespesa"

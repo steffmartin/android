@@ -50,7 +50,7 @@ public class listMeioDeTransporteFragment extends Fragment {
                 intent.putExtra("item", item);
                 startActivity(intent);
             }
-        }));
+        }, getActivity().getApplicationContext()));
 
         FloatingActionButton btnAddMeioDeTranporte = (FloatingActionButton) view.findViewById(R.id.addMeiodeTransporte);
         btnAddMeioDeTranporte.setOnClickListener(new View.OnClickListener() {

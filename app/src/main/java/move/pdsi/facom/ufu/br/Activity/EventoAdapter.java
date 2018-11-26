@@ -2,6 +2,7 @@ package move.pdsi.facom.ufu.br.Activity;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +28,12 @@ public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
     private final List<Evento> lista;
     private final OnEventoClickListener listener;
     private MeiosDeTransporteDAO dao;
+    Context context;
 
     public EventoAdapter(List<Evento> lista, OnEventoClickListener listener, Context context) {
         this.lista = lista;
         this.listener = listener;
+        this.context = context;
         dao = new MeiosDeTransporteDAO(context);
     }
 
@@ -51,7 +54,11 @@ public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
         });
 
         if (item instanceof Viagem) {
-            holder.avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                holder.avatar.setBackgroundTintList(context.getColorStateList(R.color.viagem));
+            } else{
+                holder.avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+            }
             holder.avatar_text.setText("V");
 
             Viagem it = (Viagem) item;
@@ -66,7 +73,11 @@ public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
             }
 
         } else if (item instanceof Gasto) {
-            holder.avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                holder.avatar.setBackgroundTintList(context.getColorStateList(R.color.despesa));
+            } else{
+                holder.avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
+            }
             holder.avatar_text.setText("$");
 
             Gasto it = (Gasto) item;
