@@ -68,8 +68,8 @@ public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
             linha1 += " Km";
             holder.linha1.setText(linha1);
 
-            if (dao.buscaMeioDeTransporte(it.getMeioDeTransporteID()) != null) {
-                holder.linha2.setText(dao.buscaMeioDeTransporte(it.getMeioDeTransporteID()).toString());
+            if (dao.buscaMeioDeTransporte(it.getMeiodetransporte_id()) != null) {
+                holder.linha2.setText(dao.buscaMeioDeTransporte(it.getMeiodetransporte_id()).toString());
             }
 
         } else if (item instanceof Gasto) {
@@ -86,8 +86,8 @@ public class EventoAdapter extends RecyclerView.Adapter<TwoLineViewHolder> {
             linha1 += String.format("%1$,.2f", it.getValor());
             holder.linha1.setText(linha1);
 
-            if (dao.buscaMeioDeTransporte(it.getMeioDeTransporteID()) != null) {
-                holder.linha2.setText(dao.buscaMeioDeTransporte(it.getMeioDeTransporteID()).toString());
+            if (dao.buscaMeioDeTransporte(it.getMeiodetransporte_id()) != null) {
+                holder.linha2.setText(dao.buscaMeioDeTransporte(it.getMeiodetransporte_id()).toString());
             }
         }
     }

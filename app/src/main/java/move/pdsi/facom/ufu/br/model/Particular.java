@@ -9,9 +9,6 @@ public class Particular extends MeioDeTransporte {
     private String marca;
     private String modelo;
     private String cor;
-    private float media;  //media geral do veículo Particular
-    private float maximo; //melhor média
-    private float minimo; //pior média
 
 
     public Particular(int evento_id, String descricao, String marca, String modelo, String cor) {
@@ -19,7 +16,6 @@ public class Particular extends MeioDeTransporte {
         this.marca = marca;
         this.modelo = modelo;
         this.cor = cor;
-        this.media = this.maximo = this.minimo = 0F;
     }
 
     public Particular() {
@@ -42,36 +38,12 @@ public class Particular extends MeioDeTransporte {
         super.setDescricao(descricao);
     }
 
-    public char getTipo() {
+    public String getTipo() {
         return super.getTipo();
     }
 
-    public void setTipo(char tipo) {
+    public void setTipo(String tipo) {
         super.setTipo(tipo);
-    }
-
-    public float getMedia() {
-        return media;
-    }
-
-    public void setMedia(float media) {
-        this.media = media;
-    }
-
-    public float getMaximo() {
-        return maximo;
-    }
-
-    public void setMaximo(float maximo) {
-        this.maximo = maximo;
-    }
-
-    public float getMinimo() {
-        return minimo;
-    }
-
-    public void setMinimo(float minimo) {
-        this.minimo = minimo;
     }
 
     public String getMarca() {

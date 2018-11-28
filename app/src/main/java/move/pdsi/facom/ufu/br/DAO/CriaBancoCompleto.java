@@ -9,48 +9,48 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class CriaBancoCompleto extends SQLiteOpenHelper {
 
-    private static volatile CriaBancoCompleto instancia;
+    public static volatile CriaBancoCompleto instancia;
 
-    private static final String NOME_BANCO      = "move.db";
-    private static final int VERSAO_BANCO       = 2;
+    public static final String NOME_BANCO      = "move.db";
+    public static final int VERSAO_BANCO       = 2;
 
     //TABELAS
 
     //TABELA MEIO DE TRANSPORTE
-    private static final String TABELA_MEIODETRANSPORTE     = "meiodetransporte";
+    public static final String TABELA_MEIODETRANSPORTE     = "meiodetransporte";
     //COLUNAS MEIO DE TRANSPORTE
-    private static final String MEIODETRANSPORTE_ID         = "id";
-    private static final String MEIODETRANSPORTE_DESCRICAO  = "descricao";
-    private static final String MEIODETRANSPORTE_TIPO       = "tipo";
+    public static final String MEIODETRANSPORTE_ID         = "id";
+    public static final String MEIODETRANSPORTE_DESCRICAO  = "descricao";
+    public static final String MEIODETRANSPORTE_TIPO       = "tipo";
     //CREATE MEIO DE TRANSPORTE
-    private static final String CREATE_TABLE_MEIODETRANSPORTE = "CREATE TABLE IF NOT EXISTS "+ TABELA_MEIODETRANSPORTE + "("
+    public static final String CREATE_TABLE_MEIODETRANSPORTE = "CREATE TABLE IF NOT EXISTS "+ TABELA_MEIODETRANSPORTE + "("
             + MEIODETRANSPORTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + MEIODETRANSPORTE_DESCRICAO + " VARCHAR,"
-            + MEIODETRANSPORTE_TIPO + "CHAR CHECK (" + MEIODETRANSPORTE_TIPO + " IN ('A','P','C','U'))"
+            + MEIODETRANSPORTE_TIPO + " VARCHAR"
             + ");";
 
     //TABELA EVENTO
-    private static final String TABELA_EVENTO               = "evento";
+    public static final String TABELA_EVENTO               = "evento";
     //COLUNAS EVENTO
-    private static final String EVENTO_ID                   = "id";
-    private static final String EVENTO_MEIODETRANSPORTE_ID  = "meiodetransporte_id";
-    private static final String EVENTO_DATA                 = "data";
+    public static final String EVENTO_ID                   = "id";
+    public static final String EVENTO_MEIODETRANSPORTE_ID  = "meiodetransporte_id";
+    public static final String EVENTO_DATA                 = "data";
     //CREATE EVENTO
-    private static final String CREATE_TABLE_EVENTO = "CREATE TABLE IF NOT EXISTS " + TABELA_EVENTO + "("
+    public static final String CREATE_TABLE_EVENTO = "CREATE TABLE IF NOT EXISTS " + TABELA_EVENTO + "("
             + EVENTO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + EVENTO_MEIODETRANSPORTE_ID + " INTEGER,"
             +" FOREIGN KEY("+ EVENTO_MEIODETRANSPORTE_ID + ") REFERENCES " + TABELA_MEIODETRANSPORTE + "(" + MEIODETRANSPORTE_ID + ")"
             + ");";
 
     //TABELA VIAGEM
-    private static final String TABELA_VIAGEM       = "viagem";
+    public static final String TABELA_VIAGEM       = "viagem";
     //COLUNAS VIAGEM
-    private static final String VIAGEM_EVENTOID     = "evento_id";
-    private static final String VIAGEM_INICIO       = "inicio";
-    private static final String VIAGEM_FIM          = "fim";
-    private static final String VIAGEM_DISTANCIA    = "distancia";
+    public static final String VIAGEM_EVENTOID     = "evento_id";
+    public static final String VIAGEM_INICIO       = "inicio";
+    public static final String VIAGEM_FIM          = "fim";
+    public static final String VIAGEM_DISTANCIA    = "distancia";
     //CREATE VIAGEM
-    private static final String CREATE_TABLE_VIAGEM = "CREATE TABLE IF NOT EXISTS " + TABELA_VIAGEM+ "("
+    public static final String CREATE_TABLE_VIAGEM = "CREATE TABLE IF NOT EXISTS " + TABELA_VIAGEM+ "("
             + VIAGEM_EVENTOID + " INTEGER PRIMARY KEY,"
             + VIAGEM_INICIO + " DATETIME,"
             + VIAGEM_FIM+ " DATETIME,"
@@ -59,15 +59,15 @@ public class CriaBancoCompleto extends SQLiteOpenHelper {
             + ");";
 
     //TABELA GASTO
-    private static final String TABELA_GASTO        = "gasto";
+    public static final String TABELA_GASTO        = "gasto";
     //COLUNAS GASTO
-    private static final String GASTO_EVENTOID      = "evento_id";
-    private static final String GASTO_TIPOGASTO     = "tipo";
-    private static final String GASTO_VALOR         = "valor";
-    private static final String GASTO_OBSERVACAO    = "observacao";
+    public static final String GASTO_EVENTOID      = "evento_id";
+    public static final String GASTO_TIPOGASTO     = "tipo";
+    public static final String GASTO_VALOR         = "valor";
+    public static final String GASTO_OBSERVACAO    = "observacao";
     //CREATE GASTO
     //Criação de tabela Gasto
-    private static final String CREATE_TABLE_GASTO = "CREATE TABLE IF NOT EXISTS " + TABELA_GASTO+ "("
+    public static final String CREATE_TABLE_GASTO = "CREATE TABLE IF NOT EXISTS " + TABELA_GASTO+ "("
             + GASTO_EVENTOID + " INTEGER PRIMARY KEY,"
             + GASTO_TIPOGASTO + " INTEGER NOT NULL,"
             + GASTO_VALOR + " NUMERIC,"
@@ -76,15 +76,15 @@ public class CriaBancoCompleto extends SQLiteOpenHelper {
             + ");";
 
     //TABELA ALUGADO
-    private static final String TABELA_ALUGADO                  = "alugado";
+    public static final String TABELA_ALUGADO                  = "alugado";
     //COLUNAS ALUGADO
-    private static final String ALUGADO_MEIODETRANSPORTE_ID     = "meiodetranposrte_id";
-    private static final String ALUGADO_LOCADORA                = "locadora";
-    private static final String ALUGADO_MARCA                   = "marca";
-    private static final String ALUGADO_MODELO                  = "modelo";
-    private static final String ALUGADO_COR                     = "cor";
+    public static final String ALUGADO_MEIODETRANSPORTE_ID     = "meiodetranposrte_id";
+    public static final String ALUGADO_LOCADORA                = "locadora";
+    public static final String ALUGADO_MARCA                   = "marca";
+    public static final String ALUGADO_MODELO                  = "modelo";
+    public static final String ALUGADO_COR                     = "cor";
     //CREATE ALUGADO
-    private static final String CREATE_TABLE_ALUGADO = "CREATE TABLE IF NOT EXISTS " + TABELA_ALUGADO+ "("
+    public static final String CREATE_TABLE_ALUGADO = "CREATE TABLE IF NOT EXISTS " + TABELA_ALUGADO+ "("
             + ALUGADO_MEIODETRANSPORTE_ID + " INTEGER PRIMARY KEY,"
             + ALUGADO_LOCADORA + " VARCHAR,"
             + ALUGADO_MARCA + " VARCHAR,"
@@ -94,38 +94,38 @@ public class CriaBancoCompleto extends SQLiteOpenHelper {
             + ");";
 
     //TABELA COMPARTILHADO
-    private static final String TABELA_COMPARTILHADO                = "compartilhado";
+    public static final String TABELA_COMPARTILHADO                = "compartilhado";
     //COLUNAS COMPARTILHADO
-    private static final String COMPARTILHADO_MEIODETRANSPORTE_ID   = "meiodetransporte_id";
-    private static final String COMPARTILHADO_EMPRESA               = "empresa";
+    public static final String COMPARTILHADO_MEIODETRANSPORTE_ID   = "meiodetransporte_id";
+    public static final String COMPARTILHADO_EMPRESA               = "empresa";
     //CREATE COMPARTILHADO
-    private static final String CREATE_TABLE_COMPARTILHADO = "CREATE TABLE IF NOT EXISTS "+ TABELA_COMPARTILHADO + "("
+    public static final String CREATE_TABLE_COMPARTILHADO = "CREATE TABLE IF NOT EXISTS "+ TABELA_COMPARTILHADO + "("
             + COMPARTILHADO_MEIODETRANSPORTE_ID + " INTEGER PRIMARY KEY,"
             + COMPARTILHADO_EMPRESA + " VARCHAR,"
             +" FOREIGN KEY(" + COMPARTILHADO_MEIODETRANSPORTE_ID + ") REFERENCES " + TABELA_MEIODETRANSPORTE + "(" + MEIODETRANSPORTE_ID + ")"
             + ");";
 
     //TABELA PUBLICO
-    private static final String TABELA_PUBLICO                  = "publico";
+    public static final String TABELA_PUBLICO                  = "publico";
     //COLUNAS PUBLICO
-    private static final String PUBLICO_MEIODETRANSPORTE_ID     = "meiodetransporte_id";
-    private static final String PUBLICO_EMPRESA                 = "empresa";
+    public static final String PUBLICO_MEIODETRANSPORTE_ID     = "meiodetransporte_id";
+    public static final String PUBLICO_EMPRESA                 = "empresa";
     //CREATE PUBLICO
-    private static final String CREATE_TABLE_PUBLICO = "CREATE TABLE IF NOT EXISTS " + TABELA_PUBLICO + "("
+    public static final String CREATE_TABLE_PUBLICO = "CREATE TABLE IF NOT EXISTS " + TABELA_PUBLICO + "("
             + PUBLICO_MEIODETRANSPORTE_ID+ " INTEGER PRIMARY KEY,"
             + PUBLICO_EMPRESA + " VARCHAR,"
             +" FOREIGN KEY(" + PUBLICO_MEIODETRANSPORTE_ID+ ") REFERENCES " + TABELA_MEIODETRANSPORTE + "(" + MEIODETRANSPORTE_ID + ")"
             + ");";
 
     //TABELA PARTICULAR
-    private static final String TABELA_PARTICULAR               = "particular";
+    public static final String TABELA_PARTICULAR               = "particular";
     //COLUNAS PARTICULAR
-    private static final String PARTICULAR_MEIODETRANSPORTE_ID  = "meiodetransporte_id";
-    private static final String PARTICULAR_MARCA                = "marca";
-    private static final String PARTICULAR_MODELO               = "modelo";
-    private static final String PARTICULAR_COR                  = "cor";
+    public static final String PARTICULAR_MEIODETRANSPORTE_ID  = "meiodetransporte_id";
+    public static final String PARTICULAR_MARCA                = "marca";
+    public static final String PARTICULAR_MODELO               = "modelo";
+    public static final String PARTICULAR_COR                  = "cor";
     //CREATE PARTICULAR
-    private static final String CREATE_TABLE_PARTICULAR = "CREATE TABLE IF NOT EXISTS " + TABELA_PARTICULAR+ "("
+    public static final String CREATE_TABLE_PARTICULAR = "CREATE TABLE IF NOT EXISTS " + TABELA_PARTICULAR+ "("
             + PARTICULAR_MEIODETRANSPORTE_ID + " INTEGER PRIMARY KEY,"
             + PARTICULAR_MARCA+ " VARCHAR,"
             + PARTICULAR_MODELO + " VARCHAR,"
@@ -134,17 +134,17 @@ public class CriaBancoCompleto extends SQLiteOpenHelper {
             + ");";
 
     //TABELA USUARIO
-    private static final String TABELA_USUARIO          = "usuario";
+    public static final String TABELA_USUARIO          = "usuario";
     //COLUNAS USUARIO
-    private static final String USUARIO_ID              = "id";
-    private static final String USUARIO_NOME            = "nome";
-    private static final String USUARIO_SOBRENOME       = "sobrenome";
-    private static final String USUARIO_EMAIL           = "email";
-    private static final String USUARIO_SENHA           = "senha";
-    private static final String USUARIO_FACEBOOK        = "facebook";
-    private static final String USUARIO_SINCRONIZAR     = "sincronizar";
+    public static final String USUARIO_ID              = "id";
+    public static final String USUARIO_NOME            = "nome";
+    public static final String USUARIO_SOBRENOME       = "sobrenome";
+    public static final String USUARIO_EMAIL           = "email";
+    public static final String USUARIO_SENHA           = "senha";
+    public static final String USUARIO_FACEBOOK        = "facebook";
+    public static final String USUARIO_SINCRONIZAR     = "sincronizar";
     //CREATE USUARIO
-    private static final String CREATE_TABLE_USUARIO = "CREATE TABLE IF NOT EXISTS "
+    public static final String CREATE_TABLE_USUARIO = "CREATE TABLE IF NOT EXISTS "
             + TABELA_USUARIO + "(" + USUARIO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + USUARIO_NOME + " VARCHAR NOT NULL,"
             + USUARIO_SOBRENOME + " VARCHAR NOT NULL,"
@@ -154,13 +154,13 @@ public class CriaBancoCompleto extends SQLiteOpenHelper {
             + USUARIO_SINCRONIZAR + " BOOL NOT NULL);";
 
     //TABELA ESTATISTICASCONTA
-    private static final String TABELA_ESTATISTICASCONTA                = "estatisticasconta";
+    public static final String TABELA_ESTATISTICASCONTA                = "estatisticasconta";
     //COLUNAS ESTATISTICASCONTA
-    private static final String ESTATISTICASCONTA_USUARIOID             = "usuario_id";
-    private static final String ESTATISTICASCONTA_QTDMEIOSTRANSPORTES   = "qtdmeiostransporte";
-    private static final String ESTATISTICASCONTA_ULTIMOLOGIN           = "ultimologin";
+    public static final String ESTATISTICASCONTA_USUARIOID             = "usuario_id";
+    public static final String ESTATISTICASCONTA_QTDMEIOSTRANSPORTES   = "qtdmeiostransporte";
+    public static final String ESTATISTICASCONTA_ULTIMOLOGIN           = "ultimologin";
     //CREATE ESTATISTICAS CONTA
-    private static final String CREATE_TABLE_ESTATISTICASCONTA = "CREATE TABLE IF NOT EXISTS "+ TABELA_ESTATISTICASCONTA + "("
+    public static final String CREATE_TABLE_ESTATISTICASCONTA = "CREATE TABLE IF NOT EXISTS "+ TABELA_ESTATISTICASCONTA + "("
             + ESTATISTICASCONTA_USUARIOID+ " INTEGER PRIMARY KEY,"
             + ESTATISTICASCONTA_QTDMEIOSTRANSPORTES + " INTEGER,"
             + ESTATISTICASCONTA_ULTIMOLOGIN + " DATETIME,"
@@ -168,15 +168,15 @@ public class CriaBancoCompleto extends SQLiteOpenHelper {
             + ");";
 
     //TABELA ESTATISTICASMEIOTRANSPORTE
-    private static final String TABELA_ESTATISTICASMEIOTRANSPORTE               = "estatisticasmeiotransporte";
+    public static final String TABELA_ESTATISTICASMEIOTRANSPORTE               = "estatisticasmeiotransporte";
     //COLUNAS ESTATISTICASMEIOTRANSPORTE
-    private static final String ESTATISTICASMEIOTRANSPORTE_MEIODETRANSPORTE_ID  = "meiodetransporte_id";
-    private static final String ESTATISTICASMEIOTRANSPORTE_MEDIA                = "media";
-    private static final String ESTATISTICASMEIOTRANSPORTE_MAXIMO               = "maximo";
-    private static final String ESTATISTICASMEIOTRANSPORTE_MINIMO               = "minino";
-    private static final String ESTATISTICASMEIOTRANSPORTE_QTD                  = "qtd";
+    public static final String ESTATISTICASMEIOTRANSPORTE_MEIODETRANSPORTE_ID  = "meiodetransporte_id";
+    public static final String ESTATISTICASMEIOTRANSPORTE_MEDIA                = "media";
+    public static final String ESTATISTICASMEIOTRANSPORTE_MAXIMO               = "maximo";
+    public static final String ESTATISTICASMEIOTRANSPORTE_MINIMO               = "minino";
+    public static final String ESTATISTICASMEIOTRANSPORTE_QTD                  = "qtd";
     //CREATE ESTATISTICAS MEIO DE TRANSPORTE
-    private static final String CREATE_TABLE_ESTATISTICAMEIOTRANSPORTE = "CREATE TABLE IF NOT EXISTS "+ TABELA_ESTATISTICASMEIOTRANSPORTE + "("
+    public static final String CREATE_TABLE_ESTATISTICAMEIOTRANSPORTE = "CREATE TABLE IF NOT EXISTS "+ TABELA_ESTATISTICASMEIOTRANSPORTE + "("
             + ESTATISTICASMEIOTRANSPORTE_MEIODETRANSPORTE_ID + " INTEGER PRIMARY KEY,"
             + ESTATISTICASMEIOTRANSPORTE_MEDIA + " FLOAT,"
             + ESTATISTICASMEIOTRANSPORTE_MAXIMO + " FLOAT,"
@@ -185,12 +185,12 @@ public class CriaBancoCompleto extends SQLiteOpenHelper {
             +" FOREIGN KEY(" + ESTATISTICASMEIOTRANSPORTE_MEIODETRANSPORTE_ID + ") REFERENCES "+ TABELA_MEIODETRANSPORTE + "(" + MEIODETRANSPORTE_ID + "));";
 
     //TABELA USUARIOHASMEIOTRANSPORTE
-    private static final String TABELA_USUARIOHASMEIOTRANSPORTE                 = "usuario_has_meiodetransporte";
+    public static final String TABELA_USUARIOHASMEIOTRANSPORTE                 = "usuario_has_meiodetransporte";
     //COLUNAS USUARIOHASMEIOTRANSPORTE
-    private static final String USUARIOHASMEIOTRANSPORTE_USUARIO_ID             = "usuario_id";
-    private static final String USUARIOHASMEIOTRANSPORTE_MEIODETRANSPORTE_ID    = "meiodetransporte_id";
+    public static final String USUARIOHASMEIOTRANSPORTE_USUARIO_ID             = "usuario_id";
+    public static final String USUARIOHASMEIOTRANSPORTE_MEIODETRANSPORTE_ID    = "meiodetransporte_id";
     //CREATE USUARIO HAS MEIO TRANSPORTE
-    private static final String CREATE_TABLE_USUARIOHASMEIODETRANSPORTE = "CREATE TABLE IF NOT EXISTS "+ TABELA_USUARIOHASMEIOTRANSPORTE + "("
+    public static final String CREATE_TABLE_USUARIOHASMEIODETRANSPORTE = "CREATE TABLE IF NOT EXISTS "+ TABELA_USUARIOHASMEIOTRANSPORTE + "("
             + USUARIOHASMEIOTRANSPORTE_USUARIO_ID + " INTEGER NOT NULL,"
             + USUARIOHASMEIOTRANSPORTE_MEIODETRANSPORTE_ID + " INTEGER NOT NULL,"
             +" PRIMARY KEY(" + USUARIOHASMEIOTRANSPORTE_USUARIO_ID + ","+ USUARIOHASMEIOTRANSPORTE_MEIODETRANSPORTE_ID + "),"

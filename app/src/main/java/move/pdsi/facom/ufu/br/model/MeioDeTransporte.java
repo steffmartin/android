@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class MeioDeTransporte implements Serializable {
     private int id;
     private String descricao;
-    private char tipo;
+    private String tipo;
     private EstatisticasMeioTransporte statistics;
 
     public MeioDeTransporte() {
@@ -36,12 +36,9 @@ public class MeioDeTransporte implements Serializable {
         this.descricao = descricao;
     }
 
-    public char getTipo(){return this.tipo;}
+    public String getTipo(){return this.tipo;}
 
-    public void setTipo(char tipo) {
-        if(!"APCU".contains(""+tipo)){
-            throw new IllegalArgumentException("Tipo Invalido");
-        }
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

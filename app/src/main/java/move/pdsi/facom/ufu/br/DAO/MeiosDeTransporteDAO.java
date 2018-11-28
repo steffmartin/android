@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,20 +23,35 @@ import move.pdsi.facom.ufu.br.model.Publico;
  * Created by mirandagab on 07/07/2018.
  */
 public class MeiosDeTransporteDAO {
-    private CriaBanco db;
+
+    private static String query = null;
+
+    private CriaBancoCompleto db;
     private Context mContext;
 
     public MeiosDeTransporteDAO(Context context) {
-        this.db = new CriaBanco(context);
+        this.db = new CriaBancoCompleto(context);
         this.mContext = context;
+        if(MeiosDeTransporteDAO.query == null){
+            try{
+                BufferedReader q = new BufferedReader(new InputStreamReader( this.mContext.getAssets().open("MeioDeTransporteQuery.sql") ) );
+                String entrada;
+                while( (entrada = q.readLine()) != null){
+                    query+= entrada;
+                }
+            }catch(IOException ex){
+                Toast.makeText(mContext, "Falha ao ler arquivo de recurso.", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
-    public long adicionaMeioDeTransporte(String descricao) {
+    public long adicionaMeioDeTransporte(String descricao, String tipo) {
         ContentValues valores = new ContentValues();
-        valores.put(CriaBanco.KEY_DESCRICAO, descricao);
+        valores.put(CriaBancoCompleto.MEIODETRANSPORTE_DESCRICAO, descricao);
+        valores.put(CriaBancoCompleto.MEIODETRANSPORTE_TIPO, tipo);
 
         SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
-        long id = banco.insert(CriaBanco.TABELA_MEIODETRANSPORTE, null, valores);
+        long id = banco.insert(CriaBancoCompleto.TABELA_MEIODETRANSPORTE, null, valores);
 
         if (id == -1L) {
             //colocar log aqui caso haja erros
@@ -43,9 +62,8 @@ public class MeiosDeTransporteDAO {
 
     public int buscaID(String descricao) {
         int id;
-        String busca = "SELECT _id FROM MeioDeTransporte WHERE descricao = '" + descricao + "'";
+        String busca = "SELECT id FROM MeioDeTransporte WHERE descricao LIKE '%" + descricao + "%'";
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
-
         Cursor cursor = banco.rawQuery(busca, null);
         cursor.moveToFirst();
         id = cursor.getInt(0);
@@ -61,51 +79,51 @@ public class MeiosDeTransporteDAO {
         String alugado = "SELECT * FROM Alugado WHERE meiodetransporte_id = " + id;
         String compartilhado = "SELECT * FROM Compartilhado WHERE meiodetransporte_id = " + id;
         String publico = "SELECT * FROM Publico WHERE meiodetransporte_id = " + id;
-
-
+        MeioDeTransporte m = null;
+        cursor = banco.rawQuery(MeiosDeTransporteDAO.query+id, null);
+        if(cursor.moveToFirst()){
+            m = new MeioDeTransporte(cursor.getInt(0),cursor.getString(1));
+            m.setTipo(cursor.getString(2));
+        }
         cursor = banco.rawQuery(particular, null);
         if (cursor.moveToFirst()) {
             Particular p = new Particular();
-            p.setId(cursor.getInt(0));
-            p.setDescricaoP(cursor.getString(1));
-            p.setTipo(cursor.getString(2));
-            p.setMarca(cursor.getString(3));
-            p.setModelo(cursor.getString(4));
-            p.setCor(cursor.getString(5));
-            p.setMedia(cursor.getFloat(6));
-            p.setMaximo(cursor.getFloat(7));
-            p.setMinimo(cursor.getFloat(8));
+            p.setId(id);
+            p.setDescricaoP(m.getDescricao());
+            p.setTipo(m.getTipo());
+            p.setMarca(cursor.getString(1));
+            p.setModelo(cursor.getString(2));
+            p.setCor(cursor.getString(3));
             return p;
         }
         cursor = banco.rawQuery(alugado, null);
         if (cursor.moveToFirst()) {
             Alugado a = new Alugado();
-            a.setId(cursor.getInt(0));
-            a.setDescricaoA(cursor.getString(1));
-            a.setTipo(cursor.getString(2));
-            a.setLocadora(cursor.getString(3));
-            a.setMarca(cursor.getString(4));
-            a.setModelo(cursor.getString(5));
-            a.setCor(cursor.getString(6));
+            a.setId(id);
+            a.setDescricao(m.getDescricao());
+            a.setTipo(m.getTipo());
+            a.setLocadora(cursor.getString(1));
+            a.setMarca(cursor.getString(2));
+            a.setModelo(cursor.getString(3));
+            a.setCor(cursor.getString(4));
             return a;
         }
         cursor = banco.rawQuery(compartilhado, null);
         if (cursor.moveToFirst()) {
             Compartilhado c = new Compartilhado();
-            c.setId(cursor.getInt(0));
-            c.setDescricaoC(cursor.getString(1));
-            c.setTipo(cursor.getString(2));
-            c.setEmpresa(cursor.getString(3));
+            c.setId(id);
+            c.setDescricaoC(m.getDescricao());
+            c.setTipo(m.getTipo());
+            c.setEmpresa(cursor.getString(1));
             return c;
         }
-
         cursor = banco.rawQuery(publico, null);
         if (cursor.moveToFirst()) {
             Publico pub = new Publico();
-            pub.setId(cursor.getInt(0));
-            pub.setDescricaoPub(cursor.getString(1));
-            pub.setTipo(cursor.getString(2));
-            pub.setEmpresa(cursor.getString(3));
+            pub.setId(id);
+            pub.setDescricaoPub(m.getDescricao());
+            pub.setTipo(m.getTipo());
+            pub.setEmpresa(cursor.getString(1));
             return pub;
         }
         return null;
@@ -125,14 +143,9 @@ public class MeiosDeTransporteDAO {
             do {
                 Particular p = new Particular();
                 p.setId(particular.getInt(0));
-                p.setDescricaoP(particular.getString(1));
-                p.setTipo(particular.getString(2));
-                p.setMarca(particular.getString(3));
-                p.setModelo(particular.getString(4));
-                p.setCor(particular.getString(5));
-                p.setMedia(particular.getFloat(6));
-                p.setMaximo(particular.getFloat(7));
-                p.setMinimo(particular.getFloat(8));
+                p.setMarca(particular.getString(1));
+                p.setModelo(particular.getString(2));
+                p.setCor(particular.getString(3));
                 lista.add(p);
             } while (particular.moveToNext());
         }
@@ -144,12 +157,10 @@ public class MeiosDeTransporteDAO {
             do {
                 Alugado a = new Alugado();
                 a.setId(alugado.getInt(0));
-                a.setDescricaoA(alugado.getString(1));
-                a.setTipo(alugado.getString(2));
-                a.setLocadora(alugado.getString(3));
-                a.setMarca(alugado.getString(4));
-                a.setModelo(alugado.getString(5));
-                a.setCor(alugado.getString(6));
+                a.setLocadora(alugado.getString(1));
+                a.setMarca(alugado.getString(2));
+                a.setModelo(alugado.getString(3));
+                a.setCor(alugado.getString(4));
                 lista.add(a);
             } while (alugado.moveToNext());
         }
@@ -161,9 +172,7 @@ public class MeiosDeTransporteDAO {
             do {
                 Compartilhado c = new Compartilhado();
                 c.setId(compartilhado.getInt(0));
-                c.setDescricaoC(compartilhado.getString(1));
-                c.setTipo(compartilhado.getString(2));
-                c.setEmpresa(compartilhado.getString(3));
+                c.setEmpresa(compartilhado.getString(1));
                 lista.add(c);
             } while (compartilhado.moveToNext());
         }
@@ -175,9 +184,7 @@ public class MeiosDeTransporteDAO {
             do {
                 Publico pub = new Publico();
                 pub.setId(publico.getInt(0));
-                pub.setDescricaoPub(publico.getString(1));
-                pub.setTipo(publico.getString(2));
-                pub.setEmpresa(publico.getString(3));
+                pub.setEmpresa(publico.getString(1));
                 lista.add(pub);
             } while (publico.moveToNext());
         }
@@ -188,22 +195,17 @@ public class MeiosDeTransporteDAO {
         return lista;
     }
 
-    public void adicionaParticular(String descricao, String tipo, String marca, String modelo,
-                                   String cor, float media, float maximo, float minimo) {
-        long err = adicionaMeioDeTransporte(descricao);
+    public void adicionaParticular(String descricao, String tipo, String marca, String modelo, String cor) {
+        long err = adicionaMeioDeTransporte(descricao, tipo);
         if (err != -1L) {
             ContentValues valores = new ContentValues();
-            valores.put(CriaBanco.KEY_DESCRICAO, descricao);
-            valores.put(CriaBanco.KEY_TIPO, tipo);
-            valores.put(CriaBanco.KEY_MARCA, marca);
-            valores.put(CriaBanco.KEY_MODELO, modelo);
-            valores.put(CriaBanco.KEY_COR, cor);
-            valores.put(CriaBanco.KEY_MEDIA, media);
-            valores.put(CriaBanco.KEY_MAXIMO, maximo);
-            valores.put(CriaBanco.KEY_MINIMO, minimo);
+            valores.put(CriaBancoCompleto.PARTICULAR_MEIODETRANSPORTE_ID,err);
+            valores.put(CriaBancoCompleto.PARTICULAR_MARCA, marca);
+            valores.put(CriaBancoCompleto.PARTICULAR_MODELO, modelo);
+            valores.put(CriaBancoCompleto.PARTICULAR_MODELO, cor);
 
             SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
-            long erro = banco.insert(CriaBanco.TABELA_PARTICULAR, null, valores);
+            long erro = banco.insert(CriaBancoCompleto.TABELA_PARTICULAR, null, valores);
 
             if (erro != -1L) {
                 Toast.makeText(mContext, "Dados salvos", Toast.LENGTH_LONG).show();
@@ -217,21 +219,18 @@ public class MeiosDeTransporteDAO {
         }
     }
 
-    public void adicionaAlugado(String descricao, String tipo, String locadora, String marca,
-                                String modelo, String cor) {
-        long err = adicionaMeioDeTransporte(descricao);
+    public void adicionaAlugado(String descricao, String tipo, String locadora, String marca, String modelo, String cor) {
+        long err = adicionaMeioDeTransporte(descricao, tipo);
         if (err != -1L) {
             ContentValues valores = new ContentValues();
-            valores.put(CriaBanco.KEY_MEIODETRANSPORTEID, err);
-            valores.put(CriaBanco.KEY_DESCRICAO, descricao);
-            valores.put(CriaBanco.KEY_TIPO, tipo);
-            valores.put(CriaBanco.KEY_LOCADORA, locadora);
-            valores.put(CriaBanco.KEY_MARCA, marca);
-            valores.put(CriaBanco.KEY_MODELO, modelo);
-            valores.put(CriaBanco.KEY_COR, cor);
+            valores.put(CriaBancoCompleto.ALUGADO_MEIODETRANSPORTE_ID,err);
+            valores.put(CriaBancoCompleto.ALUGADO_LOCADORA, locadora);
+            valores.put(CriaBancoCompleto.ALUGADO_MARCA, marca);
+            valores.put(CriaBancoCompleto.ALUGADO_MODELO, modelo);
+            valores.put(CriaBancoCompleto.ALUGADO_COR, cor);
 
             SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
-            long erro = banco.insert(CriaBanco.TABELA_ALUGADO, null, valores);
+            long erro = banco.insert(CriaBancoCompleto.TABELA_ALUGADO, null, valores);
 
             if (erro != -1L) {
                 Toast.makeText(mContext, "Dados salvos", Toast.LENGTH_LONG).show();
@@ -246,16 +245,14 @@ public class MeiosDeTransporteDAO {
     }
 
     public void adicionaCompartilhado(String descricao, String tipo, String empresa) {
-        long err = adicionaMeioDeTransporte(descricao);
+        long err = adicionaMeioDeTransporte(descricao, tipo);
         if (err != -1L) {
             ContentValues valores = new ContentValues();
-            valores.put(CriaBanco.KEY_MEIODETRANSPORTEID, err);
-            valores.put(CriaBanco.KEY_DESCRICAO, descricao);
-            valores.put(CriaBanco.KEY_TIPO, tipo);
-            valores.put(CriaBanco.KEY_EMPRESA, empresa);
+            valores.put(CriaBancoCompleto.COMPARTILHADO_MEIODETRANSPORTE_ID,err);
+            valores.put(CriaBancoCompleto.COMPARTILHADO_EMPRESA, empresa);
 
             SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
-            long erro = banco.insert(CriaBanco.TABELA_COMPARTILHADO, null, valores);
+            long erro = banco.insert(CriaBancoCompleto.TABELA_COMPARTILHADO, null, valores);
 
             if (erro != -1L) {
                 Toast.makeText(mContext, "Dados salvos", Toast.LENGTH_LONG).show();
@@ -270,16 +267,14 @@ public class MeiosDeTransporteDAO {
     }
 
     public void adicionaPublico(String descricao, String tipo, String empresa) {
-        long err = adicionaMeioDeTransporte(descricao);
+        long err = adicionaMeioDeTransporte(descricao, tipo);
         if (err != -1L) {
             ContentValues valores = new ContentValues();
-            valores.put(CriaBanco.KEY_MEIODETRANSPORTEID, err);
-            valores.put(CriaBanco.KEY_DESCRICAO, descricao);
-            valores.put(CriaBanco.KEY_TIPO, tipo);
-            valores.put(CriaBanco.KEY_EMPRESA, empresa);
+            valores.put(CriaBancoCompleto.PUBLICO_MEIODETRANSPORTE_ID, err);
+            valores.put(CriaBancoCompleto.PUBLICO_EMPRESA, empresa);
 
             SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
-            long erro = banco.insert(CriaBanco.TABELA_PUBLICO, null, valores);
+            long erro = banco.insert(CriaBancoCompleto.TABELA_PUBLICO, null, valores);
 
             if (erro != -1L) {
                 Toast.makeText(mContext, "Dados salvos", Toast.LENGTH_LONG).show();

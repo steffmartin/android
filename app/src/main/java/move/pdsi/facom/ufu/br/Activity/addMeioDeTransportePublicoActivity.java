@@ -47,21 +47,21 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
             if (item instanceof Alugado) {
                 Alugado alugado = (Alugado) item;
                 empresa.setText(alugado.getLocadora());
-                tipo.setSelection(getIndex(tipo, alugado.getTipo()));
+                tipo.setSelection(getIndex(tipo, alugado.getTipo()+""));
             } else {
                 if (item instanceof Publico) {
                     Publico publico = (Publico) item;
                     empresa.setText(publico.getEmpresa());
-                    tipo.setSelection(getIndex(tipo, publico.getTipo()));
+                    tipo.setSelection(getIndex(tipo, publico.getTipo()+""));
                 } else {
                     if (item instanceof Compartilhado) {
                         Compartilhado compartilhado = (Compartilhado) item;
                         empresa.setText(compartilhado.getEmpresa());
-                        tipo.setSelection(getIndex(tipo, compartilhado.getTipo()));
+                        tipo.setSelection(getIndex(tipo, compartilhado.getTipo()+""));
                     } else {
                         //Particular
                         Particular particular = (Particular) item;
-                        tipo.setSelection(getIndex(tipo, particular.getTipo()));
+                        tipo.setSelection(getIndex(tipo, particular.getTipo()+""));
                     }
                 }
             }

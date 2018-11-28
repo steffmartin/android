@@ -72,8 +72,8 @@ public class readEventoActivity extends AppCompatActivity {
             campo2.setText(viagem.getInicio());
             campo3.setText(viagem.getFim());
 
-            if (meiosDeTransporteDAO.buscaMeioDeTransporte(viagem.getMeioDeTransporteID()) != null) {
-                linha2.setText(meiosDeTransporteDAO.buscaMeioDeTransporte(viagem.getMeioDeTransporteID()).toString());
+            if (meiosDeTransporteDAO.buscaMeioDeTransporte(viagem.getMeiodetransporte_id()) != null) {
+                linha2.setText(meiosDeTransporteDAO.buscaMeioDeTransporte(viagem.getMeiodetransporte_id()).toString());
             }
 
 
@@ -95,8 +95,8 @@ public class readEventoActivity extends AppCompatActivity {
             labelCampo3.setText("Descrição");
             campo3.setText(gasto.getObservacao());
 
-            if (meiosDeTransporteDAO.buscaMeioDeTransporte(gasto.getMeioDeTransporteID()) != null) {
-                linha2.setText(meiosDeTransporteDAO.buscaMeioDeTransporte(gasto.getMeioDeTransporteID()).toString());
+            if (meiosDeTransporteDAO.buscaMeioDeTransporte(gasto.getMeiodetransporte_id()) != null) {
+                linha2.setText(meiosDeTransporteDAO.buscaMeioDeTransporte(gasto.getMeiodetransporte_id()).toString());
             }
 
         }

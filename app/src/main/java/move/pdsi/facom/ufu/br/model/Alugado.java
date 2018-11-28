@@ -40,11 +40,11 @@ public class Alugado extends MeioDeTransporte {
         super.setDescricao(descricao);
     }
 
-    public char getTipo() {
+    public String getTipo() {
         return super.getTipo();
     }
 
-    public void setTipo(char tipo) {
+    public void setTipo(String tipo) {
         super.setTipo(tipo);
     }
 

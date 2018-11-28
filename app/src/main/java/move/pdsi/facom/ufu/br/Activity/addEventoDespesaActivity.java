@@ -62,11 +62,11 @@ public class addEventoDespesaActivity extends AppCompatActivity implements Adapt
                 button.setText("Confirmar Alterações");
                 if (item instanceof Viagem) {
                     Viagem viagem = (Viagem) item;
-                    meioTransporteEventoSpinner.setSelection(getIndex(meioTransporteEventoSpinner, daoMeioTransporte.buscaMeioDeTransporte(viagem.getMeioDeTransporteID()).toString()));
+                    meioTransporteEventoSpinner.setSelection(getIndex(meioTransporteEventoSpinner, daoMeioTransporte.buscaMeioDeTransporte(viagem.getMeiodetransporte_id()).toString()));
                 } else {
                     //Gasto
                     Gasto gasto = (Gasto) item;
-                    meioTransporteEventoSpinner.setSelection(getIndex(meioTransporteEventoSpinner, daoMeioTransporte.buscaMeioDeTransporte(gasto.getMeioDeTransporteID()).toString()));
+                    meioTransporteEventoSpinner.setSelection(getIndex(meioTransporteEventoSpinner, daoMeioTransporte.buscaMeioDeTransporte(gasto.getMeiodetransporte_id()).toString()));
                     valorDespesa.setText(gasto.getValor() + "");
                     descricao.setText(gasto.getObservacao());
                     categoriaDespesaSpinner.setSelection(getIndex(categoriaDespesaSpinner, gasto.getTipo()));

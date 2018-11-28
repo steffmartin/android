@@ -53,22 +53,22 @@ public class addMeioDeTranporteParticularActivity extends AppCompatActivity impl
                 marca.setText(alugado.getMarca());
                 modelo.setText(alugado.getModelo());
                 cor.setText(alugado.getCor());
-                tipo.setSelection(getIndex(tipo, alugado.getTipo()));
+                tipo.setSelection(getIndex(tipo, alugado.getTipo()+""));
             } else {
                 if (item instanceof Publico) {
                     Publico publico = (Publico) item;
-                    tipo.setSelection(getIndex(tipo, publico.getTipo()));
+                    tipo.setSelection(getIndex(tipo, publico.getTipo()+""));
                 } else {
                     if (item instanceof Compartilhado) {
                         Compartilhado compartilhado = (Compartilhado) item;
-                        tipo.setSelection(getIndex(tipo, compartilhado.getTipo()));
+                        tipo.setSelection(getIndex(tipo, compartilhado.getTipo()+""));
                     } else {
                         //Particular
                         Particular particular = (Particular) item;
                         marca.setText(particular.getMarca());
                         modelo.setText(particular.getModelo());
                         cor.setText(particular.getCor());
-                        tipo.setSelection(getIndex(tipo, particular.getTipo()));
+                        tipo.setSelection(getIndex(tipo, particular.getTipo()+""));
                     }
                 }
             }
@@ -88,7 +88,7 @@ public class addMeioDeTranporteParticularActivity extends AppCompatActivity impl
             Toast.makeText(this, "Todos os campos são obrigatórios!", Toast.LENGTH_SHORT).show();
         } else {
             if (item == null) {
-                dao.adicionaParticular(descricao, tipo, marca, modelo, cor, 0, 0, 0);
+                dao.adicionaParticular(descricao, tipo, marca, modelo, cor);
             } else {
                 //TODO Criar método de editar meio de transporte particular no MeiosDeTransporteDAO
                 //dao.editar(parametros...);
