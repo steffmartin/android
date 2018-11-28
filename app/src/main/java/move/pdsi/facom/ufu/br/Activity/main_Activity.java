@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import move.pdsi.facom.ufu.br.move.R;
 
@@ -34,6 +35,7 @@ public class main_Activity extends AppCompatActivity
 
         if (savedInstanceState == null) {
             //adicionar o fragmento inicial
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame, new dashboardFragment()).commit();
         }
     }
 
@@ -60,6 +62,7 @@ public class main_Activity extends AppCompatActivity
 
         //Menu pontilhado
         if (id == R.id.action_settings) {
+            Toast.makeText(this, "Não há necessidade de efetuar configurações no aplicativo.", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -71,6 +74,7 @@ public class main_Activity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         //Menu lateral
         if (id == R.id.nav_transportes) {
@@ -78,11 +82,16 @@ public class main_Activity extends AppCompatActivity
         } else if (id == R.id.nav_eventos) {
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame, new listEventoFragment()).commit();
         } else if (id == R.id.nav_relatorios) {
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame, new relatoriosFragment()).commit();
+        } else if (id == R.id.nav_dashboard) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame, new dashboardFragment()).commit();
+        } else if (id == R.id.nav_sair) {
+            finishAndRemoveTask();
+            System.exit(0);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 

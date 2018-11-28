@@ -8,6 +8,13 @@
     tools:context="move.pdsi.facom.ufu.br.Activity.readMeioDeTransporteActivity"
     tools:layout_editor_absoluteY="81dp">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
@@ -66,13 +73,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/readDescricao" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
     <TextView
         android:id="@+id/readTipoLabel"
         android:layout_width="0dp"
@@ -130,34 +130,6 @@
         app:layout_constraintTop_toBottomOf="@+id/readMarcaLabel" />
 
     <TextView
-        android:id="@+id/readCorLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Cor"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/readMarca" />
-
-    <TextView
-        android:id="@+id/readCor"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="Cor"
-        android:textAlignment="viewStart"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/readCorLabel" />
-
-    <TextView
         android:id="@+id/readModeloLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -184,6 +156,34 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/readModeloLabel" />
+
+    <TextView
+        android:id="@+id/readCorLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Cor"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/readMarca" />
+
+    <TextView
+        android:id="@+id/readCor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="Cor"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/readCorLabel" />
 
     <TextView
         android:id="@+id/readEmpresaLabel"
@@ -233,7 +233,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@android:color/holo_red_light"
+        android:backgroundTint="@android:color/holo_red_dark"
         android:onClick="excluir"
         android:text="Excluir"
         app:layout_constraintBottom_toBottomOf="parent"
