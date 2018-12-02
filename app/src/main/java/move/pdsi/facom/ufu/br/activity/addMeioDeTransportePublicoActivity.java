@@ -43,6 +43,7 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
         EditText empresa = (EditText) findViewById(R.id.empresaPublico);
         Spinner tipo = (Spinner) findViewById(R.id.tipoSpinnerPublico);
         if (item != null) {
+            categoriaSpinnerPublico.setEnabled(false);
             Button button = (Button) findViewById(R.id.btnCriarMeioPublico);
             button.setText("Confirmar Alterações");
             if (item instanceof Alugado) {
