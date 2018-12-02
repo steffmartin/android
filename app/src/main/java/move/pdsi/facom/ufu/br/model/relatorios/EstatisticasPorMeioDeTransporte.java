@@ -22,7 +22,6 @@ public class EstatisticasPorMeioDeTransporte {
     // {Oficina,150.00}]
 
     private static SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");
-    private static SimpleDateFormat in = new SimpleDateFormat("yyyy-MM-dd");
 
     public EstatisticasPorMeioDeTransporte() {
     }
