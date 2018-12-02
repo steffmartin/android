@@ -47,7 +47,7 @@ public class listEventoFragment extends Fragment {
                 Intent intent = new Intent(getActivity().getApplicationContext(), readEventoActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("item2", item);
-                startActivity(intent);
+                startActivityForResult(intent, getResources().getInteger(R.integer.INTENT_ADD_EVENTO));
             }
         }, getActivity().getApplicationContext()));
 

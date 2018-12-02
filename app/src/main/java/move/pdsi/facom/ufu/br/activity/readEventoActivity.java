@@ -65,6 +65,7 @@ public class readEventoActivity extends AppCompatActivity {
             avatar_text.setText("V");
 
             Viagem viagem = (Viagem) item;
+            data.setText(viagem.getData());
 
             linha1.setText("Viagem");
             campo1.setText(viagem.getDistancia() + " Km");
@@ -111,7 +112,7 @@ public class readEventoActivity extends AppCompatActivity {
             //Gasto
             intent = new Intent(this, addEventoDespesaActivity.class);
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
         intent.putExtra("data", item.getData());
         intent.putExtra("item", item);
         startActivity(intent);
@@ -128,9 +129,12 @@ public class readEventoActivity extends AppCompatActivity {
         }
         if(result != -1){
             Toast.makeText(this, "Registro removido com sucesso!", Toast.LENGTH_SHORT).show();
+            setResult(getResources().getInteger(R.integer.SUCESS));
         }else{
             Toast.makeText(this, "Falha ao remover registro", Toast.LENGTH_SHORT).show();
+            setResult(getResources().getInteger(R.integer.NO_SUCESS));
         }
+        finish();
     }
 
 }

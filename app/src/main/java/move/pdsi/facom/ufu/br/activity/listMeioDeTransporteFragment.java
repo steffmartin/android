@@ -45,7 +45,7 @@ public class listMeioDeTransporteFragment extends Fragment {
                 Intent intent = new Intent(getActivity().getApplicationContext(), readMeioDeTransporteActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("item", item);
-                startActivity(intent);
+                startActivityForResult(intent, getResources().getInteger(R.integer.INTENT_ADD_TRANSPORTE));
             }
         }, getActivity().getApplicationContext()));
 

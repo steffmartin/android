@@ -77,6 +77,7 @@ public class addEventoDespesaActivity extends AppCompatActivity implements Adapt
 
         } else {
             Toast.makeText(this, "Ainda não há nenhum Meio de Transporte cadastrado!", Toast.LENGTH_SHORT).show();
+            setResult(getResources().getInteger(R.integer.NO_SUCESS));
             finish();
         }
     }

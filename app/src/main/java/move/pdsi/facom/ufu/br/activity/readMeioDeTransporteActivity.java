@@ -162,7 +162,7 @@ public class readMeioDeTransporteActivity extends AppCompatActivity {
                 }
             }
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
         intent.putExtra("descricao", item.getDescricao());
         intent.putExtra("item", item);
         startActivity(intent);
