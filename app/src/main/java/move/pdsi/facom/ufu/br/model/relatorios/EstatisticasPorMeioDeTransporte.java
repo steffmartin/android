@@ -15,8 +15,8 @@ public class EstatisticasPorMeioDeTransporte {
     int QtdViagens, QtdServicos; //Contar as quantidades para esse veiculo
     float totalDistancia, totalGastos; //Somar os valores para esse veiculo
     float mediaCombustivelPorKm, mediaGastosPorKm; // Dividir total de combustivel pelo total distancia, depois total dos outros gastos (desconsiderando combustivel) dividido pela distancia total
-    float proporcaoViagens, proporcaoGastos; // Percentual (de 0 a 100%) deste veículo em relação a todos os veículos
-    HashMap<String,Float> listaDeGastos;//Soma dos gatos de cada categoria (não trazer Strings zeradas - sem valor associado)
+    float proporcaoViagens, proporcaoGastos; // Percentual (de 0 a 100%) deste veículo em relação a todos os veículos. Considerar em valores, não em quantidades esta proporção.
+    HashMap<String, Float> listaDeGastos;//Soma dos gatos de cada categoria (não trazer Strings zeradas - sem valor associado)
     //Exemplo:
     //[{Combustivel,150.56},
     // {Pedágio,24.00},
@@ -123,7 +123,7 @@ public class EstatisticasPorMeioDeTransporte {
         this.mediaGastosPorKm = mediaGastosPorKm;
     }
 
-    public Set getListaDeGastosSet(){
+    public Set getListaDeGastosSet() {
         return listaDeGastos.entrySet();
     }
 
