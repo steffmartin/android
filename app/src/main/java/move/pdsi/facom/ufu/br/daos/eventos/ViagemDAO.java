@@ -44,6 +44,28 @@ public class ViagemDAO {
         return id;
     }
 
+    public long update(Viagem evt) {
+        EventoDAO edao = new EventoDAO(this.mContext);
+        long id = edao.update(evt);
+        if (id == -1L) {
+            Toast.makeText(mContext, "Falha ao atualizar viagem.", Toast.LENGTH_LONG).show();
+        }else{
+            ContentValues valores = new ContentValues();
+            valores.put("INICIO", evt.getInicio());
+            valores.put("FIM", evt.getFim());
+            valores.put("DISTANCIA", evt.getDistancia());
+            SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
+            id = banco.update("VIAGEM",valores,"EVENTO_ID = ?",new String[]{Integer.toString(evt.getId())});
+            if(id == -1L){
+                Toast.makeText(mContext, "Falha ao atualizar Viagem.", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(mContext, "Viagem Atualizada com Sucesso!.", Toast.LENGTH_LONG).show();
+            }
+            banco.close();
+        }
+        return id;
+    }
+
     public Viagem readByID(int id){
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
         Cursor cursor;

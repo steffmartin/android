@@ -83,10 +83,25 @@ public class addMeioDeTransportePublicoActivity extends AppCompatActivity implem
                 Publico p = new Publico();
                 p.setEmpresa(empresa);
                 p.setDescricao(descricao);
+                p.setTipo(tipo);
                 dao.insert(p);
             } else {
-                //TODO Criar método de editar meio de transporte publico no MeiosDeTransporteDAO
-                //dao.editar(parametros...);
+                Publico p = new Publico();
+                p.setEmpresa(empresa);
+                p.setDescricao(descricao);
+                p.setTipo(tipo);
+                p.setId(item.getId());
+                dao.update(p);
+                long id = dao.update(p);
+                if(id != -1L){
+                    setResult(getResources().getInteger(R.integer.SUCESS));
+                    finish();
+                    Toast.makeText(this, "Meio de Transporte Público alterado com sucesso!", Toast.LENGTH_SHORT).show();
+                }else{
+                    setResult(getResources().getInteger(R.integer.NO_SUCESS));
+                    finish();
+                    Toast.makeText(this, "Falha ao Alterar Meio de Transporte Público!", Toast.LENGTH_SHORT).show();
+                }
             }
             setResult(getResources().getInteger(R.integer.SUCESS));
             finish();

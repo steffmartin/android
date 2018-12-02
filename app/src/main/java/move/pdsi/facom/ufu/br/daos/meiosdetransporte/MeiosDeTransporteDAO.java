@@ -48,6 +48,19 @@ public class MeiosDeTransporteDAO {
         return id;
     }
 
+    public long update(MeioDeTransporte meio) {
+        ContentValues valores = new ContentValues();
+        valores.put("DESCRICAO", meio.getDescricao());
+        valores.put("TIPO", meio.getTipo());
+        SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
+        long id = banco.update("MEIODETRANSPORTE",valores,"ID = ?",new String[]{Integer.toString(meio.getId())});
+        if (id == -1L) {
+            Toast.makeText(mContext, "Falha ao Atualizar Meio de Transporte.", Toast.LENGTH_LONG).show();
+        }
+        banco.close();
+        return id;
+    }
+
     public int findIDByDescricao(String descricao) {
         int id;
         String busca = "SELECT id FROM MeioDeTransporte WHERE descricao LIKE '%" + descricao + "%'";

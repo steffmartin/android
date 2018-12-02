@@ -44,6 +44,28 @@ public class ParticularDAO {
         return id;
     }
 
+    public long update(Particular particular) {
+        MeiosDeTransporteDAO edao = new MeiosDeTransporteDAO(this.mContext);
+        long id = edao.update(particular);
+        if (id == -1L) {
+            Toast.makeText(mContext, "Falha ao atualizar Meio de Transporte.", Toast.LENGTH_LONG).show();
+        }else{
+            ContentValues valores = new ContentValues();
+            valores.put("MARCA", particular.getMarca());
+            valores.put("MODELO", particular.getModelo());
+            valores.put("COR", particular.getCor());
+            SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
+            id = banco.update("PARTICULAR",valores,"MEIODETRANSPORTE_ID = ?",new String[]{Integer.toString(particular.getId())});
+            if(id == -1L){
+                Toast.makeText(mContext, "Falha ao atualizar Meio de Transporte Particular.", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(mContext, "Meio de Transporte Particular Atualizado com Sucesso!.", Toast.LENGTH_LONG).show();
+            }
+            banco.close();
+        }
+        return id;
+    }
+
     public Particular readByID(int id){
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
         Cursor cursor;

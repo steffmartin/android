@@ -45,6 +45,29 @@ public class AlugadoDAO {
         return id;
     }
 
+    public long update(Alugado alugado) {
+        MeiosDeTransporteDAO edao = new MeiosDeTransporteDAO(this.mContext);
+        long id = edao.update(alugado);
+        if (id == -1L) {
+            Toast.makeText(mContext, "Falha ao atualizar Meio de Transporte.", Toast.LENGTH_LONG).show();
+        }else{
+            ContentValues valores = new ContentValues();
+            valores.put("LOCADORA", alugado.getLocadora());
+            valores.put("MARCA", alugado.getMarca());
+            valores.put("MODELO", alugado.getModelo());
+            valores.put("COR", alugado.getCor());
+            SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
+            id = banco.update("ALUGADO",valores,"MEIODETRANSPORTE_ID = ?",new String[]{Integer.toString(alugado.getId())});
+            if(id == -1L){
+                Toast.makeText(mContext, "Falha ao atualizar Meio de Transporte Alugado.", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(mContext, "Meio de Transporte Alugado Atualizado com Sucesso!.", Toast.LENGTH_LONG).show();
+            }
+            banco.close();
+        }
+        return id;
+    }
+
     public Alugado readByID(int id){
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
         Cursor cursor;
