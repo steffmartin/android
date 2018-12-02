@@ -60,7 +60,7 @@ public class addEventoDespesaActivity extends AppCompatActivity implements Adapt
             EditText valorDespesa = (EditText) findViewById(R.id.valorDespesa);
             EditText descricao = (EditText) findViewById(R.id.descricaoDespesa);
             if (item != null) {
-                meioTransporteEventoSpinner.setEnabled(false);
+                tipoEventosSpinner2.setEnabled(false);
                 Button button = (Button) findViewById(R.id.btnSalvarDespesa);
                 button.setText("Confirmar Alterações");
                 if (item instanceof Viagem) {

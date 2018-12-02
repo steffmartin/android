@@ -60,7 +60,7 @@ public class addEventoViagemActivity extends AppCompatActivity implements Adapte
             EditText horaFinal = (EditText) findViewById(R.id.horaFinal);
             EditText distancia = (EditText) findViewById(R.id.distanciaEvento);
             if (item != null) {
-                meioTransporteEventoSpinner.setEnabled(false);
+                tipoEventosSpinner.setEnabled(false);
                 Button button = (Button) findViewById(R.id.btnSalvarEvento);
                 button.setText("Confirmar Alterações");
                 if (item instanceof Viagem) {
