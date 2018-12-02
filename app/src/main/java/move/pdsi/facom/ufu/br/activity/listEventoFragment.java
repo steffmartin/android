@@ -11,6 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.List;
 
 import move.pdsi.facom.ufu.br.daos.eventos.EventoDAO;
 import move.pdsi.facom.ufu.br.model.eventos.Evento;
@@ -41,7 +44,12 @@ public class listEventoFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(),
                 LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new EventoAdapter(dao.readAllSpecific(), new EventoAdapter.OnEventoClickListener() {
+        List<Evento> lista = dao.readAllSpecific();
+        if (!lista.isEmpty()) {
+            TextView semEvento = (TextView) view.findViewById(R.id.semEvento);
+            semEvento.setVisibility(View.INVISIBLE);
+        }
+        recyclerView.setAdapter(new EventoAdapter(lista, new EventoAdapter.OnEventoClickListener() {
             @Override
             public void onItemClick(Evento item) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), readEventoActivity.class);
