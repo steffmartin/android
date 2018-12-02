@@ -16,7 +16,7 @@ public class EstatisticasPorMeioDeTransporte {
     float totalDistancia, totalGastos; //Somar os valores para esse veiculo
     float mediaCombustivelPorKm, mediaGastosPorKm; // Dividir total de combustivel pelo total distancia, depois total dos outros gastos (desconsiderando combustivel) dividido pela distancia total
     float proporcaoViagens, proporcaoGastos; // Percentual (de 0 a 100%) deste veículo em relação a todos os veículos
-    HashMap<String,Float> listaDeGastos;//Soma dos gatos de cada categoria (não trazer Strings zeradas - sem valor associado)
+    HashMap<String,Float> listaDeGastos;//Soma dos gastos de cada categoria (não trazer Strings zeradas - sem valor associado)
     //Exemplo:
     //[{Combustivel,150.56},
     // {Pedágio,24.00},
