@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import move.pdsi.facom.ufu.br.daos.eventos.EventoDAO;
 import move.pdsi.facom.ufu.br.daos.eventos.ViagemDAO;
 import move.pdsi.facom.ufu.br.daos.meiosdetransporte.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.model.eventos.Evento;
@@ -61,6 +60,7 @@ public class addEventoViagemActivity extends AppCompatActivity implements Adapte
             EditText horaFinal = (EditText) findViewById(R.id.horaFinal);
             EditText distancia = (EditText) findViewById(R.id.distanciaEvento);
             if (item != null) {
+                meioTransporteEventoSpinner.setEnabled(false);
                 Button button = (Button) findViewById(R.id.btnSalvarEvento);
                 button.setText("Confirmar Alterações");
                 if (item instanceof Viagem) {
@@ -72,8 +72,7 @@ public class addEventoViagemActivity extends AppCompatActivity implements Adapte
                 } else {
                     //Gasto
                     Gasto gasto = (Gasto) item;
-                    //TODO O método abaixo é necessário, precisa colocar o outro DAO aqui
-                    //meioTransporteEventoSpinner.setSelection(getIndex(meioTransporteEventoSpinner, daoMeioTransporte.buscaMeioDeTransporte(gasto.getMeioDeTransporteID()).toString()));
+                    meioTransporteEventoSpinner.setSelection(getIndex(meioTransporteEventoSpinner, daoMeioTransporte.readByID(gasto.getMeiodetransporte_id()).getDescricao()));
                 }
             }
 

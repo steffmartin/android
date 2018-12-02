@@ -3,6 +3,8 @@ package move.pdsi.facom.ufu.br.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +13,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+
+import java.util.List;
 
 import move.pdsi.facom.ufu.br.daos.meiosdetransporte.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.model.meiosdetransporte.MeioDeTransporte;
@@ -39,7 +45,12 @@ public class listMeioDeTransporteFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new MeioTransporteAdapter(dao.readAllSpecific(), new MeioTransporteAdapter.OnMeioDeTransporteClickListener() {
+        List<MeioDeTransporte> lista = dao.readAllSpecific();
+        if (!lista.isEmpty()) {
+            TextView semTransporte = (TextView) view.findViewById(R.id.semTransporte);
+            semTransporte.setVisibility(View.INVISIBLE);
+        }
+        recyclerView.setAdapter(new MeioTransporteAdapter(lista, new MeioTransporteAdapter.OnMeioDeTransporteClickListener() {
             @Override
             public void onItemClick(MeioDeTransporte item) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), readMeioDeTransporteActivity.class);

@@ -45,6 +45,7 @@ public class addMeioDeTranporteParticularActivity extends AppCompatActivity impl
         EditText cor = (EditText) findViewById(R.id.corParticular);
         Spinner tipo = (Spinner) findViewById(R.id.tipoSpinnerParticular);
         if (item != null) {
+            categoriaSpinnerParticular.setEnabled(false);
             Button button = (Button) findViewById(R.id.btnCriarMeioParticular);
             button.setText("Confirmar Alterações");
             if (item instanceof Alugado) {

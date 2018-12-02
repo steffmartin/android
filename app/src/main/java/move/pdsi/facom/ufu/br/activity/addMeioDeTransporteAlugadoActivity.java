@@ -46,6 +46,7 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
         EditText cor = (EditText) findViewById(R.id.corAlugado);
         Spinner tipo = (Spinner) findViewById(R.id.tipoSpinnerAlugado);
         if (item != null) {
+            categoriaSpinnerAlugado.setEnabled(false);
             Button button = (Button) findViewById(R.id.btnCriarMeioAlugado);
             button.setText("Confirmar Alterações");
             if (item instanceof Alugado) {

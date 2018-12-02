@@ -18,6 +18,7 @@ import move.pdsi.facom.ufu.br.model.eventos.Evento;
 import move.pdsi.facom.ufu.br.model.eventos.Gasto;
 import move.pdsi.facom.ufu.br.model.eventos.Viagem;
 import move.pdsi.facom.ufu.br.model.meiosdetransporte.MeioDeTransporte;
+import move.pdsi.facom.ufu.br.model.relatorios.EstatisticasGeral;
 import move.pdsi.facom.ufu.br.model.relatorios.EstatisticasPorMeioDeTransporte;
 
 public class RelatoriosDAO {
@@ -134,5 +135,10 @@ public class RelatoriosDAO {
         stats.setDataInicial(dataInicial);
         stats.setListaDeGastos(listaDeGastos);
         return stats;
+    }
+
+    public EstatisticasGeral relatorioGeral(Timestamp dataInicial, Timestamp datafinal) {
+        //TODO implementar método e retornar este objeto preechido.
+        return new EstatisticasGeral();
     }
 }

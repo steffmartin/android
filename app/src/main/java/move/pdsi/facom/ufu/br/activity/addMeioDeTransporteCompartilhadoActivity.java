@@ -43,6 +43,7 @@ public class addMeioDeTransporteCompartilhadoActivity extends AppCompatActivity 
         EditText empresa = (EditText) findViewById(R.id.empresaCompartilhado);
         Spinner tipo = (Spinner) findViewById(R.id.tipoSpinnerCompartilhado);
         if (item != null) {
+            categoriaSpinnerCompartilhado.setEnabled(false);
             Button button = (Button) findViewById(R.id.btnCriarMeioCompartilhado);
             button.setText("Confirmar Alterações");
             if (item instanceof Alugado) {
