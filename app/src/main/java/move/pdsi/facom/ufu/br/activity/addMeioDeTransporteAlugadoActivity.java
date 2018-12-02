@@ -101,8 +101,24 @@ public class addMeioDeTransporteAlugadoActivity extends AppCompatActivity implem
                 a.setCor(cor);
                 dao.insert(a);
             } else{
-                //TODO Criar método de editar meio de transporte alugado no MeiosDeTransporteDAO
-                //dao.editar(parametros...);
+                Alugado a = new Alugado();
+                a.setDescricao(descricao);
+                a.setTipo(tipo);
+                a.setLocadora(locadora);
+                a.setMarca(marca);
+                a.setModelo(modelo);
+                a.setCor(cor);
+                a.setId(item.getId());
+                long id = dao.update(a);
+                if(id != -1L){
+                    setResult(getResources().getInteger(R.integer.SUCESS));
+                    finish();
+                    Toast.makeText(this, "Meio de Transporte Alugado alterado com sucesso!", Toast.LENGTH_SHORT).show();
+                }else{
+                    setResult(getResources().getInteger(R.integer.NO_SUCESS));
+                    finish();
+                    Toast.makeText(this, "Falha ao Alterar Meio de Transporte Alugado!", Toast.LENGTH_SHORT).show();
+                }
             }
             setResult(getResources().getInteger(R.integer.SUCESS));
             finish();

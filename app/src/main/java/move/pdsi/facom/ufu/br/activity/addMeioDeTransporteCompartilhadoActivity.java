@@ -86,8 +86,21 @@ public class addMeioDeTransporteCompartilhadoActivity extends AppCompatActivity 
                 c.setTipo(tipo);
                 dao.insert(c);
             } else {
-                //TODO Criar método de editar meio de transporte compartilhado no MeiosDeTransporteDAO
-                //dao.editar(parametros...);
+                Compartilhado c = new Compartilhado();
+                c.setEmpresa(empresa);
+                c.setDescricao(descricao);
+                c.setTipo(tipo);
+                c.setId(item.getId());
+                long id = dao.update(c);
+                if(id != -1L){
+                    setResult(getResources().getInteger(R.integer.SUCESS));
+                    finish();
+                    Toast.makeText(this, "Meio de Transporte Compartilhado alterado com sucesso!", Toast.LENGTH_SHORT).show();
+                }else{
+                    setResult(getResources().getInteger(R.integer.NO_SUCESS));
+                    finish();
+                    Toast.makeText(this, "Falha ao Alterar Meio de Transporte Compartilhado!", Toast.LENGTH_SHORT).show();
+                }
             }
             setResult(getResources().getInteger(R.integer.SUCESS));
             finish();

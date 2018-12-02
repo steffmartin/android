@@ -42,6 +42,26 @@ public class CompartilhadoDAO{
             return id;
         }
 
+        public long update(Compartilhado compartilhado) {
+            MeiosDeTransporteDAO edao = new MeiosDeTransporteDAO(this.mContext);
+            long id = edao.update(compartilhado);
+            if (id == -1L) {
+                Toast.makeText(mContext, "Falha ao atualizar Meio de Transporte.", Toast.LENGTH_LONG).show();
+            }else{
+                ContentValues valores = new ContentValues();
+                valores.put("EMPRESA", compartilhado.getEmpresa());
+                SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
+                id = banco.update("COMPARTILHADO",valores,"MEIODETRANSPORTE_ID = ?",new String[]{Integer.toString(compartilhado.getId())});
+                if(id == -1L){
+                    Toast.makeText(mContext, "Falha ao atualizar Meio de Transporte Compartilhado.", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(mContext, "Meio de Transporte Compartilhado Atualizado com Sucesso!.", Toast.LENGTH_LONG).show();
+                }
+                banco.close();
+            }
+            return id;
+        }
+
         public Compartilhado readByID(int id){
             SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
             Cursor cursor;

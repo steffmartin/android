@@ -10,8 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import move.pdsi.facom.ufu.br.daos.meiosdetransporte.AlugadoDAO;
+import move.pdsi.facom.ufu.br.daos.meiosdetransporte.CompartilhadoDAO;
 import move.pdsi.facom.ufu.br.daos.meiosdetransporte.MeiosDeTransporteDAO;
+import move.pdsi.facom.ufu.br.daos.meiosdetransporte.ParticularDAO;
+import move.pdsi.facom.ufu.br.daos.meiosdetransporte.PublicoDAO;
 import move.pdsi.facom.ufu.br.model.meiosdetransporte.Alugado;
 import move.pdsi.facom.ufu.br.model.meiosdetransporte.Compartilhado;
 import move.pdsi.facom.ufu.br.model.meiosdetransporte.MeioDeTransporte;
@@ -28,13 +33,20 @@ public class readMeioDeTransporteActivity extends AppCompatActivity {
 
     MeiosDeTransporteDAO dao;
     MeioDeTransporte item;
+    AlugadoDAO aldao;
+    CompartilhadoDAO cdao;
+    ParticularDAO pardao;
+    PublicoDAO pudao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_meio_de_transporte);
         dao = new MeiosDeTransporteDAO(getApplicationContext());
-
+        aldao = new AlugadoDAO(getApplicationContext());
+        cdao = new CompartilhadoDAO(getApplicationContext());
+        pardao = new ParticularDAO(getApplicationContext());
+        pudao = new PublicoDAO(getApplicationContext());
         Intent intent = getIntent();
         item = (MeioDeTransporte) intent.getSerializableExtra("item");
 
@@ -150,18 +162,14 @@ public class readMeioDeTransporteActivity extends AppCompatActivity {
         Intent intent;
         if (item instanceof Alugado) {
             intent = new Intent(this, addMeioDeTransporteAlugadoActivity.class);
+        } else if (item instanceof Publico) {
+            intent = new Intent(this, addMeioDeTransportePublicoActivity.class);
+        } else if (item instanceof Compartilhado) {
+            intent = new Intent(this, addMeioDeTransporteCompartilhadoActivity.class);
         } else {
-            if (item instanceof Publico) {
-                intent = new Intent(this, addMeioDeTransportePublicoActivity.class);
-            } else {
-                if (item instanceof Compartilhado) {
-                    intent = new Intent(this, addMeioDeTransporteCompartilhadoActivity.class);
-                } else {
-                    //Particular
-                    intent = new Intent(this, addMeioDeTranporteParticularActivity.class);
-                }
-            }
+            intent = new Intent(this, addMeioDeTranporteParticularActivity.class);
         }
+
         intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
         intent.putExtra("descricao", item.getDescricao());
         intent.putExtra("item", item);
@@ -170,8 +178,24 @@ public class readMeioDeTransporteActivity extends AppCompatActivity {
     }
 
     public void excluir(View view) {
-        //TODO Implementar método de excluir no DAO de transportes (para os 4 tipos)
-        //dao.excluir(item.getId());
+        long result = 0;
+        if(item instanceof Particular){
+            result = pardao.deleteByID((Particular)item);
+        }else if(item instanceof Compartilhado){
+            result = cdao.deleteByID((Compartilhado)item);
+        }else if(item instanceof Publico){
+            result = pudao.deleteByID((Publico)item);
+        }else{
+            result = aldao.deleteByID((Alugado)item);
+        }
+        if(result != -1){
+            Toast.makeText(this, "Registro removido com sucesso!", Toast.LENGTH_SHORT).show();
+            setResult(getResources().getInteger(R.integer.SUCESS));
+        }else{
+            Toast.makeText(this, "Falha ao remover registro", Toast.LENGTH_SHORT).show();
+            setResult(getResources().getInteger(R.integer.NO_SUCESS));
+        }
+        finish();
     }
 
 }

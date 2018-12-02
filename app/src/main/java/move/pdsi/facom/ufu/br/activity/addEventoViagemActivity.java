@@ -112,8 +112,25 @@ public class addEventoViagemActivity extends AppCompatActivity implements Adapte
                     Toast.makeText(this, "Informe apenas números na distância e não coloque separação de milhares.", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                //TODO Criar método de editar viagem no EventoDAO
-                //dao.editar(parametros...);
+                Viagem v = new Viagem();
+                v.setId(item.getId());
+                v.setData(item.getData());
+                v.setMeiodetransporte_id(item.getMeiodetransporte_id());
+                v.setDistancia(Float.parseFloat(distanciaEvento.replace(",", ".")));
+                v.setFim(horaFinal);
+                v.setInicio(horaInicial);
+                v.setData(dataEvento);
+                v.setMeiodetransporte_id(daoMeioTransporte.findIDByDescricao(meioTransporteEventoSpinner));
+                long id = dao.update(v);
+                if(id != -1L){
+                    setResult(getResources().getInteger(R.integer.SUCESS));
+                    finish();
+                    Toast.makeText(this, "Viagem alterada com sucesso!", Toast.LENGTH_SHORT).show();
+                }else{
+                    setResult(getResources().getInteger(R.integer.NO_SUCESS));
+                    finish();
+                    Toast.makeText(this, "Falha ao Alterar Viagem!", Toast.LENGTH_SHORT).show();
+                }
             }
 
         }

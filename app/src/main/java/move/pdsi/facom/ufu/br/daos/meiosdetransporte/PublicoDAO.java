@@ -42,6 +42,26 @@ public class PublicoDAO {
         return id;
     }
 
+    public long update(Publico publico) {
+        MeiosDeTransporteDAO edao = new MeiosDeTransporteDAO(this.mContext);
+        long id = edao.update(publico);
+        if (id == -1L) {
+            Toast.makeText(mContext, "Falha ao atualizar Meio de Transporte.", Toast.LENGTH_LONG).show();
+        }else{
+            ContentValues valores = new ContentValues();
+            valores.put("EMPRESA", publico.getEmpresa());
+            SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
+            id = banco.update("PUBLICO",valores,"MEIODETRANSPORTE_ID = ?",new String[]{Integer.toString(publico.getId())});
+            if(id == -1L){
+                Toast.makeText(mContext, "Falha ao atualizar Meio de Transporte Público.", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(mContext, "Meio de Transporte Público Atualizado com Sucesso!.", Toast.LENGTH_LONG).show();
+            }
+            banco.close();
+        }
+        return id;
+    }
+
     public Publico readByID(int id){
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
         Cursor cursor;

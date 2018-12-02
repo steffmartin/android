@@ -18,6 +18,7 @@ public class EventoDAO {
     private static final String queryByID   = "SELECT * FROM EVENTO WHERE ID = ?";
     private static final String queryAll    = "SELECT * FROM EVENTO";
 
+
     private CriaBancoCompleto db;
     private Context mContext;
 
@@ -36,6 +37,20 @@ public class EventoDAO {
 
         if (id == -1L) {
             Toast.makeText(mContext, "Falha ao inserir novo evento.", Toast.LENGTH_LONG).show();
+        }
+        banco.close();
+        return id;
+    }
+
+    public long update(Evento evt) {
+        ContentValues valores = new ContentValues();
+        valores.put("DATA", evt.getData());
+
+        SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
+        long id = banco.update("EVENTO",valores,"ID = ?",new String[]{Integer.toString(evt.getId())});
+
+        if (id == -1L) {
+            Toast.makeText(mContext, "Falha ao atualizar evento.", Toast.LENGTH_LONG).show();
         }
         banco.close();
         return id;

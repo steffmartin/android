@@ -45,6 +45,28 @@ public class GastoDAO {
         return id;
     }
 
+    public long update(Gasto evt) {
+        EventoDAO edao = new EventoDAO(this.mContext);
+        long id = edao.update(evt);
+        if (id == -1L) {
+            Toast.makeText(mContext, "Falha ao atualizar gasto.", Toast.LENGTH_LONG).show();
+        }else{
+            ContentValues valores = new ContentValues();
+            valores.put("TIPO", evt.getTipo());
+            valores.put("VALOR", evt.getValor());
+            valores.put("OBSERVACAO", evt.getObservacao());
+            SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
+            id = banco.update("GASTO",valores,"EVENTO_ID = ?",new String[]{Integer.toString(evt.getId())});
+            if(id == -1L){
+                Toast.makeText(mContext, "Falha ao atualizar Despesa.", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(mContext, "Despesa Atualizada com Sucesso!.", Toast.LENGTH_LONG).show();
+            }
+            banco.close();
+        }
+        return id;
+    }
+
     public Gasto readByID(int id){
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
         Cursor cursor;

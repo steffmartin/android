@@ -88,14 +88,30 @@ public class addMeioDeTranporteParticularActivity extends AppCompatActivity impl
         } else {
             if (item == null) {
                 Particular p = new Particular();
+                p.setTipo(tipo);
                 p.setCor(cor);
                 p.setDescricao(descricao);
                 p.setMarca(marca);
                 p.setModelo(modelo);
                 dao.insert(p);
             } else {
-                //TODO Criar método de editar meio de transporte particular no MeiosDeTransporteDAO
-                //dao.editar(parametros...);
+                Particular p = new Particular();
+                p.setId(item.getId());
+                p.setTipo(tipo);
+                p.setCor(cor);
+                p.setDescricao(descricao);
+                p.setMarca(marca);
+                p.setModelo(modelo);
+                long id = dao.update(p);
+                if(id != -1L){
+                    setResult(getResources().getInteger(R.integer.SUCESS));
+                    finish();
+                    Toast.makeText(this, "Meio de Transporte Particular alterado com sucesso!", Toast.LENGTH_SHORT).show();
+                }else{
+                    setResult(getResources().getInteger(R.integer.NO_SUCESS));
+                    finish();
+                    Toast.makeText(this, "Falha ao Alterar Meio de Transporte Particular!", Toast.LENGTH_SHORT).show();
+                }
             }
             setResult(getResources().getInteger(R.integer.SUCESS));
             finish();

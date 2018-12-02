@@ -112,8 +112,24 @@ public class addEventoDespesaActivity extends AppCompatActivity implements Adapt
                     Toast.makeText(this, "Informe apenas números no valor e não coloque separação de milhares.", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                //TODO Criar método de editar despesa no EventoDAO
-                //dao.editar(parametros...);
+                Gasto g = new Gasto();
+                g.setId(item.getId());
+                g.setMeiodetransporte_id(item.getMeiodetransporte_id());
+                g.setData(dataDespesa);
+                g.setMeiodetransporte_id(daoMeioTransporte.findIDByDescricao(meioTransporteDespesaSpinner));
+                g.setObservacao(descricao);
+                g.setValor(Float.parseFloat(valorDespesa.replace(",", ".")));
+                g.setTipo(categoriaDespesa);
+                long id = dao.update(g);
+                if(id != -1L){
+                    setResult(getResources().getInteger(R.integer.SUCESS));
+                    finish();
+                    Toast.makeText(this, "Despesa alterada com sucesso!", Toast.LENGTH_SHORT).show();
+                }else{
+                    setResult(getResources().getInteger(R.integer.NO_SUCESS));
+                    finish();
+                    Toast.makeText(this, "Falha ao Alterar Despesa!", Toast.LENGTH_SHORT).show();
+                }
             }
         }
 
