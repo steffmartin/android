@@ -5,7 +5,7 @@
     android:id="@+id/listaTransportesLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="move.pdsi.facom.ufu.br.Activity.listMeioDeTransporteFragment">
+    tools:context="move.pdsi.facom.ufu.br.activity.listMeioDeTransporteFragment">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addMeiodeTransporte"

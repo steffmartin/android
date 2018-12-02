@@ -1,0 +1,115 @@
+package move.pdsi.facom.ufu.br.daos.meiosdetransporte;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import move.pdsi.facom.ufu.br.daos.CriaBancoCompleto;
+import move.pdsi.facom.ufu.br.model.meiosdetransporte.Alugado;
+import move.pdsi.facom.ufu.br.model.meiosdetransporte.Compartilhado;
+import move.pdsi.facom.ufu.br.model.meiosdetransporte.MeioDeTransporte;
+import move.pdsi.facom.ufu.br.model.meiosdetransporte.Particular;
+import move.pdsi.facom.ufu.br.model.meiosdetransporte.Publico;
+
+
+public class MeiosDeTransporteDAO {
+
+    private static final String queryByID   = "SELECT * FROM MEIODETRANSPORTE WHERE ID=?";
+    private static final String queryAll    = "SELECT * FROM MEIODETRANSPORTE";
+
+    private CriaBancoCompleto db;
+    private Context mContext;
+
+    public MeiosDeTransporteDAO(Context context) {
+        this.db = new CriaBancoCompleto(context);
+        this.mContext = context;
+    }
+
+    public long insert(MeioDeTransporte meio) {
+        ContentValues valores = new ContentValues();
+        valores.put("DESCRICAO", meio.getDescricao());
+        valores.put("TIPO", meio.getTipo());
+
+        SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
+        long id = banco.insert("MEIODETRANSPORTE", null, valores);
+
+        if (id == -1L) {
+            Toast.makeText(mContext, "Falha ao inserir novo meio de transporte.", Toast.LENGTH_LONG).show();
+        }
+        banco.close();
+        return id;
+    }
+
+    public int findIDByDescricao(String descricao) {
+        int id;
+        String busca = "SELECT id FROM MeioDeTransporte WHERE descricao LIKE '%" + descricao + "%'";
+        SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
+        Cursor cursor = banco.rawQuery(busca, null);
+        cursor.moveToFirst();
+        id = cursor.getInt(0);
+        cursor.close();
+        banco.close();
+        return id;
+    }
+
+    public MeioDeTransporte readByID(int id){
+        SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
+        Cursor cursor;
+        MeioDeTransporte m = null;
+        cursor = banco.rawQuery(queryByID, new String[]{Integer.toString(id)});
+        if(cursor.moveToFirst()){
+            m = new MeioDeTransporte(cursor.getInt(0), cursor.getString(1));
+            m.setTipo(cursor.getString(2));
+        }
+        return m;
+    }
+
+    public List<MeioDeTransporte> readAll() {
+        List<MeioDeTransporte> lista = new ArrayList<MeioDeTransporte>();
+        SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
+        Cursor cursor = banco.rawQuery(queryAll, null);
+        if (cursor.moveToFirst()) {
+            MeioDeTransporte m = null;
+            do {
+                m = new MeioDeTransporte(cursor.getInt(0), cursor.getString(1));
+                m.setTipo(cursor.getString(2));
+                lista.add(m);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        banco.close();
+        db.close();
+        return lista;
+    }
+
+    public List<MeioDeTransporte> readAllSpecific(){
+        List<MeioDeTransporte> lista = new ArrayList<MeioDeTransporte>();
+        ParticularDAO padao = new ParticularDAO(mContext);
+        CompartilhadoDAO cdao = new CompartilhadoDAO(mContext);
+        AlugadoDAO adao = new AlugadoDAO(mContext);
+        PublicoDAO pdao = new PublicoDAO(mContext);
+        lista.addAll(padao.readAll());
+        lista.addAll(cdao.readAll());
+        lista.addAll(adao.readAll());
+        lista.addAll(pdao.readAll());
+        return lista;
+    }
+
+    public long deleteByID(MeioDeTransporte meio){
+        SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
+        long id = banco.delete("MEIODETRANSPORTE", "ID = ?", new String[]{Integer.toString(meio.getId())});
+        if (id == -1L) {
+            Toast.makeText(mContext, "Falha ao remover meio de transporte.", Toast.LENGTH_LONG).show();
+        }
+        banco.close();
+        return id;
+    }
+}

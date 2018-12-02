@@ -4,7 +4,7 @@
     android:id="@+id/dashboardLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="move.pdsi.facom.ufu.br.Activity.dashboardFragment">
+    tools:context="move.pdsi.facom.ufu.br.activity.dashboardFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

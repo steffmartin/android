@@ -2,7 +2,8 @@ package move.pdsi.facom.ufu.br.model;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
+
+import move.pdsi.facom.ufu.br.model.meiosdetransporte.MeioDeTransporte;
 
 /**
  * Created by mirandagab on 07/07/2018.
@@ -17,12 +18,14 @@ public class Usuario {
     private String foto;
     private String facebook;
     private boolean sincronizar;
+    private Timestamp lastLogin;
     private ArrayList<MeioDeTransporte> transportes;
-    private EstatisticasConta statistics;
 
+    public Usuario(){
+        this.transportes = new ArrayList<>(10);
+    }
     public Usuario(int id) {
         this.transportes = new ArrayList<>(10);
-        this.statistics = new EstatisticasConta(id,0,null);
     }
 
     public Usuario(int id, String nome, String sobrenome, String email, String senha){
@@ -32,27 +35,17 @@ public class Usuario {
         this.email = email;
         this.senha = senha;
         this.transportes = new ArrayList<>(10);
-        this.statistics = new EstatisticasConta(id,0,null);
     }
 
     private void incluirMeioDeTransporte(MeioDeTransporte transporte) {
         this.transportes.add(transporte);
-        this.statistics.incrementQtdMeioTransporte();
     }
 
     private void excluirMeioDeTransporte(MeioDeTransporte transporte) {
         this.transportes.remove(transporte);
-        this.statistics.decrementQtdMeioTransporte();
     }
 
     //getters and setters
-    public int getId(){
-        return this.id;
-    }
-
-    public void setId(int id){
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -110,24 +103,14 @@ public class Usuario {
         this.sincronizar = sincronizar;
     }
 
-    public int getQtdMeiosDeTransporte() {
-        return this.statistics.getQtdMeiosTransporte();
-    }
-
-    public void setQtdMeiosDeTransporte(int qtdMeiosDeTransporte) {
-        this.statistics.setQtdMeiosTransporte(qtdMeiosDeTransporte);
-    }
-
-    public void setUltimoLogin(Timestamp ultimoLogin){
-        this.statistics.setUltimoLogin(ultimoLogin);
-    }
-
-    public Timestamp getUltimoLogin(){
-        return this.statistics.getUltimoLogin();
-    }
-
     public ArrayList<MeioDeTransporte> getTransportes() {
         return transportes;
     }
 
+    public void setLastLogin(){
+        this.lastLogin = new Timestamp(System.currentTimeMillis());
+    }
+    public Timestamp getLastLogin(){
+        return this.lastLogin;
+    }
 }

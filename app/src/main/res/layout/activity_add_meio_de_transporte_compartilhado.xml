@@ -5,7 +5,7 @@
     android:id="@+id/addCompartilhadoLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="move.pdsi.facom.ufu.br.Activity.addMeioDeTransporteCompartilhadoActivity">
+    tools:context="move.pdsi.facom.ufu.br.activity.addMeioDeTransporteCompartilhadoActivity">
 
     <View
         android:id="@+id/view5"
