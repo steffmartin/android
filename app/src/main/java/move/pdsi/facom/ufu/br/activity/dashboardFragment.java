@@ -33,7 +33,7 @@ public class dashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.mainFrame, new listMeioDeTransporteFragment()).commit();
+                ft.replace(R.id.mainFrame, new listMeioDeTransporteFragment()).addToBackStack(null).commit();
             }
         });
 
@@ -42,7 +42,7 @@ public class dashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.mainFrame, new listEventoFragment()).commit();
+                ft.replace(R.id.mainFrame, new listEventoFragment()).addToBackStack(null).commit();
             }
         });
 
@@ -51,7 +51,7 @@ public class dashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.mainFrame, new relatoriosFragment()).commit();
+                ft.replace(R.id.mainFrame, new relatoriosFragment()).addToBackStack(null).commit();
             }
         });
         return view;
