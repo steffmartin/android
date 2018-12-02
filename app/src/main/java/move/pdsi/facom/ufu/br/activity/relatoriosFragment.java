@@ -82,7 +82,7 @@ public class relatoriosFragment extends Fragment {
                             //Criar intent, anexar item, abrir.
                         } else {
 
-                            EstatisticasPorMeioDeTransporte item = dao.relatorioIndividual(daoMeioTransporte.readByID(daoMeioTransporte.findIDByDescricao(meioTransporteRelatorioSpinner)), data1, data2);
+                            EstatisticasPorMeioDeTransporte item = dao.relatorioIndividual(daoMeioTransporte.findIDByDescricao(meioTransporteRelatorioSpinner), data1, data2);
                             //Abrir tela de relatorio individual (falta criá-la)
                             //Criar intent, anexar item, abrir.
                         }
