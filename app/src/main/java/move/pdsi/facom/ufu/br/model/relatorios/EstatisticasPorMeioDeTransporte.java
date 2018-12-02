@@ -15,7 +15,7 @@ public class EstatisticasPorMeioDeTransporte {
     int QtdViagens, QtdServicos; //Contar as quantidades para esse veiculo
     float totalDistancia, totalGastos; //Somar os valores para esse veiculo
     float proporcaoViagens, proporcaoGastos; // Percentual (de 0 a 100%) deste veículo em relação a todos os veículos
-    HashMap<String,Float> listaDeGastos;//Soma dos gatos de cada categoria
+    HashMap<String,Float> listaDeGastos;//Soma dos gatos de cada categoria (não trazer Strings zeradas - sem valor associado)
     //Exemplo:
     //[{Combustivel,150.56},
     // {Pedágio,24.00},
