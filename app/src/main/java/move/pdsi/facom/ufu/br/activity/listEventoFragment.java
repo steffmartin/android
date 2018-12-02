@@ -45,7 +45,6 @@ public class listEventoFragment extends Fragment {
             @Override
             public void onItemClick(Evento item) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), readEventoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("item2", item);
                 startActivityForResult(intent, getResources().getInteger(R.integer.INTENT_ADD_EVENTO));
             }

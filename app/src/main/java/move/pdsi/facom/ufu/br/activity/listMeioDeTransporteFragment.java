@@ -43,7 +43,6 @@ public class listMeioDeTransporteFragment extends Fragment {
             @Override
             public void onItemClick(MeioDeTransporte item) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), readMeioDeTransporteActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("item", item);
                 startActivityForResult(intent, getResources().getInteger(R.integer.INTENT_ADD_TRANSPORTE));
             }
