@@ -14,6 +14,7 @@ public class EstatisticasPorMeioDeTransporte {
     private Timestamp dataInicial, dataFinal; //Já criei get's que retornam em String formatada
     int QtdViagens, QtdServicos; //Contar as quantidades para esse veiculo
     float totalDistancia, totalGastos; //Somar os valores para esse veiculo
+    float mediaCombustivelPorKm, mediaGastosPorKm; // Dividir total de combustivel pelo total distancia, depois total dos outros gastos (desconsiderando combustivel) dividido pela distancia total
     float proporcaoViagens, proporcaoGastos; // Percentual (de 0 a 100%) deste veículo em relação a todos os veículos
     HashMap<String,Float> listaDeGastos;//Soma dos gatos de cada categoria (não trazer Strings zeradas - sem valor associado)
     //Exemplo:
@@ -104,6 +105,22 @@ public class EstatisticasPorMeioDeTransporte {
 
     public void setListaDeGastos(HashMap<String, Float> listaDeGastos) {
         this.listaDeGastos = listaDeGastos;
+    }
+
+    public float getMediaCombustivelPorKm() {
+        return mediaCombustivelPorKm;
+    }
+
+    public void setMediaCombustivelPorKm(float mediaCombustivelPorKm) {
+        this.mediaCombustivelPorKm = mediaCombustivelPorKm;
+    }
+
+    public float getMediaGastosPorKm() {
+        return mediaGastosPorKm;
+    }
+
+    public void setMediaGastosPorKm(float mediaGastosPorKm) {
+        this.mediaGastosPorKm = mediaGastosPorKm;
     }
 
     public Set getListaDeGastosSet(){
