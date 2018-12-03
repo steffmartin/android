@@ -91,6 +91,7 @@ public class exibirRelatorioIndividualActivity extends AppCompatActivity {
         TextView est2LinhasGastos = findViewById(R.id.est2LinhasGastos);
         est2LinhasGastos.setText(item.getQtdServicos() + " serviços\nR$ " + item.getTotalGastos());
         TextView est2LinhasGasolina = findViewById(R.id.est2LinhasGasolina);
+        //TODO limitar para 2 casas decimais
         est2LinhasGasolina.setText("Combustível\nR$ " + item.getMediaCombustivelPorKm() + " / Km");
         TextView est2LinhasGastos2 = findViewById(R.id.est2LinhasGastos2);
         est2LinhasGastos2.setText("Média de gastos\nR$ " + item.getMediaGastosPorKm() + " / Km");
@@ -107,6 +108,6 @@ public class exibirRelatorioIndividualActivity extends AppCompatActivity {
 
         //Lista de despesas
         TextView listaDeGastos = findViewById(R.id.listaDeGastos);
-        listaDeGastos.setText(item.getListaDeGastosSet().toString());
+        listaDeGastos.setText(item.getListaDeGastosSet().toString().substring(1,item.getListaDeGastosSet().toString().length()-1).replace(", ","\n").replace("="," = R$ ")+"\n");
     }
 }
