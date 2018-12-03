@@ -32,7 +32,7 @@ public class RelatoriosDAO {
         this.mContext = context;
     }
 
-    public EstatisticasPorMeioDeTransporte relatorioIndividual(MeioDeTransporte meioDeTransporte,
+    public EstatisticasPorMeioDeTransporte relatorioIndividual(int meioDeTransporte,
                                                                Timestamp dataInicial, Timestamp datafinal) {
         EstatisticasPorMeioDeTransporte stats = new EstatisticasPorMeioDeTransporte();
         //Carrega todas as viagens dentro do intervalo
@@ -59,14 +59,14 @@ public class RelatoriosDAO {
         }
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
         Cursor cursor;
-        cursor = banco.rawQuery(viagensQuery.toString(), new String[]{Integer.toString(meioDeTransporte.getId())
+        cursor = banco.rawQuery(viagensQuery.toString(), new String[]{Integer.toString(meioDeTransporte)
                 ,out.format(new Date(dataInicial.getTime())),out.format(new Date(datafinal.getTime()))});
         ArrayList<Evento> eventos = new ArrayList<>(20);
         if(cursor.moveToFirst()){
             do{
                 Viagem v = new Viagem();
                 v.setId(cursor.getInt(0));
-                v.setMeiodetransporte_id(meioDeTransporte.getId());
+                v.setMeiodetransporte_id(meioDeTransporte);
                 v.setData(cursor.getString(1));
                 v.setInicio(cursor.getString(2));
                 v.setFim(cursor.getString(3));
@@ -74,13 +74,13 @@ public class RelatoriosDAO {
                 eventos.add(v);
             }while(cursor.moveToNext());
         }
-        cursor = banco.rawQuery(gastosQuery.toString(), new String[]{Integer.toString(meioDeTransporte.getId())
+        cursor = banco.rawQuery(gastosQuery.toString(), new String[]{Integer.toString(meioDeTransporte)
                 ,out.format(new Date(dataInicial.getTime())),out.format(new Date(datafinal.getTime()))});
         if(cursor.moveToFirst()){
             do{
                 Gasto v = new Gasto();
                 v.setId(cursor.getInt(0));
-                v.setMeiodetransporte_id(meioDeTransporte.getId());
+                v.setMeiodetransporte_id(meioDeTransporte);
                 v.setData(cursor.getString(1));
                 v.setTipo(cursor.getString(2));
                 v.setValor(cursor.getFloat(3));
@@ -118,11 +118,11 @@ public class RelatoriosDAO {
         String consultaTodosGastos = "SELECT SUM(VALOR) FROM GASTO WHERE EVENTO_ID <> ?";
         float totalViagens = 0;
         float totalGastos = 0;
-        cursor = banco.rawQuery(consultaTodosViagens,new String[]{Integer.toString(meioDeTransporte.getId())});
+        cursor = banco.rawQuery(consultaTodosViagens,new String[]{Integer.toString(meioDeTransporte)});
         if(cursor.moveToFirst()){
             totalViagens = cursor.getFloat(0);
         }
-        cursor = banco.rawQuery(consultaTodosGastos,new String[]{Integer.toString(meioDeTransporte.getId())});
+        cursor = banco.rawQuery(consultaTodosGastos,new String[]{Integer.toString(meioDeTransporte)});
         if(cursor.moveToFirst()){
             totalGastos = cursor.getFloat(0);
         }
