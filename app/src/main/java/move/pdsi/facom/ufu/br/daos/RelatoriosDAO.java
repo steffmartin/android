@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import move.pdsi.facom.ufu.br.daos.meiosdetransporte.MeiosDeTransporteDAO;
 import move.pdsi.facom.ufu.br.model.eventos.Evento;
 import move.pdsi.facom.ufu.br.model.eventos.Gasto;
 import move.pdsi.facom.ufu.br.model.eventos.Viagem;
@@ -135,6 +136,8 @@ public class RelatoriosDAO {
         stats.setDataFinal(datafinal);
         stats.setDataInicial(dataInicial);
         stats.setListaDeGastos(listaDeGastos);
+        MeiosDeTransporteDAO mdao = new MeiosDeTransporteDAO(this.mContext);
+        stats.setMeioDeTransporte(mdao.readByID(meioDeTransporte));
         return stats;
     }
 
@@ -214,42 +217,42 @@ public class RelatoriosDAO {
         proporcaoDistanciaPorCategoria = new HashMap<>(4);
         proporcaoGastosPorCategoria = new HashMap<>(4);
         if(totalDistanciaPorCategoria.containsKey("Particular")){ 
-            proporcaoDistanciaPorCategoria.put("Particular", totalDistanciaPorCategoria.get("Particular") / stats.getTotalDistancia());
+            proporcaoDistanciaPorCategoria.put("Particular", totalDistanciaPorCategoria.get("Particular")*100F / stats.getTotalDistancia());
         }else{
             proporcaoDistanciaPorCategoria.put("Particular", 0F);
         }
         if(totalDistanciaPorCategoria.containsKey("Público")){
-            proporcaoDistanciaPorCategoria.put("Público", totalDistanciaPorCategoria.get("Público") / stats.getTotalDistancia());
+            proporcaoDistanciaPorCategoria.put("Público", totalDistanciaPorCategoria.get("Público")*100F / stats.getTotalDistancia());
         }else{
             proporcaoDistanciaPorCategoria.put("Público", 0F);
         }
         if(totalDistanciaPorCategoria.containsKey("Compartilhado")){
-            proporcaoDistanciaPorCategoria.put("Compartilhado", totalDistanciaPorCategoria.get("Compartilhado") / stats.getTotalDistancia());
+            proporcaoDistanciaPorCategoria.put("Compartilhado", totalDistanciaPorCategoria.get("Compartilhado")*100F / stats.getTotalDistancia());
         }else{
             proporcaoDistanciaPorCategoria.put("Compartilhado", 0F);
         }
         if(totalDistanciaPorCategoria.containsKey("Alugado")){
-            proporcaoDistanciaPorCategoria.put("Alugado", totalDistanciaPorCategoria.get("Alugado") / stats.getTotalDistancia());
+            proporcaoDistanciaPorCategoria.put("Alugado", totalDistanciaPorCategoria.get("Alugado")*100F / stats.getTotalDistancia());
         }else{
             proporcaoDistanciaPorCategoria.put("Alugado", 0F);
         }
         if(totalGastosPorCategoria.containsKey("Particular")){
-            proporcaoGastosPorCategoria.put("Particular", totalGastosPorCategoria.get("Particular") / stats.getTotalGastos());
+            proporcaoGastosPorCategoria.put("Particular", totalGastosPorCategoria.get("Particular")*100F / stats.getTotalGastos());
         }else{
             proporcaoGastosPorCategoria.put("Particular", 0F);
         }
         if(totalGastosPorCategoria.containsKey("Público")){
-            proporcaoGastosPorCategoria.put("Público", totalGastosPorCategoria.get("Público") / stats.getTotalGastos());
+            proporcaoGastosPorCategoria.put("Público", totalGastosPorCategoria.get("Público")*100F / stats.getTotalGastos());
         }else{
             proporcaoGastosPorCategoria.put("Público", 0F);
         }
         if(totalGastosPorCategoria.containsKey("Compartilhado")){
-            proporcaoGastosPorCategoria.put("Compartilhado", totalGastosPorCategoria.get("Compartilhado") / stats.getTotalGastos());
+            proporcaoGastosPorCategoria.put("Compartilhado", totalGastosPorCategoria.get("Compartilhado")*100F / stats.getTotalGastos());
         }else{
             proporcaoGastosPorCategoria.put("Compartilhado", 0F);
         }
         if(totalGastosPorCategoria.containsKey("Alugado")){
-            proporcaoGastosPorCategoria.put("Alugado", totalGastosPorCategoria.get("Alugado") / stats.getTotalGastos());
+            proporcaoGastosPorCategoria.put("Alugado", totalGastosPorCategoria.get("Alugado")*100F / stats.getTotalGastos());
         }else{
             proporcaoGastosPorCategoria.put("Alugado", 0F);
         }

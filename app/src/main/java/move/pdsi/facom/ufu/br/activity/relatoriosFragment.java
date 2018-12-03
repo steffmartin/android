@@ -79,17 +79,11 @@ public class relatoriosFragment extends Fragment {
                         Intent intent;
                         if (meioTransporteRelatorioSpinner.equalsIgnoreCase("Todos")) {
                             EstatisticasGeral item = dao.relatorioGeral(data1, data2);
-                            System.out.println(item.toString());
-                            //Abrir tela de relatorio geral (falta criá-la)
-                            //Criar intent, anexar item, abrir.
                             intent = new Intent(getActivity().getApplicationContext(), exibirRelatorioGeralActivity.class);
                             intent.putExtra("item", item);
 
                         } else {
                             EstatisticasPorMeioDeTransporte item = dao.relatorioIndividual(daoMeioTransporte.findIDByDescricao(meioTransporteRelatorioSpinner), data1, data2);
-                            System.out.println(item.toString());
-                            //Abrir tela de relatorio individual (falta criá-la)
-                            //Criar intent, anexar item, abrir.
                             intent = new Intent(getActivity().getApplicationContext(), exibirRelatorioIndividualActivity.class);
                             intent.putExtra("item", item);
                         }
