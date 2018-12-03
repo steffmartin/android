@@ -1,12 +1,13 @@
 package move.pdsi.facom.ufu.br.model.relatorios;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
 
-public class EstatisticasGeral {
+public class EstatisticasGeral implements Serializable {
 
     private Timestamp dataInicial, dataFinal; //Já criei get's que retornam em String formatada
     int QtdViagens, QtdServicos; //Contar as quantidades para todos veiculo

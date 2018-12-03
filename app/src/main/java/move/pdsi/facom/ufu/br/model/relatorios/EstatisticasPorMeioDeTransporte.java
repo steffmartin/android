@@ -1,5 +1,6 @@
 package move.pdsi.facom.ufu.br.model.relatorios;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,7 +9,7 @@ import java.util.Set;
 
 import move.pdsi.facom.ufu.br.model.meiosdetransporte.MeioDeTransporte;
 
-public class EstatisticasPorMeioDeTransporte {
+public class EstatisticasPorMeioDeTransporte implements Serializable {
 
     private MeioDeTransporte meioDeTransporte;
     private Timestamp dataInicial, dataFinal; //Já criei get's que retornam em String formatada
