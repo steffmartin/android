@@ -78,11 +78,13 @@ public class relatoriosFragment extends Fragment {
                         data2 = new Timestamp(out.parse(relatorioDataFinal).getTime());
                         if (meioTransporteRelatorioSpinner.equalsIgnoreCase("Todos")) {
                             EstatisticasGeral item = dao.relatorioGeral(data1, data2);
+                            System.out.println(item.toString());
                             //Abrir tela de relatorio geral (falta criá-la)
                             //Criar intent, anexar item, abrir.
                         } else {
 
                             EstatisticasPorMeioDeTransporte item = dao.relatorioIndividual(daoMeioTransporte.findIDByDescricao(meioTransporteRelatorioSpinner), data1, data2);
+                            System.out.println(item.toString());
                             //Abrir tela de relatorio individual (falta criá-la)
                             //Criar intent, anexar item, abrir.
                         }

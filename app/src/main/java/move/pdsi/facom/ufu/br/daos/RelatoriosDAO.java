@@ -209,18 +209,6 @@ public class RelatoriosDAO {
             }while(cursor.moveToNext());
         }
         HashMap<String,Float> listaDeGastos = new HashMap<>(eventos.size());
-        //Prepara Médias, qtds e totais
-        for(Evento e : eventos){
-            if(e instanceof  Viagem){
-                Viagem v = (Viagem) e;
-                stats.setQtdViagens(stats.getQtdViagens()+1);
-                stats.setTotalDistancia(stats.getTotalDistancia()+v.getDistancia());
-            }else{
-                Gasto g = (Gasto) e;
-                stats.setQtdServicos(stats.getQtdServicos()+1);
-                stats.setTotalGastos(stats.getTotalGastos()+ g.getValor());
-            }
-        }
         //Prepara Proporções
         HashMap<String, Float> proporcaoDistanciaPorCategoria, proporcaoGastosPorCategoria;
         proporcaoDistanciaPorCategoria = new HashMap<>(4);
@@ -266,6 +254,8 @@ public class RelatoriosDAO {
             proporcaoGastosPorCategoria.put("Alugado", 0F);
         }
         //Seta Proporções
+        stats.setTotalDistanciaPorCategoria(totalDistanciaPorCategoria);
+        stats.setTotalGastosPorCategoria(totalGastosPorCategoria);
         stats.setProporcaoDistanciaPorCategoria(proporcaoDistanciaPorCategoria);
         stats.setProporcaoGastosPorCategoria(proporcaoGastosPorCategoria);
         stats.setDataFinal(datafinal);
