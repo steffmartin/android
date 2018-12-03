@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import move.pdsi.facom.ufu.br.model.eventos.Evento;
 import move.pdsi.facom.ufu.br.model.eventos.Gasto;
@@ -138,7 +139,137 @@ public class RelatoriosDAO {
     }
 
     public EstatisticasGeral relatorioGeral(Timestamp dataInicial, Timestamp datafinal) {
-        //TODO implementar método e retornar este objeto preechido.
-        return new EstatisticasGeral();
+        EstatisticasGeral stats = new EstatisticasGeral();
+        HashMap<String, Float> totalDistanciaPorCategoria, totalGastosPorCategoria;
+        totalDistanciaPorCategoria = new HashMap<>(4);
+        totalGastosPorCategoria = new HashMap<>(4);
+        //Carrega todas as viagens dentro do intervalo
+        StringBuilder viagensQuery = new StringBuilder();
+        try{
+            BufferedReader q = new BufferedReader(new InputStreamReader( this.mContext.getAssets().open("RelatGeralViagens.sql") ) );
+            String entrada;
+            while( (entrada = q.readLine()) != null){
+                viagensQuery.append(entrada);
+            }
+        }catch(IOException ex){
+            Toast.makeText(mContext, "Falha ao ler consulta de viagens.", Toast.LENGTH_LONG).show();
+        }
+        //Carrega todos os gastos dentro do intervalo
+        StringBuilder gastosQuery = new StringBuilder();
+        try{
+            BufferedReader q = new BufferedReader(new InputStreamReader( this.mContext.getAssets().open("RelatGeralGastos.sql") ) );
+            String entrada;
+            while( (entrada = q.readLine()) != null){
+                gastosQuery.append(entrada);
+            }
+        }catch(IOException ex){
+            Toast.makeText(mContext, "Falha ao ler consulta de gastos.", Toast.LENGTH_LONG).show();
+        }
+        SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
+        Cursor cursor;
+        cursor = banco.rawQuery(viagensQuery.toString(), new String[]{out.format(new Date(dataInicial.getTime())),out.format(new Date(datafinal.getTime()))});
+        ArrayList<Evento> eventos = new ArrayList<>(20);
+        if(cursor.moveToFirst()){
+            do{
+                Viagem v = new Viagem();
+                v.setId(cursor.getInt(0));
+                v.setMeiodetransporte_id(cursor.getInt(5));
+                v.setData(cursor.getString(1));
+                v.setInicio(cursor.getString(2));
+                v.setFim(cursor.getString(3));
+                v.setDistancia(cursor.getFloat(4));
+                stats.setTotalDistancia(stats.getTotalDistancia()+v.getDistancia());
+                stats.setQtdViagens(stats.getQtdViagens()+1);
+                if(totalDistanciaPorCategoria.containsKey(cursor.getString(6))){
+                    totalDistanciaPorCategoria.put(cursor.getString(6),totalDistanciaPorCategoria.get(cursor.getString(6))+cursor.getFloat(4));
+                }else{
+                    totalDistanciaPorCategoria.put(cursor.getString(6),v.getDistancia());
+                }
+                eventos.add(v);
+            }while(cursor.moveToNext());
+        }
+        cursor = banco.rawQuery(gastosQuery.toString(), new String[]{out.format(new Date(dataInicial.getTime())),out.format(new Date(datafinal.getTime()))});
+        if(cursor.moveToFirst()){
+            do{
+                Gasto v = new Gasto();
+                v.setId(cursor.getInt(0));
+                v.setMeiodetransporte_id(cursor.getInt(5));
+                v.setData(cursor.getString(1));
+                v.setTipo(cursor.getString(2));
+                v.setValor(cursor.getFloat(3));
+                stats.setTotalGastos(stats.getTotalGastos()+v.getValor());
+                stats.setQtdServicos(stats.getQtdServicos()+1);
+                v.setObservacao(cursor.getString(4));
+                if(totalGastosPorCategoria.containsKey(cursor.getString(6))){
+                    totalGastosPorCategoria.put(cursor.getString(6),totalGastosPorCategoria.get(cursor.getString(6))+v.getValor());
+                }else{
+                    totalGastosPorCategoria.put(cursor.getString(6),v.getValor());
+                }
+                eventos.add(v);
+            }while(cursor.moveToNext());
+        }
+        HashMap<String,Float> listaDeGastos = new HashMap<>(eventos.size());
+        //Prepara Médias, qtds e totais
+        for(Evento e : eventos){
+            if(e instanceof  Viagem){
+                Viagem v = (Viagem) e;
+                stats.setQtdViagens(stats.getQtdViagens()+1);
+                stats.setTotalDistancia(stats.getTotalDistancia()+v.getDistancia());
+            }else{
+                Gasto g = (Gasto) e;
+                stats.setQtdServicos(stats.getQtdServicos()+1);
+                stats.setTotalGastos(stats.getTotalGastos()+ g.getValor());
+            }
+        }
+        //Prepara Proporções
+        HashMap<String, Float> proporcaoDistanciaPorCategoria, proporcaoGastosPorCategoria;
+        proporcaoDistanciaPorCategoria = new HashMap<>(4);
+        proporcaoGastosPorCategoria = new HashMap<>(4);
+        if(totalDistanciaPorCategoria.containsKey("Particular")){ 
+            proporcaoDistanciaPorCategoria.put("Particular", totalDistanciaPorCategoria.get("Particular") / stats.getTotalDistancia());
+        }else{
+            proporcaoDistanciaPorCategoria.put("Particular", 0F);
+        }
+        if(totalDistanciaPorCategoria.containsKey("Público")){
+            proporcaoDistanciaPorCategoria.put("Público", totalDistanciaPorCategoria.get("Público") / stats.getTotalDistancia());
+        }else{
+            proporcaoDistanciaPorCategoria.put("Público", 0F);
+        }
+        if(totalDistanciaPorCategoria.containsKey("Compartilhado")){
+            proporcaoDistanciaPorCategoria.put("Compartilhado", totalDistanciaPorCategoria.get("Compartilhado") / stats.getTotalDistancia());
+        }else{
+            proporcaoDistanciaPorCategoria.put("Compartilhado", 0F);
+        }
+        if(totalDistanciaPorCategoria.containsKey("Alugado")){
+            proporcaoDistanciaPorCategoria.put("Alugado", totalDistanciaPorCategoria.get("Alugado") / stats.getTotalDistancia());
+        }else{
+            proporcaoDistanciaPorCategoria.put("Alugado", 0F);
+        }
+        if(totalGastosPorCategoria.containsKey("Particular")){
+            proporcaoGastosPorCategoria.put("Particular", totalGastosPorCategoria.get("Particular") / stats.getTotalGastos());
+        }else{
+            proporcaoGastosPorCategoria.put("Particular", 0F);
+        }
+        if(totalGastosPorCategoria.containsKey("Público")){
+            proporcaoGastosPorCategoria.put("Público", totalGastosPorCategoria.get("Público") / stats.getTotalGastos());
+        }else{
+            proporcaoGastosPorCategoria.put("Público", 0F);
+        }
+        if(totalGastosPorCategoria.containsKey("Compartilhado")){
+            proporcaoGastosPorCategoria.put("Compartilhado", totalGastosPorCategoria.get("Compartilhado") / stats.getTotalGastos());
+        }else{
+            proporcaoGastosPorCategoria.put("Compartilhado", 0F);
+        }
+        if(totalGastosPorCategoria.containsKey("Alugado")){
+            proporcaoGastosPorCategoria.put("Alugado", totalGastosPorCategoria.get("Alugado") / stats.getTotalGastos());
+        }else{
+            proporcaoGastosPorCategoria.put("Alugado", 0F);
+        }
+        //Seta Proporções
+        stats.setProporcaoDistanciaPorCategoria(proporcaoDistanciaPorCategoria);
+        stats.setProporcaoGastosPorCategoria(proporcaoGastosPorCategoria);
+        stats.setDataFinal(datafinal);
+        stats.setDataInicial(dataInicial);
+        return stats;
     }
 }
