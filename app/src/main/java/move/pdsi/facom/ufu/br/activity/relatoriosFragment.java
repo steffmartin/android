@@ -81,7 +81,6 @@ public class relatoriosFragment extends Fragment {
                             EstatisticasGeral item = dao.relatorioGeral(data1, data2);
                             intent = new Intent(getActivity().getApplicationContext(), exibirRelatorioGeralActivity.class);
                             intent.putExtra("item", item);
-
                         } else {
                             EstatisticasPorMeioDeTransporte item = dao.relatorioIndividual(daoMeioTransporte.findIDByDescricao(meioTransporteRelatorioSpinner), data1, data2);
                             intent = new Intent(getActivity().getApplicationContext(), exibirRelatorioIndividualActivity.class);
