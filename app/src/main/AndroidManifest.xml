@@ -11,32 +11,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="move.pdsi.facom.ufu.br.activity.main_Activity"
+        <activity
+            android:name="move.pdsi.facom.ufu.br.activity.main_Activity"
             android:label="@string/title_activity_menu_lateral"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="move.pdsi.facom.ufu.br.activity.addMeioDeTranporteParticularActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="move.pdsi.facom.ufu.br.activity.addMeioDeTransportePublicoActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="move.pdsi.facom.ufu.br.activity.addMeioDeTransporteAlugadoActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="move.pdsi.facom.ufu.br.activity.addMeioDeTransporteCompartilhadoActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="move.pdsi.facom.ufu.br.activity.readMeioDeTransporteActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="move.pdsi.facom.ufu.br.activity.readEventoActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="move.pdsi.facom.ufu.br.activity.addEventoViagemActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="move.pdsi.facom.ufu.br.activity.addEventoDespesaActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name="move.pdsi.facom.ufu.br.activity.addMeioDeTranporteParticularActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="move.pdsi.facom.ufu.br.activity.addMeioDeTransportePublicoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="move.pdsi.facom.ufu.br.activity.addMeioDeTransporteAlugadoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="move.pdsi.facom.ufu.br.activity.addMeioDeTransporteCompartilhadoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="move.pdsi.facom.ufu.br.activity.readMeioDeTransporteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="move.pdsi.facom.ufu.br.activity.readEventoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="move.pdsi.facom.ufu.br.activity.addEventoViagemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="move.pdsi.facom.ufu.br.activity.addEventoDespesaActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="move.pdsi.facom.ufu.br.activity.exibirRelatorioIndividualActivity" />
+        <activity android:name="move.pdsi.facom.ufu.br.activity.exibirRelatorioGeralActivity" />
     </application>
 
 </manifest>
