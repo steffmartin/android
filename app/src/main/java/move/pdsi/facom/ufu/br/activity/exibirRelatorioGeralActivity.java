@@ -37,20 +37,44 @@ public class exibirRelatorioGeralActivity extends AppCompatActivity {
         //Gráficos (texto)
         TextView particularPorcentV = findViewById(R.id.particularPorcentV);
         particularPorcentV.setText(String.format("%.1f", item.getProporcaoDistanciaPorCategoria().get("Particular")) + "%");
+        if(particularPorcentV.getText().equals("0,0%")){
+            particularPorcentV.setVisibility(View.INVISIBLE);
+        }
         TextView alugadoPorcentV = findViewById(R.id.alugadoPorcentV);
         alugadoPorcentV.setText(String.format("%.1f", item.getProporcaoDistanciaPorCategoria().get("Alugado")) + "%");
+        if(alugadoPorcentV.getText().equals("0,0%")){
+            alugadoPorcentV.setVisibility(View.INVISIBLE);
+        }
         TextView publicoPorcentV = findViewById(R.id.publicoPorcentV);
         publicoPorcentV.setText(String.format("%.1f", item.getProporcaoDistanciaPorCategoria().get("Público")) + "%");
+        if(publicoPorcentV.getText().equals("0,0%")){
+            publicoPorcentV.setVisibility(View.INVISIBLE);
+        }
         TextView compartilhadoPorcentV = findViewById(R.id.compartilhadoPorcentV);
         compartilhadoPorcentV.setText(String.format("%.1f", item.getProporcaoDistanciaPorCategoria().get("Compartilhado")) + "%");
+        if(compartilhadoPorcentV.getText().equals("0,0%")){
+            compartilhadoPorcentV.setVisibility(View.INVISIBLE);
+        }
         TextView particularPorcentG = findViewById(R.id.particularPorcentG);
         particularPorcentG.setText(String.format("%.1f", item.getProporcaoGastosPorCategoria().get("Particular")) + "%");
+        if(particularPorcentG.getText().equals("0,0%")){
+            particularPorcentG.setVisibility(View.INVISIBLE);
+        }
         TextView alugadoPorcentoG = findViewById(R.id.alugadoPorcentoG);
         alugadoPorcentoG.setText(String.format("%.1f", item.getProporcaoGastosPorCategoria().get("Alugado")) + "%");
+        if(alugadoPorcentoG.getText().equals("0,0%")){
+            alugadoPorcentoG.setVisibility(View.INVISIBLE);
+        }
         TextView publicoPorcentG = findViewById(R.id.publicoPorcentG);
         publicoPorcentG.setText(String.format("%.1f", item.getProporcaoGastosPorCategoria().get("Público")) + "%");
+        if(publicoPorcentG.getText().equals("0,0%")){
+            publicoPorcentG.setVisibility(View.INVISIBLE);
+        }
         TextView compartilhadoPorcentoG = findViewById(R.id.compartilhadoPorcentoG);
         compartilhadoPorcentoG.setText(String.format("%.1f", item.getProporcaoGastosPorCategoria().get("Compartilhado")) + "%");
+        if(compartilhadoPorcentoG.getText().equals("0,0%")){
+            compartilhadoPorcentoG.setVisibility(View.INVISIBLE);
+        }
 
     }
 

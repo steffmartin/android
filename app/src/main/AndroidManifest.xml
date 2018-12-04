@@ -44,6 +44,9 @@
             android:name="move.pdsi.facom.ufu.br.activity.addEventoViagemActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="move.pdsi.facom.ufu.br.activity.activityCreditos"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="move.pdsi.facom.ufu.br.activity.addEventoDespesaActivity"
             android:screenOrientation="portrait" />
         <activity android:name="move.pdsi.facom.ufu.br.activity.exibirRelatorioIndividualActivity" />

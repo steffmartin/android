@@ -1,5 +1,6 @@
 package move.pdsi.facom.ufu.br.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -60,8 +61,9 @@ public class main_Activity extends AppCompatActivity
         int id = item.getItemId();
 
         //Menu pontilhado
-        if (id == R.id.action_settings) {
-            Toast.makeText(this, "Não há necessidade de efetuar configurações no aplicativo.", Toast.LENGTH_SHORT).show();
+        if (id == R.id.action_creditos) {
+            Intent intent = new Intent(this, activityCreditos.class);
+            startActivity(intent);
             return true;
         }
 
