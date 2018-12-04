@@ -69,12 +69,12 @@ public class EstatisticasPorMeioDeTransporte implements Serializable {
     }
 
     public float getTotalDistancia() {
-        if (Float.isInfinite(proporcaoGastos)) {
+        if (Float.isInfinite(totalDistancia)) {
             return 100;
-        } else if (Float.isNaN(proporcaoGastos)) {
+        } else if (Float.isNaN(totalDistancia)) {
             return 0;
         } else {
-            return proporcaoGastos;
+            return totalDistancia;
         }
     }
 
@@ -97,7 +97,7 @@ public class EstatisticasPorMeioDeTransporte implements Serializable {
     }
 
     public float getProporcaoViagens() {
-        if (Float.isInfinite(proporcaoViagens)) {
+        if (Float.isInfinite(proporcaoViagens) || proporcaoViagens > 100) {
             return 100;
         } else if (Float.isNaN(proporcaoViagens)) {
             return 0;
@@ -111,7 +111,7 @@ public class EstatisticasPorMeioDeTransporte implements Serializable {
     }
 
     public float getProporcaoGastos() {
-        if (Float.isInfinite(proporcaoGastos)) {
+        if (Float.isInfinite(proporcaoGastos) || proporcaoGastos > 100) {
             return 100;
         } else if (Float.isNaN(proporcaoGastos)) {
             return 0;

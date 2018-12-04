@@ -45,6 +45,7 @@ public class EventoDAO {
     public long update(Evento evt) {
         ContentValues valores = new ContentValues();
         valores.put("DATA", evt.getData());
+        valores.put("MEIODETRANSPORTE_ID", evt.getMeiodetransporte_id());
 
         SQLiteDatabase banco = db.getInstance(mContext).getWritableDatabase();
         long id = banco.update("EVENTO",valores,"ID = ?",new String[]{Integer.toString(evt.getId())});

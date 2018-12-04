@@ -82,7 +82,6 @@ public class exibirRelatorioIndividualActivity extends AppCompatActivity {
         TextView est2LinhasGastos = findViewById(R.id.est2LinhasGastos);
         est2LinhasGastos.setText(item.getQtdServicos() + " serviços\nR$ " + String.format("%.2f", item.getTotalGastos()));
         TextView est2LinhasGasolina = findViewById(R.id.est2LinhasGasolina);
-        //TODO limitar para 2 casas decimais
         est2LinhasGasolina.setText("Combustível\nR$ " + String.format("%.2f", item.getMediaCombustivelPorKm()) + " / Km");
         TextView est2LinhasGastos2 = findViewById(R.id.est2LinhasGastos2);
         est2LinhasGastos2.setText("Média de gastos\nR$ " + String.format("%.2f", item.getMediaGastosPorKm()) + " / Km");

@@ -58,7 +58,15 @@ public class EstatisticasGeral implements Serializable {
     }
 
     public float getTotalDistancia() {
-        return totalDistancia;
+
+        if (Float.isInfinite(totalDistancia)) {
+            return 100;
+        } else if (Float.isNaN(totalDistancia)) {
+            return 0;
+        } else {
+            return totalDistancia;
+        }
+
     }
 
     public void setTotalDistancia(float totalDistancia) {
@@ -66,7 +74,13 @@ public class EstatisticasGeral implements Serializable {
     }
 
     public float getTotalGastos() {
-        return totalGastos;
+        if (Float.isInfinite(totalGastos)) {
+            return 100;
+        } else if (Float.isNaN(totalGastos)) {
+            return 0;
+        } else {
+            return totalGastos;
+        }
     }
 
     public void setTotalGastos(float totalGastos) {

@@ -59,20 +59,6 @@
                 app:srcCompat="@drawable/ic_meio_de_transporte" />
 
             <TextView
-                android:id="@+id/estatisticasLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:text="Estatísticas"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/estatIndivVeicNome" />
-
-            <TextView
                 android:id="@+id/relatorioIndividualPeriodo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,6 +122,20 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline8"
                 app:layout_constraintTop_toBottomOf="@+id/estatCategoriaLabel" />
 
+            <TextView
+                android:id="@+id/estatisticasLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="Estatísticas"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/estatIndivVeicNome" />
+
             <ImageView
                 android:id="@+id/estViagAvatar"
                 android:layout_width="40dp"
@@ -198,7 +198,6 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="1dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="center_vertical"
                 android:text="2 serviços\nR$ 150,00"
