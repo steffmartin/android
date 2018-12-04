@@ -5,19 +5,12 @@ import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import move.pdsi.facom.ufu.br.model.meiosdetransporte.Alugado;
-import move.pdsi.facom.ufu.br.model.meiosdetransporte.Compartilhado;
-import move.pdsi.facom.ufu.br.model.meiosdetransporte.MeioDeTransporte;
-import move.pdsi.facom.ufu.br.model.meiosdetransporte.Particular;
-import move.pdsi.facom.ufu.br.model.meiosdetransporte.Publico;
 import move.pdsi.facom.ufu.br.model.relatorios.EstatisticasPorMeioDeTransporte;
 import move.pdsi.facom.ufu.br.move.R;
 
@@ -36,78 +29,95 @@ public class exibirRelatorioIndividualActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exibir_relatorio_individual);
         Intent intent = getIntent();
         item = (EstatisticasPorMeioDeTransporte) intent.getSerializableExtra("item");
-        MeioDeTransporte veiculo = item.getMeioDeTransporte();
-        ImageView avatar = (ImageView) findViewById(R.id.estatisticasAvatar);
 
         //Cabeçalho
+        ImageView avatar = (ImageView) findViewById(R.id.estatisticasAvatar);
         TextView relatorioIndividualPeriodo = findViewById(R.id.relatorioIndividualPeriodo);
         relatorioIndividualPeriodo.setText(item.getDataInicialTxt() + " a " + item.getDataFinalTxt());
         TextView estatIndivVeicNome = findViewById(R.id.estatIndivVeicNome);
-        estatIndivVeicNome.setText(veiculo.getDescricao());
+        estatIndivVeicNome.setText(item.getMeioDeTransporte().getDescricao());
         TextView estatIndivVeicCategoria = findViewById(R.id.estatIndivVeicCategoria);
-        if (veiculo instanceof Alugado) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                avatar.setBackgroundTintList(getColorStateList(R.color.alugado));
-            } else {
-                avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+        switch (item.getMeioDeTransporte().getTipo()) {
+            case "Alugado": {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    avatar.setBackgroundTintList(getColorStateList(R.color.alugado));
+                } else {
+                    avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
+                }
+                estatIndivVeicCategoria.setText("Alugado");
+                break;
             }
-            Alugado alugado = (Alugado) veiculo;
-            estatIndivVeicCategoria.setText("Alugado");
-        } else {
-            if (veiculo instanceof Publico) {
+            case "Particular": {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    avatar.setBackgroundTintList(getColorStateList(R.color.particular));
+                } else {
+                    avatar.setBackgroundTintList(ColorStateList.valueOf(YELLOW));
+                }
+                estatIndivVeicCategoria.setText("Particular");
+                break;
+            }
+            case "Público": {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     avatar.setBackgroundTintList(getColorStateList(R.color.publico));
                 } else {
                     avatar.setBackgroundTintList(ColorStateList.valueOf(CYAN));
                 }
-                Publico publico = (Publico) veiculo;
                 estatIndivVeicCategoria.setText("Público");
-            } else {
-                if (veiculo instanceof Compartilhado) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        avatar.setBackgroundTintList(getColorStateList(R.color.compartilhado));
-                    } else {
-                        avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
-                    }
-                    Compartilhado compartilhado = (Compartilhado) veiculo;
-                    estatIndivVeicCategoria.setText("Compartilhado");
+                break;
+            }
+            case "Compartilhado": {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    avatar.setBackgroundTintList(getColorStateList(R.color.compartilhado));
                 } else {
-                    if (veiculo instanceof Particular) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            avatar.setBackgroundTintList(getColorStateList(R.color.particular));
-                        } else {
-                            avatar.setBackgroundTintList(ColorStateList.valueOf(YELLOW));
-                        }
-                        Particular particular = (Particular) veiculo;
-                        estatIndivVeicCategoria.setText("Particular");
-                    }
+                    avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
                 }
+                estatIndivVeicCategoria.setText("Compartilhado");
+                break;
             }
         }
 
         //Bolinhas
         TextView est2linhasViagem = findViewById(R.id.est2linhasViagem);
-        est2linhasViagem.setText(item.getQtdViagens() + " viagens\n" + item.getTotalDistancia() + " Km");
+        est2linhasViagem.setText(item.getQtdViagens() + " viagens\n" + String.format("%.2f", item.getTotalDistancia()) + " Km");
         TextView est2LinhasGastos = findViewById(R.id.est2LinhasGastos);
-        est2LinhasGastos.setText(item.getQtdServicos() + " serviços\nR$ " + item.getTotalGastos());
+        est2LinhasGastos.setText(item.getQtdServicos() + " serviços\nR$ " + String.format("%.2f", item.getTotalGastos()));
         TextView est2LinhasGasolina = findViewById(R.id.est2LinhasGasolina);
         //TODO limitar para 2 casas decimais
-        est2LinhasGasolina.setText("Combustível\nR$ " + item.getMediaCombustivelPorKm() + " / Km");
+        est2LinhasGasolina.setText("Combustível\nR$ " + String.format("%.2f", item.getMediaCombustivelPorKm()) + " / Km");
         TextView est2LinhasGastos2 = findViewById(R.id.est2LinhasGastos2);
-        est2LinhasGastos2.setText("Média de gastos\nR$ " + item.getMediaGastosPorKm() + " / Km");
+        est2LinhasGastos2.setText("Média de gastos\nR$ " + String.format("%.2f", item.getMediaGastosPorKm()) + " / Km");
 
-        //Gráficos
+        //Gráficos (textos)
         TextView textoGraphViagens = findViewById(R.id.textoGraphViagens);
-        ImageView graphViagens = findViewById(R.id.graphViagens);
-        graphViagens.getLayoutParams().width = (int) ((((View) graphViagens.getParent()).getWidth() - 32) / 100 * item.getProporcaoViagens());
-        textoGraphViagens.setText(item.getProporcaoViagens() + "% em relação a todos os meios de transporte.");
+        textoGraphViagens.setText(String.format("%.2f", item.getProporcaoViagens()) + "% do geral.");
         TextView textoGraphDespesas = findViewById(R.id.textoGraphDespesas);
-        ImageView graphGastos = findViewById(R.id.graphGastos);
-        graphGastos.getLayoutParams().width = (int) ((((View) graphGastos.getParent()).getWidth() - 32) / 100 * item.getProporcaoViagens());
-        textoGraphDespesas.setText(item.getProporcaoGastos() + "% em relação a todos os meios de transporte.");
+        textoGraphDespesas.setText(String.format("%.2f", item.getProporcaoGastos()) + "% do geral.");
+
 
         //Lista de despesas
         TextView listaDeGastos = findViewById(R.id.listaDeGastos);
-        listaDeGastos.setText(item.getListaDeGastosSet().toString().substring(1,item.getListaDeGastosSet().toString().length()-1).replace(", ","\n").replace("="," = R$ ")+"\n");
+        listaDeGastos.setText(item.getListaDeGastosSet().toString().substring(1, item.getListaDeGastosSet().toString().length() - 1).replace(", ", "\n").replace("=", " = R$ ") + "\n");
+    }
+
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        //Gráficos (barras)
+        final View v = findViewById(R.id.relatorioConstraintLayout);
+        v.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                v.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                ImageView graphViagens = findViewById(R.id.graphViagens);
+                graphViagens.requestLayout();
+                graphViagens.getLayoutParams().width = (int) ((v.getWidth() - 32) / 100 * item.getProporcaoViagens());
+                ImageView graphGastos = findViewById(R.id.graphGastos);
+                graphGastos.requestLayout();
+                graphGastos.getLayoutParams().width = (int) ((v.getWidth() - 32) / 100 * item.getProporcaoGastos());
+            }
+        });
+
     }
 }

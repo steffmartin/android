@@ -17,7 +17,7 @@ public class EstatisticasPorMeioDeTransporte implements Serializable {
     float totalDistancia, totalGastos; //Somar os valores para esse veiculo
     float mediaCombustivelPorKm, mediaGastosPorKm; // Dividir total de combustivel pelo total distancia, depois total dos outros gastos (desconsiderando combustivel) dividido pela distancia total
     float proporcaoViagens, proporcaoGastos; // Percentual (de 0 a 100%) deste veículo em relação a todos os veículos
-    HashMap<String,Float> listaDeGastos;//Soma dos gastos de cada categoria (não trazer Strings zeradas - sem valor associado)
+    HashMap<String, Float> listaDeGastos;//Soma dos gastos de cada categoria (não trazer Strings zeradas - sem valor associado)
     //Exemplo:
     //[{Combustivel,150.56},
     // {Pedágio,24.00},
@@ -69,7 +69,13 @@ public class EstatisticasPorMeioDeTransporte implements Serializable {
     }
 
     public float getTotalDistancia() {
-        return totalDistancia;
+        if (Float.isInfinite(proporcaoGastos)) {
+            return 100;
+        } else if (Float.isNaN(proporcaoGastos)) {
+            return 0;
+        } else {
+            return proporcaoGastos;
+        }
     }
 
     public void setTotalDistancia(float totalDistancia) {
@@ -77,7 +83,13 @@ public class EstatisticasPorMeioDeTransporte implements Serializable {
     }
 
     public float getTotalGastos() {
-        return totalGastos;
+        if (Float.isInfinite(totalGastos)) {
+            return 100;
+        } else if (Float.isNaN(totalGastos)) {
+            return 0;
+        } else {
+            return totalGastos;
+        }
     }
 
     public void setTotalGastos(float totalGastos) {
@@ -85,7 +97,13 @@ public class EstatisticasPorMeioDeTransporte implements Serializable {
     }
 
     public float getProporcaoViagens() {
-        return proporcaoViagens;
+        if (Float.isInfinite(proporcaoViagens)) {
+            return 100;
+        } else if (Float.isNaN(proporcaoViagens)) {
+            return 0;
+        } else {
+            return proporcaoViagens;
+        }
     }
 
     public void setProporcaoViagens(float proporcaoViagens) {
@@ -93,7 +111,13 @@ public class EstatisticasPorMeioDeTransporte implements Serializable {
     }
 
     public float getProporcaoGastos() {
-        return proporcaoGastos;
+        if (Float.isInfinite(proporcaoGastos)) {
+            return 100;
+        } else if (Float.isNaN(proporcaoGastos)) {
+            return 0;
+        } else {
+            return proporcaoGastos;
+        }
     }
 
     public void setProporcaoGastos(float proporcaoGastos) {
@@ -109,7 +133,13 @@ public class EstatisticasPorMeioDeTransporte implements Serializable {
     }
 
     public float getMediaCombustivelPorKm() {
-        return mediaCombustivelPorKm;
+        if (Float.isInfinite(mediaCombustivelPorKm)) {
+            return 100;
+        } else if (Float.isNaN(mediaCombustivelPorKm)) {
+            return 0;
+        } else {
+            return mediaCombustivelPorKm;
+        }
     }
 
     public void setMediaCombustivelPorKm(float mediaCombustivelPorKm) {
@@ -117,14 +147,20 @@ public class EstatisticasPorMeioDeTransporte implements Serializable {
     }
 
     public float getMediaGastosPorKm() {
-        return mediaGastosPorKm;
+        if (Float.isInfinite(mediaGastosPorKm)) {
+            return 100;
+        } else if (Float.isNaN(mediaGastosPorKm)) {
+            return 0;
+        } else {
+            return mediaGastosPorKm;
+        }
     }
 
     public void setMediaGastosPorKm(float mediaGastosPorKm) {
         this.mediaGastosPorKm = mediaGastosPorKm;
     }
 
-    public Set getListaDeGastosSet(){
+    public Set getListaDeGastosSet() {
         return listaDeGastos.entrySet();
     }
 
