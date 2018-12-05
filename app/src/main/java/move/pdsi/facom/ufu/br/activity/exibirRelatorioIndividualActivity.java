@@ -11,6 +11,10 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import move.pdsi.facom.ufu.br.model.meiosdetransporte.Alugado;
+import move.pdsi.facom.ufu.br.model.meiosdetransporte.Compartilhado;
+import move.pdsi.facom.ufu.br.model.meiosdetransporte.Particular;
+import move.pdsi.facom.ufu.br.model.meiosdetransporte.Publico;
 import move.pdsi.facom.ufu.br.model.relatorios.EstatisticasPorMeioDeTransporte;
 import move.pdsi.facom.ufu.br.move.R;
 
@@ -37,44 +41,36 @@ public class exibirRelatorioIndividualActivity extends AppCompatActivity {
         TextView estatIndivVeicNome = findViewById(R.id.estatIndivVeicNome);
         estatIndivVeicNome.setText(item.getMeioDeTransporte().getDescricao());
         TextView estatIndivVeicCategoria = findViewById(R.id.estatIndivVeicCategoria);
-        switch (item.getMeioDeTransporte().getTipo()) {
-            case "Alugado": {
+        if(item.getMeioDeTransporte() instanceof Alugado){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     avatar.setBackgroundTintList(getColorStateList(R.color.alugado));
                 } else {
                     avatar.setBackgroundTintList(ColorStateList.valueOf(GREEN));
                 }
                 estatIndivVeicCategoria.setText("Alugado");
-                break;
-            }
-            case "Particular": {
+        }else if(item.getMeioDeTransporte() instanceof Particular){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     avatar.setBackgroundTintList(getColorStateList(R.color.particular));
                 } else {
                     avatar.setBackgroundTintList(ColorStateList.valueOf(YELLOW));
                 }
                 estatIndivVeicCategoria.setText("Particular");
-                break;
-            }
-            case "Público": {
+        }else if(item.getMeioDeTransporte() instanceof Publico){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     avatar.setBackgroundTintList(getColorStateList(R.color.publico));
                 } else {
                     avatar.setBackgroundTintList(ColorStateList.valueOf(CYAN));
                 }
                 estatIndivVeicCategoria.setText("Público");
-                break;
-            }
-            case "Compartilhado": {
+        }else if(item.getMeioDeTransporte() instanceof Compartilhado){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     avatar.setBackgroundTintList(getColorStateList(R.color.compartilhado));
                 } else {
                     avatar.setBackgroundTintList(ColorStateList.valueOf(RED));
                 }
                 estatIndivVeicCategoria.setText("Compartilhado");
-                break;
-            }
         }
+
 
         //Bolinhas
         TextView est2linhasViagem = findViewById(R.id.est2linhasViagem);

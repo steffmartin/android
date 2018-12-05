@@ -85,6 +85,38 @@ public class MeiosDeTransporteDAO {
         return m;
     }
 
+    public MeioDeTransporte readSpecificCategoryByID(int id){
+        SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();
+        Cursor cursor;
+        MeioDeTransporte m = null;
+        String queryAl = "SELECT 'ALUGADO' AS CATEGORIA FROM MEIODETRANSPORTE M INNER JOIN ALUGADO A ON A.MEIODETRANSPORTE_ID = M.ID WHERE M.ID = ?";
+        String queryPub = "SELECT 'PUBLICO' AS CATEGORIA FROM MEIODETRANSPORTE M INNER JOIN PUBLICO A ON A.MEIODETRANSPORTE_ID = M.ID WHERE M.ID = ?";
+        String queryPar = "SELECT 'PARTICULAR' AS CATEGORIA FROM MEIODETRANSPORTE M INNER JOIN PARTICULAR A ON A.MEIODETRANSPORTE_ID = M.ID WHERE M.ID = ?";
+        String queryComp = "SELECT 'COMPARTILHADO' AS CATEGORIA FROM MEIODETRANSPORTE M INNER JOIN COMPARTILHADO A ON A.MEIODETRANSPORTE_ID = M.ID WHERE M.ID = ?";
+        String[] param = new String[]{Integer.toString(id)};
+        cursor = banco.rawQuery(queryAl, param);
+        if(cursor.moveToFirst() && "ALUGADO".equals(cursor.getString(0))){
+            AlugadoDAO aldao = new AlugadoDAO(mContext);
+            return aldao.readByID(id);
+        }
+        cursor = banco.rawQuery(queryPub, param);
+        if(cursor.moveToFirst() && "PUBLICO".equals(cursor.getString(0))){
+            PublicoDAO pudao = new PublicoDAO(mContext);
+            return pudao.readByID(id);
+        }
+        cursor = banco.rawQuery(queryPar, param);
+        if(cursor.moveToFirst() && "PARTICULAR".equals(cursor.getString(0))){
+            ParticularDAO pardao = new ParticularDAO(mContext);
+            return pardao.readByID(id);
+        }
+        cursor = banco.rawQuery(queryComp, param);
+        if(cursor.moveToFirst() && "COMPARTILHADO".equals(cursor.getString(0))){
+            CompartilhadoDAO cdao = new CompartilhadoDAO(mContext);
+            return cdao.readByID(id);
+        }
+        return m;
+    }
+
     public List<MeioDeTransporte> readAll() {
         List<MeioDeTransporte> lista = new ArrayList<MeioDeTransporte>();
         SQLiteDatabase banco = db.getInstance(mContext).getReadableDatabase();

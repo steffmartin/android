@@ -137,7 +137,7 @@ public class RelatoriosDAO {
         stats.setDataInicial(dataInicial);
         stats.setListaDeGastos(listaDeGastos);
         MeiosDeTransporteDAO mdao = new MeiosDeTransporteDAO(this.mContext);
-        stats.setMeioDeTransporte(mdao.readByID(meioDeTransporte));
+        stats.setMeioDeTransporte(mdao.readSpecificCategoryByID(meioDeTransporte));
         return stats;
     }
 
