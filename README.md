@@ -25,16 +25,6 @@ Gradle
 
 Siga os passos a seguir para rodar esta aplicação em seu computador.
 
-#### Obtendo uma cópia
-
-Faça o download, use uma ferramente Git ou a própria IDE Android Studio para clonar este repositório:
-
-```
-Na tela de boas vintas do Android Studio, vá em Check out project from Version Control → Git
-Informe a URI e clique em Clone, na pergunta sobre criar um projeto do Android Studio, clique em Yes
-Marque Create project from existing sources e clique em Next até finalizar
-```
-
 #### Variáveis de ambiente
 
 Informe ao Android Studio o caminho da sua SDK
@@ -49,16 +39,27 @@ Insira a variável de ambiente abaixo:
 ANDROID_HOME = <<diretório_do_android_sdk>>
 ```
 
-> Você pode criar um arquivo local.properties dentro do diretório do projeto, assim não precisa da variável de ambiente. Basta que o arquivo defina o valor de 'sdk.dir'
+> Você pode ignorar esta etapa se preferir criar um arquivo local.properties dentro do diretório do projeto para especificar o valor de 'sdk.dir'
+
+#### Obtendo uma cópia
+
+Faça o download, use uma ferramente Git ou a própria IDE Android Studio para clonar este repositório:
+
+```
+Na tela de boas vintas do Android Studio, vá em Check out project from Version Control → Git
+Informe a URI e clique em Clone, na pergunta sobre criar um projeto do Android Studio, clique em Yes
+Marque Create project from existing sources e clique em Next/Yes até finalizar, mantenha as opções padrão
+```
 
 ### Executando
 
 Execute o projeto:
 
 ```
-No Android Studio, clique em Build → Make Project
-Depois clique em Run → Run 'app'
+No Android Studio, clique em Run → Run 'app'
 ```
+
+> A primeira execução irá demorar, pois a IDE irá montar e instalar o APK no dispositivo.
 
 O aplicativo estará pronto quando a mensagem abaixo for exibida no Logcat:
 
@@ -99,10 +100,10 @@ No Android Studio, com o botão direito sobre o projeto, vá em Build → Build 
 
 ## Autores
 
-* Steffan Martins Alves - Front-end e Activity [LinkedIn](https://www.linkedin.com/in/steffanmartins/)
-* Gabriel Miranda Costa - DAO [LinkedIn](https://www.linkedin.com/in/gabriel-miranda-costa-908b22b5/)
-* Arthur Rodrigues Cruz - Model [LinkedIn](https://www.linkedin.com/in/arthur-rodrigues-cruz/)
-* Heitor Henrique Nunes - Testes [LinkedIn](https://www.linkedin.com/in/heitor-nunes-7b1322176/)
+* Steffan Martins Alves - Front-end e Activity - [LinkedIn](https://www.linkedin.com/in/steffanmartins/)
+* Heitor Henrique Nunes - Testes - [LinkedIn](https://www.linkedin.com/in/heitor-nunes-7b1322176/)
+* Gabriel Miranda Costa - DAO - [LinkedIn](https://www.linkedin.com/in/gabriel-miranda-costa-908b22b5/)
+* Arthur Rodrigues Cruz - Model - [LinkedIn](https://www.linkedin.com/in/arthur-rodrigues-cruz/)
 
 ## Licença
 
