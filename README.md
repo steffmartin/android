@@ -1,6 +1,6 @@
 # Aplicativo Android - MOVE
 
-<p>![](demo/demo_1.png) ![](demo/demo_3.png) ![](demo/demo_10.png)</p>
+![](demo/demo_1.png) ![](demo/demo_3.png) ![](demo/demo_10.png)
 
 Aplicativo Android para registro e controle de gastos de uma frota com recursos de cadastrar veículos, registrar viagens e despesas e analisar métricas.
 
