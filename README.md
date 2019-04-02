@@ -10,6 +10,8 @@ Neste arquivo você encontrará instruções para instalação, imagens demonstr
 
 Siga estas instruções para ter uma cópia do projeto funcionando em seu computador.
 
+> Caso não esteja interessado no desenvolvimento, vá para a página [Releases](https://github.com/steffmartin/android/releases) e baixe o compilado para executar.
+
 ### Pré-requisitos
 
 O que você precisará:
@@ -24,8 +26,6 @@ Gradle
 ### Instalando
 
 Siga os passos a seguir para rodar esta aplicação em seu computador.
-
-> Caso não esteja interessado no desenvolvimento, vá para a página [Releases](https://github.com/steffmartin/android/releases) e baixe o compilado para executar.
 
 #### Variáveis de ambiente
 
