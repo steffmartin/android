@@ -1,6 +1,6 @@
 # Aplicativo Android - MOVE
 
-![](demo/demo_1.png) ![](demo/demo_3.png) ![](demo/demo_6.png) ![](demo/demo_10.png)
+<p>![](demo/demo_1.png) ![](demo/demo_3.png) ![](demo/demo_10.png)</p>
 
 Aplicativo Android para registro e controle de gastos de uma frota com recursos de cadastrar veículos, registrar viagens e despesas e analisar métricas.
 
@@ -80,7 +80,7 @@ Vá em Estatísticas → preencha o filtro e veja o resumo das informações do 
 
 #### Capturas de tela
 
-[Demo #1](demo/demo_1.png) - [Demo #2](demo/demo_2.png) - [Demo #3](demo/demo_3.png) - [Demo #4](demo/demo_4.png) - [Demo #5](demo/demo_5.png) - [Demo #6](demo/demo_6.png) - [Demo #7](demo/demo_7.png) - [Demo #8](demo/demo_8.png) - [Demo #9](demo/demo_9.png) - [Demo #9](demo/demo_10.png)
+[Demo #1](demo/demo_1.png) - [Demo #2](demo/demo_2.png) - [Demo #3](demo/demo_3.png) - [Demo #4](demo/demo_4.png) - [Demo #5](demo/demo_5.png) - [Demo #6](demo/demo_6.png) - [Demo #7](demo/demo_7.png) - [Demo #8](demo/demo_8.png) - [Demo #9](demo/demo_9.png) - [Demo #10](demo/demo_10.png)
 
 ## Deployment
 
@@ -99,10 +99,10 @@ No Android Studio, com o botão direito sobre o projeto, vá em Build → Build 
 
 ## Autores
 
-Steffan Martins Alves - Front-end e Activity [LinkedIn](https://www.linkedin.com/in/steffanmartins/)
-Gabriel Miranda Costa - DAO [LinkedIn](https://www.linkedin.com/in/gabriel-miranda-costa-908b22b5/)
-Arthur Rodrigues Cruz - Model [LinkedIn](https://www.linkedin.com/in/arthur-rodrigues-cruz/)
-Heitor Henrique Nunes - Testes [LinkedIn](https://www.linkedin.com/in/heitor-nunes-7b1322176/)
+* Steffan Martins Alves - Front-end e Activity [LinkedIn](https://www.linkedin.com/in/steffanmartins/)
+* Gabriel Miranda Costa - DAO [LinkedIn](https://www.linkedin.com/in/gabriel-miranda-costa-908b22b5/)
+* Arthur Rodrigues Cruz - Model [LinkedIn](https://www.linkedin.com/in/arthur-rodrigues-cruz/)
+* Heitor Henrique Nunes - Testes [LinkedIn](https://www.linkedin.com/in/heitor-nunes-7b1322176/)
 
 ## Licença
 
