@@ -25,6 +25,8 @@ Gradle
 
 Siga os passos a seguir para rodar esta aplicação em seu computador.
 
+> Caso não esteja interessado no desenvolvimento, vá para a página [Releases](https://github.com/steffmartin/android/releases) e baixe o compilado para executar.
+
 #### Variáveis de ambiente
 
 Informe ao Android Studio o caminho da sua SDK
