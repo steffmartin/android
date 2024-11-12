@@ -1,3 +1,5 @@
+> **Aviso**: Este projeto foi concluído durante meus estudos na universidade e, apesar de estar funcional, utiliza tecnologias que podem estar desatualizadas. Ele permanece público como uma fonte de conhecimento e referência. Sinta-se à vontade para explorar o código e aprender com ele!
+
 # Aplicativo Android - MOVE
 
 ![](demo/demo_1.png) ![](demo/demo_3.png) ![](demo/demo_10.png)
